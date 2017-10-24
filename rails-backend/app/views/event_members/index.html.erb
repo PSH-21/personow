@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Event Members</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Event</th>
+      <th>Creator</th>
+      <th>Admin</th>
+      <th>Notifications</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @event_members.each do |event_member| %>
+      <tr>
+        <td><%= event_member.user_id %></td>
+        <td><%= event_member.event_id %></td>
+        <td><%= event_member.creator %></td>
+        <td><%= event_member.admin %></td>
+        <td><%= event_member.notifications %></td>
+        <td><%= link_to 'Show', event_member %></td>
+        <td><%= link_to 'Edit', edit_event_member_path(event_member) %></td>
+        <td><%= link_to 'Destroy', event_member, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Event Member', new_event_member_path %>
