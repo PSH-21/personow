@@ -8,11 +8,16 @@
 </head>
 <body>
   <p><i>As viewed by event owner.</i></p>
+  <i style="color:green">Select EVENT where EVENT.id=params_id(URL?)</i>
+  
+  <p>All editing options will depend on <i style="color:green">if user's EVENT_MEMBERSHIP.admin||.creator = true
+    </i></p>
   <h1>Hamlet</h1>
   <h4>A LHTheatre Event.</h4>
   <p>Description of the event, whatever the coordinator 
     wishes to share with volunteers / potential volunteers.
   </p>
+    
   <p><a href="#">Edit/Update</a> (button switches description to editable field and back.)</p>
   <h2>Shifts</h2>
 
@@ -40,6 +45,7 @@
       </ul>
     </li>
   </ul>
+  <i style="color:green">Delete SHIFT with shift_id</i>
   
 
   
@@ -52,9 +58,14 @@
     [Start Time: _________]
     [Length: _____________]
   </p>
+  <i style="color:green">Create SHIFT with event_id and parameters</i>
+  <p><a href="#">Create positions </a><i>Opens form on page to add a position.</i></p>
+  <p><i style="color:green">Create POSITION with event_id and parameters</i></p>
   <p>
     <a href="#">Cancel Event</a><i>(Click: Confirmation? -yes- -no-)</i>
   </p>
+  <i style="color:green">Delete EVENT with id</i>
+  
   <p>
     <a href="../index.html">Back</a>
   </p>
