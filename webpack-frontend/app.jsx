@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import Org from './pages/org.jsx';
-// import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+/* eslintrc: { 'children' is missing in props validation = false } */
+import React, { Component } from 'react'
 
+import Navigationbar from './pages/navigationbar.jsx'
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        Org:hellow amed
-        <Org />
+        <Navigationbar />
+        {this.props.children}
       </div>
     );
   }
