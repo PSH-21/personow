@@ -39,7 +39,7 @@ module.exports = {
     port: 8080,
     host: '0.0.0.0',
     proxy: {
-      '/users.json': 'http://localhost:3000'
+      '/': 'http://localhost:3000'
     },
     watchOptions: {
       aggregateTimeout: 300,
