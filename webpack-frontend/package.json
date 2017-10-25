@@ -20,7 +20,7 @@
     "postcss-cssnext": "^3.0.2",
     "postcss-functions": "^3.0.0",
     "react": "^16.0.0",
-    "react-bootstrap": "^0.31.3",
+    "react-bootstrap": "^0.31.5",
     "react-bootstrap-form": "^0.1.4-beta6",
     "react-bootstrap-validation": "^0.1.11",
     "react-dom": "^16.0.0",

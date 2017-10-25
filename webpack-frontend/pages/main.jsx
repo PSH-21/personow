@@ -1,23 +1,15 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
-import { Route, Link } from 'react-router-dom'
-import Login from './login.jsx'
+import { Link } from 'react-router-dom'
 
 export default class Main extends Component {
+
   render() {
-    console.log(this.props)
     return (
         <div>
           <h1>Main Page</h1>
           
-          <span className="">
-            <Link to='/login'>
-              <Button bsStyle='success'>Login</Button>
-            </Link>
-                
-            <a href='register.html'>Register</a> |
-            <a href='user.html'>User Profile</a> |
-          </span>
+          <Link to={'/user'}>User Profile</Link>
+
           <h1>Personow MainPage</h1>
           <h2>Your Events</h2>
           <span>
@@ -26,10 +18,10 @@ export default class Main extends Component {
               hidden for anonymous users.
             </i>
           </span>
-          <h4><a href='events/eventid1.html'>Hamlet - LHTheatre</a></h4>
+          <h4><Link to={'/Eventid1'}>Hamlet - LHTheatre</Link></h4>
           <p>4 shifts of 12 have yet to be filled.</p>
 
-          <h4><a href='events/eventid2.html'>Family Garage Sale</a></h4>
+          <h4><Link to={'/Eventid2'}>Family Garage Sale</Link></h4>
           <p>All shifts filled.</p>
 
           <h2>Your Scheduled Shifts</h2>
@@ -63,6 +55,3 @@ export default class Main extends Component {
     );
   }
 }
-
-//<Route path='' component={} />
-//<Link to={''} >" "</Link>

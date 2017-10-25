@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 export default class Yourevents extends Component {
-
+  
   render() {
     return (
       <div>
