@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  get 'yourschedule/:id', to: 'test#schedule'
+
+
   resources :event_members
   resources :group_members
   resources :shifts

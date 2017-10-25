@@ -3,6 +3,7 @@ class Event < ApplicationRecord
   has_many :users, through: :event_members
 
   has_many :roles
+  has_many :shifts, through: :roles
 
   validates :title, presence: true
   validates :start_date, presence: true
