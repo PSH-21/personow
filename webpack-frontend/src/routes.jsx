@@ -7,12 +7,12 @@ import { Route, Switch } from 'react-router';
  */
 
 import Main from './main.jsx'
-import Login from './login.jsx'
-import Org from './org.jsx'
-import User from './user.jsx'
-import Eventid1 from './eventid1.jsx'
-import Eventid2 from './eventid2.jsx'
-import Eventform from './eventform.jsx'
+import Login from './user/login.jsx'
+import Org from './group/org.jsx'
+import User from './user/user.jsx'
+import Eventid1 from './event/eventid1.jsx'
+import Eventid2 from './event/eventid2.jsx'
+import Eventform from './event/eventform.jsx'
 /**
  * All routes go here.
  * Don't forget to import the components above after adding new route.

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Eventform from './eventform.jsx'
+import Eventform from '../event/eventform.jsx'
 // import Yourevents from './Yourevents.jsx'
 import { Link } from 'react-router-dom'
 
