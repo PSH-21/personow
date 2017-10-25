@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
-import Org from './pages/org.jsx';
-// import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
+import React, { Component } from 'react'
 
+import Navigationbar from './pages/navigationbar.jsx'
 
 export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {}
+  }
+
   render() {
     return (
       <div>
-        Org:hellow amed
-        <Org />
+        <Navigationbar />
+        {this.props.children}
       </div>
     );
   }
