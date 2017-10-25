@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Personow</title>
+</head>
+<body>
+  <span>
+    <a href='login.html'>Login</a> |
+    <a href='register.html'>Register</a> |
+    <a href='user.html'>User Profile</a> |
+    <a href='newevent.html'>Create Event</a> |
+    <a href='newgroup.html'>Create Group</a> |
+    
+  </span>
+  <h1>Personow MainPage</h1>
+  
+  <h2>Your Events</h2>
+  <span>
+    <i>This section appears when logged in,
+    and you are an administrator for events that have not ended.
+    hidden for anonymous users.</i>
+    <i style="color:green">List EVENTs where user's EVENT_MEMBERSHIP
+      includes admin=true or creator=true. </i>
+  </span>
+  <h4><a href='events/eventid1.html'>Hamlet - LHTheatre</a></h4>
+  <p>4 shifts of 12 have yet to be filled.</p>
+
+  <h4><a href='events/eventid2.html'>Family Garage Sale</a></h4>
+  <p>All shifts filled.</p>
+
+  <h2>Your Scheduled Shifts</h2>
+  <span>
+    <i>This section appears when logged in,
+    and you have scheduled shifts for today or in the future.
+    hidden for anonymous users.</i>
+    <i style="color:green">List SHIFTs where SHIFT.user_id=current_user</i>
+  </span>
+  
+  <h4>Oct. 23</h4>
+  <p>1pm - 5pm : <a href='events/eventid1v.html'>Hamlet - LHTheatre</a></p>
+  <p>6pm - 10pm : <a href='events/eventid1v.html'>Hamlet - LHTheatre</a></p>
+
+  <h4>Oct. 25</h4>
+  <p>1pm - 5pm : <a href='events/eventid3v.html'>Demo Day - LHLabs</a></p>
+  
+
+  <h2>Events and Groups</h2>
+  <span>
+      <i>This section appears for everyone, to see
+        details about groups and events they 
+        can join as users.</i>
+        <i style="color:green">List all GROUPs and EVENTs sorted by group.</i>
+    </span>
+  <h4><a href='events/eventid1a.html'>Event: Hamlet - LHTheatre</a></h4>
+  <p>4 shifts available</p>
+
+  <h4><a href='groups/groupid1.html'>Group: The Code Nappers</a></h4>
+  <p>Join to volnteer for future events</p>
+
+</body>
+</html>
