@@ -8,6 +8,7 @@
 </head>
 <body>
   <h1>Regular old Profile</h1>
+  <i style="color:green">Select USER where id=current_user</i>
   <p>Edit Name:</p>
   <p>Change Password:</p>
   <p>Change PW Confirm:</p>
@@ -19,11 +20,16 @@
   <p><a href="index.html">"Back"</a></p>
 
   <h3>Your groups and events</h3>
+  <i style="color:green">List GROUPs where GROUP_MEMBERSHIP.user_id=current_user, and
+    EVENTS where EVENT_MEMBERSHIP.user_id=current_user.
+  </i>
   <p>Group Name - <a href="#">Leave Group</a></p>
+  <i style="color:green">Delete entry in GROUP_MEMBERSHIP. </i>
   <ul>
     <li>Individual Notification settings</li>
   </ul>
-  <p>Group Name - Creator <a href="#">Leave Group</a> <a href="#">Close Group</a></p>
+  <p>Group Name - Creator <a href="#">Close Group</a></p>
+  <i style="color:green">Delete GROUP, cascade GROUP MEMBERSHIP and set child EVENTS to group_id=nil</i>
     <ul>
     <li>Individual Notification settings</li>
   </ul>

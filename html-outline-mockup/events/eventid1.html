@@ -8,12 +8,27 @@
 </head>
 <body>
   <p><i>As viewed by event owner.</i></p>
+  <i style="color:green">Select EVENT where EVENT.id=params_id(URL?)</i>
+  
+  <p>All editing options will depend on <i style="color:green">if user's EVENT_MEMBERSHIP.admin||.creator = true
+  </i></p>
   <h1>Hamlet</h1>
   <h4>A LHTheatre Event.</h4>
+  <p>Date: Oct 23 - Oct 24</p>
   <p>Description of the event, whatever the coordinator 
     wishes to share with volunteers / potential volunteers.
   </p>
+  
   <p><a href="#">Edit/Update</a> (button switches description to editable field and back.)</p>
+  
+  <h2>Volunteer Roles</h2>
+
+  <p>Bar: Serve snacks and drinks to patrons.</p>
+  <p>Door: Take tickets and usher patrons to seats.</p>
+  
+  <p><a href="#">Create role </a><i>Opens form on page to add a role.</i></p>
+  <p><i style="color:green">Create ROLE with event_id and parameters</i></p>
+  <p>
   <h2>Shifts</h2>
 
   <ul>
@@ -40,6 +55,7 @@
       </ul>
     </li>
   </ul>
+  <i style="color:green">Delete SHIFT with shift_id</i>
   
 
   
@@ -47,14 +63,16 @@
     <a href="#">Create shifts </a><i>Opens form on page to add a shift.</i>
   </p>
   <p>
-    [Position: General volunteer ]
+    [Role: General volunteer ]
     [Day: _______]
     [Start Time: _________]
     [Length: _____________]
   </p>
-  <p>
+  <i style="color:green">Create SHIFT with event_id and parameters</i>
     <a href="#">Cancel Event</a><i>(Click: Confirmation? -yes- -no-)</i>
   </p>
+  <i style="color:green">Delete EVENT with id</i>
+  
   <p>
     <a href="../index.html">Back</a>
   </p>

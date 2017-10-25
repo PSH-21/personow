@@ -8,12 +8,18 @@
 </head>
 <body>
   <p><i>As viewed by volunteer John Smith.</i></p>
+  <i style="color:green">Select EVENT where EVENT.id=params_id(URL?)</i>
+  
   <h1>Demo Day</h1>
   <h4>A LHLabs Event.</h4>
+  <p>Date: Oct 25</p>
   <p>Description of the event, whatever the coordinator 
     wishes to share with volunteers / potential volunteers.
   </p>
   <h2>Shifts</h2>
+  <p>All editing options will depend on <i style="color:green">if user's EVENT_MEMBERSHIP = true
+      and SHIFT.user_id = current_user
+      </i></p>
 
   <ul>
     <li>

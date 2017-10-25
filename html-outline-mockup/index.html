@@ -10,7 +10,10 @@
   <span>
     <a href='login.html'>Login</a> |
     <a href='register.html'>Register</a> |
-    <a href='user.html'>User Profile</a> |    
+    <a href='user.html'>User Profile</a> |
+    <a href='newevent.html'>Create Event</a> |
+    <a href='newgroup.html'>Create Group</a> |
+    
   </span>
   <h1>Personow MainPage</h1>
   
@@ -19,6 +22,8 @@
     <i>This section appears when logged in,
     and you are an administrator for events that have not ended.
     hidden for anonymous users.</i>
+    <i style="color:green">List EVENTs where user's EVENT_MEMBERSHIP
+      includes admin=true or creator=true. </i>
   </span>
   <h4><a href='events/eventid1.html'>Hamlet - LHTheatre</a></h4>
   <p>4 shifts of 12 have yet to be filled.</p>
@@ -31,6 +36,7 @@
     <i>This section appears when logged in,
     and you have scheduled shifts for today or in the future.
     hidden for anonymous users.</i>
+    <i style="color:green">List SHIFTs where SHIFT.user_id=current_user</i>
   </span>
   
   <h4>Oct. 23</h4>
@@ -46,6 +52,7 @@
       <i>This section appears for everyone, to see
         details about groups and events they 
         can join as users.</i>
+        <i style="color:green">List all GROUPs and EVENTs sorted by group.</i>
     </span>
   <h4><a href='events/eventid1a.html'>Event: Hamlet - LHTheatre</a></h4>
   <p>4 shifts available</p>
