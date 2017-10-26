@@ -15,7 +15,6 @@ export default class AllEvents extends Component {
   render() {
 
     const { events = [], error = '' } = this.props;
-
     return (
       <div>
         {
