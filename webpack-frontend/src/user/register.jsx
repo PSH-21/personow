@@ -16,7 +16,7 @@ export default class Register extends Component {
     }
   }
 
-  submitNewEvent = (e) => {
+  submitNewUser = (e) => {
     e.preventDefault();
     console.log('state is: ', this.state, 'Event is: ', e);
     const { name, email, password, password_confirmation } = this.state;
@@ -78,7 +78,7 @@ handleChange = (e) => {
           <input type="submit" onClick={this.submitNewEvent} value="Submit" />
         </form>
         <Link to='/'>
-          <Button bsStyle='success'>Back</Button>
+          <Button bsStyle='success' onClick={this.submitNewUser} >Back</Button>
         </Link>
       </div>
     );

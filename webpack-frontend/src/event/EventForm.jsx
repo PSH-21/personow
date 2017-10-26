@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { Button, FormGroup, ControlLabel, FormControl, ButtonToolbar, HelpBlock } from 'react-bootstrap';
-import axios from 'axios';
 
 export default class EventForm extends Component {
   constructor(props) {
@@ -47,14 +45,13 @@ export default class EventForm extends Component {
   }
 
   render() {
-    const { fireRedirect } = this.state;
     return (
       <div>
         <div>
           <form>
             <label>
               Event Name:
-            <input type="text" name="title" value={this.state.title} onChange={this.handleChange}  />
+            <input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Event Name.." />
             </label>
              <label>
               Event Description:
@@ -68,10 +65,9 @@ export default class EventForm extends Component {
               Event To:
              <input type="datetime" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
-            <input type="submit" onClick={this.submitNewEvent} value="Submit" />
+            <input type="submit" value="Submit" />
           </form>
         </div>
-        {fireRedirect && (<Redirect to={'/'} />)}
       </div>
     );
   }
