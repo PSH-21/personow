@@ -4,22 +4,6 @@ import { Button, FormGroup, ControlLabel, FormControl, ButtonToolbar, HelpBlock 
 export default class EventForm extends Component {
   constructor(props) {
     super(props);
-<<<<<<< HEAD
-    this.state = {}
-  }
-  clicked = (event) => {
-    console.log("clicked!")
-  }
-
-  getInitialState() {
-    return {
-      value: ''
-    };
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-=======
     this.state = {
       title: '',
       description: '',
@@ -58,7 +42,6 @@ export default class EventForm extends Component {
     console.log('value is: ', value);
     console.log('name is: ', name);
     this.setState({ [name]: value });
->>>>>>> 07234fd4f6bbdfdc44c3359a9b36fd5087e790b3
   }
 
   render() {
@@ -68,21 +51,6 @@ export default class EventForm extends Component {
           <form>
             <label>
               Event Name:
-<<<<<<< HEAD
-            <input type="text" name="EventName" placeholder="Event Name.." />
-            </label>           
-             <label>
-              Event Description:
-             <input type="text" name="EventName" placeholder="Event Description" />
-            </label>
-            <label>
-              From:
-             <input type="text" name="EventName" placeholder="MM/DD/YYYY" />
-            </label>
-            <label>
-              To:
-             <input type="text" name="EventName" placeholder="MM/DD/YYYY" />
-=======
             <input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Event Name.." />
             </label>           
              <label>
@@ -96,7 +64,6 @@ export default class EventForm extends Component {
             <label>
               Event To:
              <input type="text" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
->>>>>>> 07234fd4f6bbdfdc44c3359a9b36fd5087e790b3
             </label>
             <input type="submit" value="Submit" />
           </form>
