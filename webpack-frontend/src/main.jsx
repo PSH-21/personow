@@ -31,8 +31,6 @@ export default class Main extends Component {
         error
       });
     })
-
-
   }
 
   render() {
@@ -49,7 +47,7 @@ export default class Main extends Component {
         <h2>All Groups</h2>
         <AllGroups { ...this.state  } />
 
-        <Link to={'/EventForm'} ><button>EventForm</button> </Link>
+        <Link to={'/EventForm'} ><button>Create Event</button> </Link>
         
       </div>
     );
