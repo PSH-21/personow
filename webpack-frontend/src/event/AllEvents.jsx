@@ -15,7 +15,7 @@ export default class AllEvents extends Component {
   }
   componentDidMount() {
     axios.get('/events.json')
-      .then(({ data }) => {
+      .then(({ data }) => { console.log('data check' + data);
         this.setState({
           events: data
         });
