@@ -16,44 +16,33 @@ export default class EventForm extends Component {
     };
   }
 
-
-
   handleChange(e) {
     this.setState({ value: e.target.value });
   }
-
 
   render() {
     return (
       <div>
         <div>
           <form>
-            <FormGroup
-              controlId="formBasicText"
-            >
-              <ControlLabel>Working example with validation</ControlLabel>
-              <FormControl
-                type="text"
-                value={this.state.value}
-                placeholder="Enter text"
-              />
-              <FormControl.Feedback />
-              <div> </div>
-              <ControlLabel>Working example with validation</ControlLabel>
-              <FormControl
-                type="text"
-                value={this.state.value}
-                placeholder="Enter text"
-              />
-              <FormControl.Feedback />
-              <HelpBlock>we can add text here</HelpBlock>
-            </FormGroup>
+            <label>
+              Event Name:
+            <input type="text" name="EventName" placeholder="Event Name.." />
+            </label>           
+             <label>
+              Event Description:
+             <input type="text" name="EventName" placeholder="Event Description" />
+            </label>
+            <label>
+              From:
+             <input type="text" name="EventName" placeholder="MM/DD/YYYY" />
+            </label>
+            <label>
+              To:
+             <input type="text" name="EventName" placeholder="MM/DD/YYYY" />
+            </label>
+            <input type="submit" value="Submit" />
           </form>
-        </div>
-        <div>
-          <ButtonToolbar>
-            <Button bsStyle="primary" bsSize="large" onClick={this.clicked} >Submit</Button>
-          </ButtonToolbar>
         </div>
       </div>
     );
@@ -61,3 +50,6 @@ export default class EventForm extends Component {
 }
 
 
+//<ButtonToolbar>
+  //<Button bsStyle="primary" bsSize="large" onClick={this.clicked} >Submit</Button>
+//</ButtonToolbar>

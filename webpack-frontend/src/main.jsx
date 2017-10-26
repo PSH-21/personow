@@ -17,8 +17,8 @@ export default class Main extends Component {
   componentWillMount() {
 
     axios.all([
-      axios.get('/events.json'),  
-      axios.get('/groups.json')
+      axios.get('/api/vi/events.json'),  
+      axios.get('/api/vi/groups.json')
     ])
     .then(axios.spread((events, groups) => {
       this.setState({

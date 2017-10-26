@@ -39,7 +39,7 @@ module.exports = {
     port: 8080,
     host: '0.0.0.0',
     proxy: {
-      '/': 'http://localhost:3000'
+      '/api/vi/': 'http://localhost:3000'
     },
     watchOptions: {
       aggregateTimeout: 300,
