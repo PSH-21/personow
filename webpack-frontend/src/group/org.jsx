@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Eventform from '../event/eventform.jsx'
+import EventForm from '../event/EventForm.jsx'
 // import Yourevents from './Yourevents.jsx'
 import { Link } from 'react-router-dom'
 
@@ -15,7 +15,7 @@ export default class Org extends Component {
         <div>
           <Link to={'/your-events'} > Click Me! </Link>
             {/* <Yourevents /> */}
-            <Eventform />
+            <EventForm />
         </div>
     );
   }
