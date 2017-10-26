@@ -9,5 +9,6 @@ module Api::V1
       # @user = User.find(params[:id])
       # render json: @user
       respond_with User.find(params[:id])
+    end
   end
 end
