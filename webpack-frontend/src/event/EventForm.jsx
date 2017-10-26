@@ -20,22 +20,22 @@ export default class EventForm extends Component {
     console.log('state is: ', this.state, 'Event is: ', e);
     const { EventName, EventDescription, EventFrom, EventTo } = this.state;
     const data = { EventName, EventDescription, EventFrom, EventTo }
-  axios.post('/api/v1/NewEvent', data)
-  .then( res => {
-    console.log('response from rails: ', res);
-  })
-  .catch( error => {
-    this.setState({ error })
-  })    
-    
-    this.setState({       
+    axios.post('/api/v1/NewEvent', data)
+    .then( res => {
+      console.log('response from rails: ', res);
+    })
+    .catch( error => {
+      this.setState({ error })
+    })
+
+    this.setState({
       EventName: '',
       EventDescription: '',
       EventFrom: '',
       EventTo: '',
       fireRedirect: true
     });
-  
+
   }
 
   getInitialState() {
@@ -61,7 +61,7 @@ export default class EventForm extends Component {
             <label>
               Event Name:
             <input type="text" name="EventName" value={this.state.EventName} onChange={this.handleChange} placeholder="Event Name.." />
-            </label>           
+            </label>
              <label>
               Event Description:
              <input type="text" name="EventDescription" value={this.state.EventDescription} onChange={this.handleChange} placeholder="Event Description" />
@@ -77,7 +77,7 @@ export default class EventForm extends Component {
             <input type="submit" onClick={this.submitNewEvent} value="Submit" />
           </form>
         </div>
-        {fireRedirect && (<Redirect to={'/'} />)}        
+        {fireRedirect && (<Redirect to={'/'} />)}
       </div>
     );
   }
