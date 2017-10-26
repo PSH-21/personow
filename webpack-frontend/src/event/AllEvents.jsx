@@ -1,63 +1,50 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 export default class AllEvents extends Component {
   // static PropTypes = {
   // 	shifts: PropTypes.array
   // }
-  constructor(props) {
-    super(props);
-    this.state = {
-      error: '',
-      events: []
-    }
-  }
-  componentDidMount() {
-    axios.get('/events.json')
-      .then(({ data }) => {
-        this.setState({
-          events: data
-        });
-      })
-      .catch((error) => {
-        this.setState({
-          error
-        });
-      });
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     error: '',
+  //     events: props.events || []
+  //   }
+  // }
+  
   render() {
-    const events = this.state.events.map(event => {
-      return (
-        <tr>
-            <td>{event.title}</td>
-            <td>{event.description}</td>
-            <td>{event.start_date}</td>
-            <td>{event.end_date}</td>
-        </tr>
-      );
-    });
+
+    const { events = [], error = '' } = this.props;
 
     return (
       <div>
         {
-          this.state.events.length === 0 ?
-            <div>Loading</div> :
+          !!events.length ?
             <table>
               <thead>
                 <tr>
-                  <th>Title</th>
+                  <th>Name</th>
                   <th>Description</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
                 </tr>
               </thead>
               <tbody>
-                {events}
+                {
+                  events.map(event => {
+                    return (
+                      <tr>
+                        <td>{event.title}</td>
+                        <td>{event.description}</td>
+                        <td>{event.start_date}</td>
+                        <td>{event.end_date}</td>
+                      </tr>
+                    )
+                  })
+                }
               </tbody>
-            </table>
+            </table> :
+            <div>Loading</div>
         }
-        {this.state.error && <div>{error}</div>}
+        {error && <div>{error}</div>}
       </div>
     );
   }
