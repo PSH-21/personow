@@ -75,7 +75,7 @@ handleChange = (e) => {
             Password Confirmation
            <input type="password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} placeholder="" />
           </label>
-          <input type="submit" value="Submit" />
+          <input type="submit" onClick={this.submitNewEvent} value="Submit" />
         </form>
         <Link to='/'>
           <Button bsStyle='success'>Back</Button>
