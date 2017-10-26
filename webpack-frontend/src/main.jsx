@@ -48,6 +48,9 @@ export default class Main extends Component {
 
         <h2>All Groups</h2>
         <AllGroups { ...this.state  } />
+
+        <Link to={'/EventForm'} ><button>EventForm</button> </Link>
+        
       </div>
     );
   }

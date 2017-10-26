@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, ButtonToolbar, HelpBlock } from 'react-bootstrap';
 
-export default class Eventform extends Component {
+export default class EventForm extends Component {
   constructor(props) {
     super(props);
     this.state = {}
