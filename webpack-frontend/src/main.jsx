@@ -32,28 +32,7 @@ export default class Main extends Component {
       });
     })
 
-    // axios.get('/events.json')
-    // .then(({ data }) => {
-    //   this.setState({
-    //     events: data
-    //   });
-    // })
-    // .catch((error) => {
-    //   this.setState({
-    //     error
-    //   });
-    // });
-    // axios.get('/groups.json')
-    //   .then(({ data }) => {
-    //     this.setState({
-    //       groups: data
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     this.setState({
-    //       error
-    //     });
-    //   });
+
   }
 
   render() {
