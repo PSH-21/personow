@@ -7,10 +7,10 @@ export default class EventForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      EventName: '',
-      EventDescription: '',
-      EventFrom: '',
-      EventTo: '',
+      title: '',
+      description: '',
+      start_date: '',
+      end_date: '',
       fireRedirect: false,
       error: ''
     }
@@ -18,30 +18,24 @@ export default class EventForm extends Component {
   submitNewEvent = (e) => {
     e.preventDefault();
     console.log('state is: ', this.state, 'Event is: ', e);
-    const { EventName, EventDescription, EventFrom, EventTo } = this.state;
-    const data = { EventName, EventDescription, EventFrom, EventTo }
-    axios.post('/api/v1/NewEvent', data)
-    .then( res => {
-      console.log('response from rails: ', res);
-    })
-    .catch( error => {
-      this.setState({ error })
-    })
+    const { title, description, start_date, end_date } = this.state;
+    const data = { title, description, start_date, end_date }
+  axios.post('/api/v1/events/new', data)
+  .then( res => {
+    console.log('response from rails: ', res);
+  })
+  .catch( error => {
+    this.setState({ error })
+  })
 
-    this.setState({
-      EventName: '',
-      EventDescription: '',
-      EventFrom: '',
-      EventTo: '',
-      fireRedirect: true
-    });
+    // this.setState({
+    //   title: '',
+    //   description: '',
+    //   start_date: '',
+    //   end_date: '',
+    //   fireRedirect: true
+    // });
 
-  }
-
-  getInitialState() {
-    return {
-      value: ''
-    };
   }
 
   handleChange = (e) => {
@@ -60,19 +54,19 @@ export default class EventForm extends Component {
           <form>
             <label>
               Event Name:
-            <input type="text" name="EventName" value={this.state.EventName} onChange={this.handleChange} placeholder="Event Name.." />
+            <input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Event Name.." />
             </label>
              <label>
               Event Description:
-             <input type="text" name="EventDescription" value={this.state.EventDescription} onChange={this.handleChange} placeholder="Event Description" />
+             <input type="text" name="description" value={this.state.description} onChange={this.handleChange} placeholder="Event Description" />
             </label>
             <label>
               Event From:
-             <input type="date" name="EventFrom" value={this.state.EventFrom} onChange={this.handleChange} placeholder="MM/DD/YYYY" />
+             <input type="text" name="start_date" value={this.state.start_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
             <label>
               Event To:
-             <input type="date" name="EventTo" value={this.state.EventTo} onChange={this.handleChange} placeholder="MM/DD/YYYY" />
+             <input type="text" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
             <input type="submit" onClick={this.submitNewEvent} value="Submit" />
           </form>
