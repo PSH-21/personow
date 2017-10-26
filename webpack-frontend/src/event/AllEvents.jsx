@@ -44,13 +44,17 @@ export default class AllEvents extends Component {
           this.state.events.length === 0 ?
             <div>Loading</div> :
             <table>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-              </tr>
-              {events}
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Description</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {events}
+              </tbody>
             </table>
         }
         {this.state.error && <div>{error}</div>}
