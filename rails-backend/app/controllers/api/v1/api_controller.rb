@@ -1,6 +1,6 @@
 module Api::V1
   class ApiController < ApplicationController 
-    
+    skip_before_action :verify_authenticity_token
     private
       def authenticate_user
         user_token = request.headers['X-USER-TOKEN']
