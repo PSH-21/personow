@@ -7,10 +7,10 @@ export default class EventForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      description: '',
-      start_date: '',
-      end_date: '',
+      title: 'asdf',
+      description: 'asdf',
+      start_date: '11/12/2018',
+      end_date: '11/13/2019',
       fireRedirect: false,
       error: ''
     }
@@ -20,7 +20,7 @@ export default class EventForm extends Component {
     console.log('state is: ', this.state, 'Event is: ', e);
     const { title, description, start_date, end_date } = this.state;
     const data = { title, description, start_date, end_date }
-  axios.post('/api/v1/events/new', data)
+  axios.post('/api/v1/events', data)
   .then( res => {
     console.log('response from rails: ', res);
   })
@@ -54,7 +54,7 @@ export default class EventForm extends Component {
           <form>
             <label>
               Event Name:
-            <input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Event Name.." />
+            <input type="text" name="title" value={this.state.title} onChange={this.handleChange}  />
             </label>
              <label>
               Event Description:
@@ -62,11 +62,11 @@ export default class EventForm extends Component {
             </label>
             <label>
               Event From:
-             <input type="text" name="start_date" value={this.state.start_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
+             <input type="datetime" name="start_date" value={this.state.start_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
             <label>
               Event To:
-             <input type="text" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
+             <input type="datetime" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
             <input type="submit" onClick={this.submitNewEvent} value="Submit" />
           </form>

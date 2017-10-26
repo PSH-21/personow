@@ -14,16 +14,17 @@ module API::V1
     end
 
     def create
+      # @event = Event.new(event_params)
+      p 'check'
       respond_with Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)
 
-      @event = Event.new(event_params)
-      respond_to do |format|
-        if @event.save
-          format.json { render
-        else
-          format.json { render json: @event.errors, status: :unprocessable_entity }
-        end
-      end
+      # respond_to do |format|
+      #   if @event.save
+      #     format.json { render
+      #   else
+      #     format.json { render json: @event.errors, status: :unprocessable_entity }
+      #   end
+      # end
     end
 
     private
