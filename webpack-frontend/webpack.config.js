@@ -36,13 +36,17 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, 'build/'),
-    port: 3000,
+    port: 8080,
     host: '0.0.0.0',
+    proxy: {
+      '/': 'http://localhost:3000'
+    },
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000,
       ignored: /node_modules/
-    }
+    },
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -69,5 +73,5 @@ module.exports = {
       Tooltip: "exports-loader?Tooltip!bootstrap/js/dist/tooltip",
       Util: "exports-loader?Util!bootstrap/js/dist/util",
     })
-  ]
+  ],
 };

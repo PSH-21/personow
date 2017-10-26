@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2017-10-23 20:14:38
+  end_time: 2017-10-23 20:14:38
+  user_id: 1
+  role_id: 1
+
+two:
+  start_time: 2017-10-23 20:14:38
+  end_time: 2017-10-23 20:14:38
+  user_id: 1
+  role_id: 1
