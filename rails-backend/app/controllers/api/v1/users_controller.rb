@@ -15,6 +15,7 @@ module API::V1
       user = User.new(user_params)
       if user.save!
         p 'user saved'
+        render json: {token: user.token}
       else
         p 'not saved'
       end
