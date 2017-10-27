@@ -11,8 +11,8 @@ export default class Group extends Component {
     }
   }
   componentDidMount() {
-    console.log('id is: ', this.props.);
-    axios.get(`/api/v1/groups/${this.props.params}`)
+    console.log('id is: ', this.props.match.params.id);
+    axios.get(`/api/v1/groups/${this.props.match.params.id}`)
       .then(({ data }) => {
         debugger;
         this.setState({
@@ -35,7 +35,7 @@ export default class Group extends Component {
         <Link to={'/'} > Go Back </Link>
         <div>
           {
-            !!group.length ?
+            !!group ?
               <table>
                 <thead>
                   <tr>
