@@ -15,16 +15,18 @@ export default class Main extends Component {
     }
   }
   componentWillMount() {
-
+    const token = localStorage.getItem('token');
     axios.all([
       axios.get('/api/v1/events'),
-      axios.get('/api/v1/groups')
+      axios.get('/api/v1/groups', { 'headers': { 'token': token }}),
+      //axios.get('/api/v1/user/')
     ])
     .then(axios.spread((events, groups) => {
       const token = localStorage.getItem('token');
       this.setState({
         events: events.data,
         groups: groups.data,
+        user: user.data,
         token
       });
     }))
@@ -37,7 +39,7 @@ export default class Main extends Component {
   }
 
   render() {
-    const { events, groups, error } = this.state;
+    const { events, groups, user, error } = this.state;
     return (
       <div>
         <h6>User {this.state.token}</h6>
