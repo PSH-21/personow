@@ -21,9 +21,11 @@ export default class Main extends Component {
       axios.get('/api/v1/groups')
     ])
     .then(axios.spread((events, groups) => {
+      const token = localStorage.getItem('token');
       this.setState({
         events: events.data,
-        groups: groups.data
+        groups: groups.data,
+        token
       });
     }))
     .catch((error) => {
@@ -31,12 +33,14 @@ export default class Main extends Component {
         error
       });
     })
+
   }
 
   render() {
     const { events, groups, error } = this.state;
     return (
       <div>
+        <h6>User {this.state.token}</h6>
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
         <h1>Main Page</h1>
@@ -46,11 +50,12 @@ export default class Main extends Component {
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
 
+
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
 
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
-        
+
       </div>
     );
   }

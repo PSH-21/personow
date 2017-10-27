@@ -25,6 +25,7 @@ export default class Register extends Component {
     axios.post('/api/v1/register', data)
     .then( res => {
       console.log('response from rails: ', res);
+      localStorage.setItem('token', res.data.token);
       this.setState({
         fireRedirect: true
       });
