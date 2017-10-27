@@ -3,8 +3,8 @@ module API::V1
     respond_to :json
 
     def index
-      @events = Event.all
-      respond_with :api, :v1, @events
+      events = Event.all
+      respond_with :api, :v1, events
     end
 
     def show
@@ -15,8 +15,6 @@ module API::V1
 
     def create
       # @event = Event.new(event_params)
-      p 'check'
-
       respond_with Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)
 
       # respond_to do |format|
