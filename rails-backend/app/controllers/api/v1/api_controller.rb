@@ -19,7 +19,8 @@ module API::V1
       end
 
       def unauthorize
-        {error: "Not logged in"}
+        render json: {error: "Not logged in"}
+        return nil
       end
   end
 end
