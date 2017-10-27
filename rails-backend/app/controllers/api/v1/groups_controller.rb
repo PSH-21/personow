@@ -1,5 +1,5 @@
 module API::V1
-  class GroupsController < ApplicationController
+  class GroupsController < ApiController
     respond_to :json
 
     def index
@@ -8,6 +8,11 @@ module API::V1
     end
 
     def show
+      group = Group.find(params[:id])
+      p 'check'
+      p 'check'
+      respond_with :api, :v1, group
+      p 'check'
       # @user = User.find(params[:id])
       # render json: @user
       # @event = Event.find(params[:id])

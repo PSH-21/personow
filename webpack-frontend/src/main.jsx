@@ -17,7 +17,7 @@ export default class Main extends Component {
   componentWillMount() {
 
     axios.all([
-      axios.get('/api/v1/events'),  
+      axios.get('/api/v1/events'),
       axios.get('/api/v1/groups')
     ])
     .then(axios.spread((events, groups) => {
@@ -38,6 +38,7 @@ export default class Main extends Component {
     return (
       <div>
         <Link to={'/login'} > LOGIN </Link>
+        <Link to={'/register'} > REGISTER </Link>
         <h1>Main Page</h1>
 
         <h1>Personow MainPage</h1>
@@ -46,7 +47,7 @@ export default class Main extends Component {
         <AllEvents events={ events } error={ error } />
 
         <h2>All Groups</h2>
-        <AllGroups groups={ groups  } error={ error } />
+        <AllGroups groups={ groups } error={ error } />
 
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
         

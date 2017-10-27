@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router';
  */
 
 import Main from './main.jsx'
+import Register from './user/register.jsx'
 import Login from './user/login.jsx'
 import Group from './group/group.jsx'
 import User from './user/user.jsx'
@@ -24,7 +25,8 @@ export default function Routes(props) {
     <Switch>
       <Route exact path='/' component={Main} />
       <Route path='/login' component={Login} />
-      <Route path='/group/:id' component={Group} />
+      <Route path='/register' component={Register} />
+      <Route path='/groups/:id' component={Group} />
       <Route path='/user' component={User} />
       <Route path='/eventid1' component={Eventid1} />
       <Route path='/eventid2' component={Eventid2} />

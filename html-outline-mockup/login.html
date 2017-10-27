@@ -7,12 +7,32 @@
   <title>Login</title>
 </head>
 <body>
-  <h1>Regular old Login form</h1>
+  <div>
+      <h1>Regular old Login form</h1>
+        <form>
+           <label>
+            Email:
+           <input type="email" name="Email" placeholder="" />
+          </label>
+          <label>
+            Password
+           <input type="password" name="Password" placeholder="" />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+        <Link to='/'>
+          <Button Style='success'>Back</Button>
+        </Link>
+    </div>
+
+
+
+<!--   <h1>Regular old Login form</h1>
   <p>Email:</p>
   <p>Password:</p>
   <p><a href="index.html">"Login"</a></p>
   <i style="color:green">Select USER where USER.email=email,
     check password hash, return auth cookie. (Or other auth method).
-  </i>
+  </i> -->
 </body>
 </html>

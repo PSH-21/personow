@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import EventForm from '../event/EventForm.jsx';
-// import Yourevents from './Yourevents.jsx'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class Org extends Component {
+export default class Group extends Component {
   constructor(props) {
     super(props);
-    // this.id = this.props.params.orgid;
     this.state = {
       group: '',
       error: ''
     }
   }
   componentDidMount() {
-    axios.get('/api/v1/group/:id')
+    console.log('id is: ', this.props.);
+    axios.get(`/api/v1/groups/${this.props.params}`)
       .then(({ data }) => {
+        debugger;
         this.setState({
           group: data
         })
@@ -29,9 +28,10 @@ export default class Org extends Component {
 
 
   render() {
-    const { group } = this.state;
+    const { group, error } = this.state;
     return (
       <div>
+        <h1>Hello from Group</h1>
         <Link to={'/'} > Go Back </Link>
         <div>
           {

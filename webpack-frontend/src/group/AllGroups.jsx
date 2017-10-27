@@ -30,7 +30,7 @@ export default class AllGroups extends Component {
                   groups.map(group => {
                     return (
                       <tr>
-                        <td><Link to={`/group/${group.id}`}>{group.name}</Link></td>
+                        <td><Link to={`/groups/${group.id}`} params={{id: group.id}}>{group.name}</Link></td>
                         <td>{group.description}</td>
                       </tr>
                     )
