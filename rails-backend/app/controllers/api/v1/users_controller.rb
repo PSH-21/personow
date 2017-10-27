@@ -13,7 +13,7 @@ module API::V1
 
     def create
       user = User.new(user_params)
-      if user.save!
+      if user.save
         p 'user saved'
         render json: {token: user.token}
       else
