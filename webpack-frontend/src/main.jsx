@@ -13,6 +13,7 @@ export default class Main extends Component {
       events: [],
       groups: []
     }
+    localStorage.setItem(123);
   }
   componentWillMount() {
 
@@ -21,9 +22,11 @@ export default class Main extends Component {
       axios.get('/api/v1/groups')
     ])
     .then(axios.spread((events, groups) => {
+      //localStorage.setItem(123);
+      // const token = localStorage.getItem(token);
       this.setState({
         events: events.data,
-        groups: groups.data
+        groups: groups.data,
       });
     }))
     .catch((error) => {
@@ -46,11 +49,12 @@ export default class Main extends Component {
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
 
+
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
 
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
-        
+
       </div>
     );
   }
