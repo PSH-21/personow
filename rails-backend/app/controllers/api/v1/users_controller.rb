@@ -37,6 +37,13 @@ module API::V1
         render json: user.events
       end
     end
+
+    def groups
+      user = authenticate_user
+      if user
+        render json: user.groups
+      end
+    end
     
 
 
