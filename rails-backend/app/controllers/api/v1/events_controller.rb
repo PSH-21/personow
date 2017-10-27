@@ -1,5 +1,5 @@
 module API::V1
-  class EventsController < ApiController
+  class EventsController < API::V1::ApiController
     respond_to :json
 
     def index
@@ -16,6 +16,7 @@ module API::V1
     def create
       # @event = Event.new(event_params)
       p 'check'
+
       respond_with Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)
 
       # respond_to do |format|

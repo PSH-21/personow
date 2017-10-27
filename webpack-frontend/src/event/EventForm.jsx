@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, ButtonToolbar, HelpBlock } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class EventForm extends Component {
   constructor(props) {
@@ -7,8 +8,8 @@ export default class EventForm extends Component {
     this.state = {
       title: 'asdf',
       description: 'asdf',
-      start_date: '11/12/2018',
-      end_date: '11/13/2019',
+      start_date: '2018/10/3',
+      end_date: '2018/10/4',
       fireRedirect: false,
       error: ''
     }
@@ -17,14 +18,14 @@ export default class EventForm extends Component {
     e.preventDefault();
     console.log('state is: ', this.state, 'Event is: ', e);
     const { title, description, start_date, end_date } = this.state;
-    const data = { title, description, start_date, end_date }
-  axios.post('/api/v1/events', data)
-  .then( res => {
-    console.log('response from rails: ', res);
-  })
-  .catch( error => {
-    this.setState({ error })
-  })
+    const data = { title, description, start_date, end_date };
+    axios.post('/api/v1/events', data)
+    .then( res => {
+      console.log('response from rails: ', res);
+    })
+    .catch( error => {
+      this.setState({ error })
+    })
 
     // this.setState({
     //   title: '',
@@ -65,7 +66,7 @@ export default class EventForm extends Component {
               Event To:
              <input type="datetime" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" onClick={this.submitNewEvent}/>
           </form>
         </div>
       </div>
