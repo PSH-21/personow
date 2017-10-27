@@ -6,19 +6,24 @@ module API::V1
     end
 
     def show
-      # @user = User.find(params[:id])
-      # render json: @user
-      respond_with User.find(params[:id])
+      user = authenticate_user
+      if user
+        render json: {name: user.name,
+                      email: user.email,
+                      notifications: user.notification}
+      end
     end
 
     def create
       user = User.new(user_params)
+      user.notification = true
+      
       if user.save
         p 'user saved'
         render json: {token: user.token}
       else
         p 'not saved'
-        render json: {error: "registration failure"}
+        render json: {error: "Registration failure"}
       end
     end
 
@@ -26,7 +31,7 @@ module API::V1
       if user = User.authenticate_with_credentials(params[:email], params[:password])
         render json: {token: user.token}
       else
-        render json: {error: "login failure"}
+        render json: {error: "Login failure"}
       end
     end
 
