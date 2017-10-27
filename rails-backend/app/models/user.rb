@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   has_many :shifts
 
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :name, presence: true
 
   
