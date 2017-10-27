@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 const navbarInstance = (
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">React-Bootstrap</a>
+        <Link to={'/'}>HOME HOME HOME</Link>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>

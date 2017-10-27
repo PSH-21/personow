@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 export default class AllGroups extends Component {
 
   // constructor(props) {
@@ -30,9 +30,9 @@ export default class AllGroups extends Component {
                   groups.map(group => {
                     return (
                       <tr>
-                        <td>{group.name}</td>
+                        <td><Link to={`/group/${group.id}`}>{group.name}</Link></td>
                         <td>{group.description}</td>
-                    </tr>
+                      </tr>
                     )
                   })
                 }
@@ -40,7 +40,6 @@ export default class AllGroups extends Component {
             </table>:
             <div>Loading</div> 
         }
-          
         {error && <div>{error}</div>}
       </div>
     );

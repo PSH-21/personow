@@ -34,6 +34,7 @@ export default class Main extends Component {
   }
 
   render() {
+    const { events, groups, error } = this.state;
     return (
       <div>
         <Link to={'/login'} > LOGIN </Link>
@@ -42,12 +43,12 @@ export default class Main extends Component {
         <h1>Personow MainPage</h1>
 
         <h2>All Events</h2>
-        <AllEvents { ...this.state  } />
+        <AllEvents events={ events } error={ error } />
 
         <h2>All Groups</h2>
-        <AllGroups { ...this.state  } />
+        <AllGroups groups={ groups  } error={ error } />
 
-        <Link to={'/EventForm'} ><button>Create Event</button> </Link>
+        <Link to={'/EventForm'} ><button>Create Event</button></Link>
         
       </div>
     );

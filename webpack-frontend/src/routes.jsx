@@ -8,7 +8,7 @@ import { Route, Switch } from 'react-router';
 
 import Main from './main.jsx'
 import Login from './user/login.jsx'
-import Org from './group/org.jsx'
+import Group from './group/group.jsx'
 import User from './user/user.jsx'
 import Eventid1 from './event/eventid1.jsx'
 import Eventid2 from './event/eventid2.jsx'
@@ -24,13 +24,13 @@ export default function Routes(props) {
     <Switch>
       <Route exact path='/' component={Main} />
       <Route path='/login' component={Login} />
-      <Route path='/org' component={Org} />
+      <Route path='/group/:id' component={Group} />
       <Route path='/user' component={User} />
       <Route path='/eventid1' component={Eventid1} />
       <Route path='/eventid2' component={Eventid2} />
       <Route path='/EventForm' component={EventForm} />
       <Route path='/events' component={AllEvents} />
-      <Route path='/groups' component={AllGroups} />
+      <Route path='/groups' component={AllGroups.jsx} />
       <Route component={() => <div>404 not found</div>}/>
     </Switch>
   )

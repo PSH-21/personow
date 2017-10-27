@@ -28,13 +28,13 @@ export default class EventForm extends Component {
     this.setState({ error })
   })    
     
-    // this.setState({       
-    //   title: '',
-    //   description: '',
-    //   start_date: '',
-    //   end_date: '',
-    //   fireRedirect: true
-    // });
+    this.setState({       
+      title: '',
+      description: '',
+      start_date: '',
+      end_date: '',
+      fireRedirect: true
+    });
   
   }
 
