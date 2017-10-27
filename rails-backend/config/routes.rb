@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get '/user', to: 'users#show'
       get '/user-events', to: 'users#events'
       get '/user-groups', to: 'users#groups'
+      post '/user', to: 'users#update'
       resources :users
       resources :events
       resources :groups

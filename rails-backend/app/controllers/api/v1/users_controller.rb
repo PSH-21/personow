@@ -45,6 +45,21 @@ module API::V1
       end
     end
     
+    def update
+      user = authenticate_user
+      if user
+        user.name = params[:name]
+        user.email = params[:email]
+        user.notification = params[:notifications]
+        if user.save
+          render json: {success: "Update saved"}
+        else
+          render json: {error: "Update not saved"}
+        end
+
+      end
+      
+    end
 
 
     private
