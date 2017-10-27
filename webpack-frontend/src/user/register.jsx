@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
+import axios from 'axios';
 
 export default class Register extends Component {
   constructor(props) {
@@ -75,10 +75,10 @@ handleChange = (e) => {
             Password Confirmation
            <input type="password" name="password_confirmation" value={this.state.password_confirmation} onChange={this.handleChange} placeholder="" />
           </label>
-          <input type="submit" onClick={this.submitNewEvent} value="Submit" />
+          <input type="submit" onClick={this.submitNewUser} value="Submit"/>
         </form>
         <Link to='/'>
-          <Button bsStyle='success' onClick={this.submitNewUser} >Back</Button>
+          <Button bsStyle='success'>Back</Button>
         </Link>
       </div>
     );

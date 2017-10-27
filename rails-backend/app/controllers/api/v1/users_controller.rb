@@ -16,16 +16,27 @@ module API::V1
 
       # user = User.new(user_params)
       if user.save
-        # session[:user_id] = user.id
+        p 'user saved'
+        render json: {token: user.token}
       else
-
+        p 'not saved'
+        render json: {error: "registration failure"}
       end
-
     end
+
+    def login
+      if user = User.authenticate_with_credentials(params[:email], params[:password])
+        render json: {token: user.token}
+      else
+        render json: {error: "login failure"}
+      end
+    end
+
+
 
     private
     def user_params
-      params.require(:user).permit(
+      params.permit(
         :name,
         :email,
         :password,
