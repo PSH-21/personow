@@ -22,6 +22,14 @@ module API::V1
       end
     end
 
+    def login
+      if user = User.authenticate_with_credentials(params[:email], params[:password])
+        render json: {token: user.token}
+      else
+        render json: {error: "login failure"}
+      end
+    end
+
     
 
     private
