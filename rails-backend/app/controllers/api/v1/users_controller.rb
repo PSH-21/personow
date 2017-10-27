@@ -18,6 +18,7 @@ module API::V1
         render json: {token: user.token}
       else
         p 'not saved'
+        render json: {error: "registration failure"}
       end
     end
 
