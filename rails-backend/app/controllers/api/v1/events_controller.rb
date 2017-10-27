@@ -1,5 +1,5 @@
 module API::V1
-  class EventsController < ApplicationController
+  class EventsController < ApiController
     respond_to :json
 
     def index

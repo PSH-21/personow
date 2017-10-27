@@ -1,5 +1,5 @@
 module API::V1
-  class GroupsController < ApplicationController
+  class GroupsController < ApiController
     respond_to :json
 
     def index

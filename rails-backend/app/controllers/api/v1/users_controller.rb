@@ -1,5 +1,5 @@
 module API::V1
-  class UsersController < ApplicationController
+  class UsersController < ApiController
     def index
       @users = User.all
       render json: @users
@@ -19,9 +19,9 @@ module API::V1
       else
         redirect_to '/signup'
       end
-  
+
     end
-  
+
     private
     def user_params
       params.require(:user).permit(
