@@ -12,9 +12,7 @@ module API::V1
     end
 
     def create
-      respond_with User.create(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
-
-      # user = User.new(user_params)
+      user = User.new(user_params)
       if user.save
         p 'user saved'
         render json: {token: user.token}

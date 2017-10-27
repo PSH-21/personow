@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap'
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class Register extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ export default class Register extends Component {
     this.state = {
       email: '',
       password: '',
+      fireRedirect: false,
       error: ''
     }
   }
@@ -21,6 +23,9 @@ export default class Register extends Component {
     axios.post('/api/v1/login', data)
     .then( res => {
       console.log('response from rails: ', res);
+      this.setState({
+        fireRedirect: true
+      });
     })
     .catch( error => {
       this.setState({ error })
@@ -45,6 +50,7 @@ handleChange = (e) => {
 
 
   render() {
+    const { fireRedirect } = this.state;
     return (
       <div>
         <h1>Regular old Login form</h1>
@@ -57,8 +63,9 @@ handleChange = (e) => {
             Password
            <input type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="" />
           </label>
-          
+
           <input type="submit" onClick={this.submitLogin} value="Submit"/>
+          {fireRedirect && (<Redirect to={'/'} />)}
         </form>
         <Link to='/'>
           <Button bsStyle='success'>Back</Button>
