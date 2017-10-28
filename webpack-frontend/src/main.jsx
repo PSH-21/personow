@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import AllEvents from './event/AllEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
@@ -15,17 +16,22 @@ export default class Main extends Component {
     }
   }
   componentWillMount() {
-
+    const token = localStorage.getItem('token');
     axios.all([
       axios.get('/api/v1/events'),
       axios.get('/api/v1/groups')
+      // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
     .then(axios.spread((events, groups) => {
       const token = localStorage.getItem('token');
+      const email = localStorage.getItem('email');
+      const name = localStorage.getItem('name');
       this.setState({
         events: events.data,
         groups: groups.data,
-        token
+        token,
+        email,
+        name
       });
     }))
     .catch((error) => {
@@ -40,21 +46,23 @@ export default class Main extends Component {
     const { events, groups, error } = this.state;
     return (
       <div>
-        <h6>User {this.state.token}</h6>
+        <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}</h6>
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
+        <Link to={'/user'} > USER </Link>
         <h1>Main Page</h1>
 
         <h1>Personow MainPage</h1>
 
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
-
+        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
 
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
-
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
+
+
 
       </div>
     );

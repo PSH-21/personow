@@ -24,6 +24,8 @@ export default class Register extends Component {
     .then( res => {
       console.log('response from rails: ', res);
       localStorage.setItem('token', res.data.token);
+      localStorage.setItem('email', email);
+      localStorage.setItem('name', res.data.name);
       this.setState({
         fireRedirect: true
       });
