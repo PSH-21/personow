@@ -1,10 +1,10 @@
 module API::V1
   class UsersController < ApiController
-    
+
     def create
       user = User.new(user_params)
       user.notification = true
-      
+
       if user.save
         p 'user saved'
         render json: {token: user.token}
@@ -13,15 +13,15 @@ module API::V1
         render json: {error: "Registration failure"}
       end
     end
-    
+
     def login
       if user = User.authenticate_with_credentials(params[:email], params[:password])
-        render json: {token: user.token}
+        render json: {token: user.token, name: user.name}
       else
         render json: {error: "Login failure"}
       end
     end
-    
+
     def show
       user = authenticate_user
       if user
@@ -44,7 +44,7 @@ module API::V1
         render json: user.groups
       end
     end
-    
+
     def update
       user = authenticate_user
       if user
@@ -58,7 +58,7 @@ module API::V1
         end
 
       end
-      
+
     end
 
 

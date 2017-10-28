@@ -24,11 +24,14 @@ export default class Main extends Component {
     ])
     .then(axios.spread((events, groups) => {
       const token = localStorage.getItem('token');
-
+      const email = localStorage.getItem('email');
+      const name = localStorage.getItem('name');
       this.setState({
         events: events.data,
         groups: groups.data,
-        token
+        token,
+        email,
+        name
       });
     }))
     .catch((error) => {
@@ -43,7 +46,7 @@ export default class Main extends Component {
     const { events, groups, error } = this.state;
     return (
       <div>
-        <h6>User {this.state.token}</h6>
+        <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}</h6>
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
         <Link to={'/user'} > USER </Link>
