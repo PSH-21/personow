@@ -65,9 +65,14 @@ module API::V1
         else
           render json: {error: "Update not saved"}
         end
-
       end
+    end
 
+    def shifts
+      user = authenticate_user
+      if user
+        render json: user.shifts
+      end
     end
 
 

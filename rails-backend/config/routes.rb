@@ -23,6 +23,8 @@ Rails.application.routes.draw do
       # post '/group-members', to: 'group_members#create'
       post '/user', to: 'users#update'
       get '/your-events', to: 'users#created_events'
+      get '/your-shifts', to: 'users#shifts'
+
       resources :users
       resources :events
       resources :groups
