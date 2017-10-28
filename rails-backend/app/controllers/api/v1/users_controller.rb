@@ -44,6 +44,15 @@ module API::V1
         render json: user.groups
       end
     end
+
+    def created_events
+      user = authenticate_user
+      memberships = user.event_members.where(creator: true)
+      p '-----------------------------------------------------'
+      events = memberships.map { |x| Event.find(x.event_id) }
+      p '-----------------------------------------------------'
+      render json: events
+    end
     
     def update
       user = authenticate_user
