@@ -30,6 +30,16 @@ module API::V1
       # end
     end
 
+    def events
+      group_id = request.headers['group']
+      group = Group.find_by(id: group_id)
+      if group
+        respond_with group.events
+      else
+        render json: {error: "Invalid group id"}
+      end
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
