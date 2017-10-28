@@ -12,21 +12,21 @@ lht = Group.create!(name: 'LHTheatre', description: 'What if Shakespeare knew ja
 cn = Group.create!(name: 'Code Nappers', description: 'We code. We nap.')
 
 ua = User.create!(email: 'alicegrey@email.com', password_digest: '0000',
-                  name: 'Alice Grey', notification: true)
+                  name: 'Alice Grey', notification: true, token: 1)
 ub = User.create!(email: 'bobmcrob@email.com', password_digest: '0000',
-                  name: 'Bob McRobert', notification: true)
+                  name: 'Bob McRobert', notification: true, token: 2)
 uc = User.create!(email: 'charliehorse@email.com', password_digest: '0000',
-                  name: 'Charlie Horse', notification: true)
+                  name: 'Charlie Horse', notification: true, token: 3)
 ud = User.create!(email: 'dandee@email.com', password_digest: '0000',
-                  name: 'Dan D.', notification: true)
+                  name: 'Dan D.', notification: true, token: 4)
 ue = User.create!(email: 'edovanera@email.com', password_digest: '0000',
-                  name: 'Ed Ovanera', notification: true)
+                  name: 'Ed Ovanera', notification: true, token: 5)
 uf = User.create!(email: 'frankghost@email.com', password_digest: '0000',
-                  name: 'Frank Ghost', notification: true)
+                  name: 'Frank Ghost', notification: true, token: 6)
 ug = User.create!(email: 'gusgus@email.com', password_digest: '0000',
-                  name: 'Gus Gus', notification: true)
+                  name: 'Gus Gus', notification: true, token: 7)
 uh = User.create!(email: 'hailystorm@email.com', password_digest: '0000',
-                  name: 'Haily Storm', notification: true)
+                  name: 'Haily Storm', notification: true, token: 8)
 
 dd = Event.create!(title: 'Demo Day', description: 'Come see what the cohort has put together.',
                   start_date: "2017-11-02 00:00:00", end_date: "2017-11-02 00:00:00",
