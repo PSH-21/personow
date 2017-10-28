@@ -12,11 +12,13 @@ export default class Group extends Component {
   }
   componentDidMount() {
     console.log('id is: ', this.props.match.params.id);
+
     const group_id = this.props.match.params.id;
     axios.get(`/api/v1/groups/${group_id}`)
       .then(({ data }) => {
         this.setState({
-          group: data
+          group: data,
+          group_id: group_id,
         })
       })
       .catch((error) => {
@@ -27,14 +29,15 @@ export default class Group extends Component {
   }
   joinGroup = (e) => {
     e.preventDefault();
-    const { user_id, group_id } = this.state;
+    const user_id = localStorage.getItem('user_id');
+    const { group_id } = this.state;
     const data = { user_id, group_id };
     console.log('stop');
-    axios.post('/api/v1/user-groups', {})
+    console.log(data);
+    axios.post('/api/v1/group_members', data)
     .then( res => {
+      console.log('success');
       this.setState({
-        name: '',
-        description: '',
         fireRedirect: true
       });
     })

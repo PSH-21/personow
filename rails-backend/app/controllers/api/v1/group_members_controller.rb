@@ -17,8 +17,9 @@ module API::V1
 
     def create
       # @event = Event.new(event_params)
-      puts 'yes here'
-      # respond_with Group_Member.create(user_id: params[:user_id], group_id: params[:group_id], notifications: params[notifications], creator: params[:creator], admin: params[:admin]
+      # puts 'yes here'
+      respond_with Group_Member.create(user_id: params[:user_id], group_id: params[:group_id])
+        # notifications: params[notifications], creator: params[:creator], admin: params[:admin]
       #   )
       # }
 

@@ -58,11 +58,11 @@ export default class Main extends Component {
 
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
-        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
+        <Link to={'/EventForm'} ><button>Create Event</button></Link>
 
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
-        <Link to={'/EventForm'} ><button>Create Event</button></Link>
+        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
 
 
 
