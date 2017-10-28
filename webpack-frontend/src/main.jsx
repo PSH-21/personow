@@ -18,15 +18,16 @@ export default class Main extends Component {
     const token = localStorage.getItem('token');
     axios.all([
       axios.get('/api/v1/events'),
-      axios.get('/api/v1/groups', { 'headers': { 'token': token }}),
-      //axios.get('/api/v1/user/')
+      axios.get('/api/v1/groups'),
+      // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
     .then(axios.spread((events, groups) => {
       const token = localStorage.getItem('token');
+
       this.setState({
         events: events.data,
         groups: groups.data,
-        user: user.data,
+        // user: user.data,
         token
       });
     }))
@@ -39,12 +40,13 @@ export default class Main extends Component {
   }
 
   render() {
-    const { events, groups, user, error } = this.state;
+    const { events, groups, error } = this.state;
     return (
       <div>
         <h6>User {this.state.token}</h6>
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
+        <Link to={'/user'} > USER </Link>
         <h1>Main Page</h1>
 
         <h1>Personow MainPage</h1>

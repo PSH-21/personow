@@ -1,8 +1,54 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export default class User extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // user: '',
+      // error: ''
+    }
+  }
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    axios.get('/api/v1/user', { 'headers': { 'token': token }})
+    .then((user) => {
+      // const token = localStorage.getItem('token');
+      console.log(user.data);
+      this.setState({
+        user: user.data,
+        // token
+      });
+    })
+    .catch((error) => {
+      this.setState({
+        error
+      });
+    })
+
+  }
+
+  // componentDidMount() {
+  //   console.log('user is: ', this.state.user);
+  //   //axios.get(`/api/v1/groups/${this.props.match.params.id}`)
+  // //     .then(({ data }) => {
+  // //       debugger;
+  // //       this.setState({
+  // //         group: data
+  // //       })
+  // //     })
+  // //     .catch((error) => {
+  // //       this.setState({
+  // //         error
+  // //       })
+  // //     })
+  // }
+
   render() {
+    console.log('user is: ', this.state.user);
     return (
+
       <div>
         <h1>Regular old Profile</h1>
         <p>Edit Name:</p>
