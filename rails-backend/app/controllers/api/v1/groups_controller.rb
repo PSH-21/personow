@@ -17,8 +17,13 @@ module API::V1
 
     def create
       # @event = Event.new(event_params)
-      respond_with Group.create(name: params[:name], description: params[:description])
+      #user = authenticate_user
+      puts 'check1'
+      group = Group.create(name: 'test5', description: params[:description])
 
+      group_member = GroupMember.create(user_id: 1, group_id: group.id, creator: true)
+      puts 'check2'
+      respond_with :api, :v1, group
       # respond_to do |format|
       #   if @event.save
       #     format.json { render

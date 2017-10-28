@@ -36,7 +36,7 @@ export default class Group extends Component {
     const data = { user_id, group_id };
     console.log('stop');
     console.log(data);
-    axios.post('/api/v1/group_members', data)
+    axios.post('/api/v1/group-members', data)
     .then( res => {
       console.log('success');
       this.setState({
