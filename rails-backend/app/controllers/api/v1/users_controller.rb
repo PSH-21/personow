@@ -7,7 +7,7 @@ module API::V1
 
       if user.save
         p 'user saved'
-        render json: {token: user.token}
+        render json: {token: user.token, user_id: user.id}
       else
         p 'not saved'
         render json: {error: "Registration failure"}
@@ -53,7 +53,7 @@ module API::V1
         render json: events
       end
     end
-    
+
     def update
       user = authenticate_user
       if user
