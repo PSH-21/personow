@@ -26,6 +26,7 @@ export default class Register extends Component {
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('email', email);
       localStorage.setItem('name', res.data.name);
+      localStorage.setItem('user_id', res.data.user_id);
       this.setState({
         fireRedirect: true
       });
