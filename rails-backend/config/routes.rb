@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       get '/events', to: 'events#index'
       get '/groups', to: 'groups#index'
       get '/event', to: 'events#show'
+      get '/group', to: 'groups#show'
 
       resources :users
       resources :events

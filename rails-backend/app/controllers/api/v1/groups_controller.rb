@@ -8,11 +8,13 @@ module API::V1
     end
 
     def show
-      group = Group.find(params[:id])
-      respond_with :api, :v1, group
-      # @user = User.find(params[:id])
-      # render json: @user
-      # @event = Event.find(params[:id])
+      group_id = request.headers['group']
+      group = Group.find_by(id: group_id)
+      if group
+        respond_with group
+      else
+        render json: {error: "Invalid group id"}
+      end
     end
 
     def create
