@@ -26,12 +26,14 @@ export default class Main extends Component {
       const token = localStorage.getItem('token');
       const email = localStorage.getItem('email');
       const name = localStorage.getItem('name');
+      const user_id = localStorage.getItem('user_id');
       this.setState({
         events: events.data,
         groups: groups.data,
         token,
         email,
-        name
+        name,
+        user_id
       });
     }))
     .catch((error) => {
@@ -46,7 +48,7 @@ export default class Main extends Component {
     const { events, groups, error } = this.state;
     return (
       <div>
-        <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}</h6>
+        <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}, User_id: {this.state.user_id}</h6>
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
         <Link to={'/user'} > USER </Link>
@@ -56,11 +58,11 @@ export default class Main extends Component {
 
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
-        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
+        <Link to={'/EventForm'} ><button>Create Event</button></Link>
 
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
-        <Link to={'/EventForm'} ><button>Create Event</button></Link>
+        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
 
 
 

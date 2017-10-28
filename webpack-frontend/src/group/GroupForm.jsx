@@ -28,8 +28,6 @@ export default class EventForm extends Component {
     .catch( error => {
       this.setState({ error })
     })
-
-
   }
 
   handleChange = (e) => {
