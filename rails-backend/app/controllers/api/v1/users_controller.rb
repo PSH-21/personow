@@ -47,11 +47,11 @@ module API::V1
 
     def created_events
       user = authenticate_user
-      memberships = user.event_members.where(creator: true)
-      p '-----------------------------------------------------'
-      events = memberships.map { |x| Event.find(x.event_id) }
-      p '-----------------------------------------------------'
-      render json: events
+      if user
+        memberships = user.event_members.where(creator: true)
+        events = memberships.map { |x| Event.find(x.event_id) }
+        render json: events
+      end
     end
     
     def update
