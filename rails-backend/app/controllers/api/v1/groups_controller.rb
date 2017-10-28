@@ -17,11 +17,14 @@ module API::V1
 
     def create
       # @event = Event.new(event_params)
-      #user = authenticate_user
+      puts params
+      user = authenticate_user
       puts 'check1'
-      group = Group.create(name: 'test5', description: params[:description])
+      puts user.id
+      puts user
+      group = Group.create(name: params[:name], description: params[:description])
 
-      group_member = GroupMember.create(user_id: 1, group_id: group.id, creator: true)
+      group_member = GroupMember.create(user_id: user.id, group_id: group.id, creator: true)
       puts 'check2'
       respond_with :api, :v1, group
       # respond_to do |format|

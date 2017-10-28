@@ -17,7 +17,9 @@ export default class EventForm extends Component {
     e.preventDefault();
     const { name, description } = this.state;
     const data = { name, description };
-    axios.post('/api/v1/groups', data)
+    const token = localStorage.getItem('token');
+    console.log(token);
+    axios.post('/api/v1/groups', data, { 'headers': { 'token': token }})
     .then( res => {
       this.setState({
         name: '',
