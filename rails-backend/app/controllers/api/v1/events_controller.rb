@@ -27,6 +27,16 @@ module API::V1
       end
     end
 
+    def shifts
+      event_id = request.headers['event']
+      event = Event.find_by(id: event_id)
+      if event
+        respond_with event.shifts
+      else
+        render json: {error: "Invalid event id"}
+      end
+    end
+
     def create
       # @event = Event.new(event_params)
       respond_with Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)

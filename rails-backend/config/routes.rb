@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get '/event', to: 'events#show'
       get '/group', to: 'groups#show'
       get '/roles', to: 'events#roles'
+      get '/shifts', to: 'events#shifts'
 
       resources :users
       resources :events
