@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import AllEvents from './event/AllEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
@@ -18,7 +19,7 @@ export default class Main extends Component {
     const token = localStorage.getItem('token');
     axios.all([
       axios.get('/api/v1/events'),
-      axios.get('/api/v1/groups'),
+      axios.get('/api/v1/groups')
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
     .then(axios.spread((events, groups) => {
@@ -27,7 +28,6 @@ export default class Main extends Component {
       this.setState({
         events: events.data,
         groups: groups.data,
-        // user: user.data,
         token
       });
     }))

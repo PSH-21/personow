@@ -11,7 +11,7 @@ export default class AllEvents extends Component {
   //     events: props.events || []
   //   }
   // }
-  
+
   render() {
 
     const { events = [], error = '' } = this.props;
@@ -30,7 +30,7 @@ export default class AllEvents extends Component {
                 {
                   events.map(event => {
                     return (
-                      <tr>
+                      <tr key={event.id}>
                         <td>{event.title}</td>
                         <td>{event.description}</td>
                         <td>{event.start_date}</td>
