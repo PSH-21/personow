@@ -14,5 +14,29 @@ module API::V1
       # render json: @user
       # @event = Event.find(params[:id])
     end
+
+    def create
+      # @event = Event.new(event_params)
+      respond_with Group.create(name: params[:name], description: params[:description])
+
+      # respond_to do |format|
+      #   if @event.save
+      #     format.json { render
+      #   else
+      #     format.json { render json: @event.errors, status: :unprocessable_entity }
+      #   end
+      # end
+    end
+
+    private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_event
+      @event = Group.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def event_params
+      params.require(:group).permit(:name, :description)
+    end
   end
 end

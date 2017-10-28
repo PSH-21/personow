@@ -14,6 +14,7 @@ import User from './user/user.jsx'
 import Eventid1 from './event/eventid1.jsx'
 import Eventid2 from './event/eventid2.jsx'
 import EventForm from './event/EventForm.jsx'
+import GroupForm from './group/GroupForm.jsx'
 import AllEvents from './event/AllEvents.jsx'
 import AllGroups from './group/AllGroups.jsx'
 /**
@@ -31,6 +32,7 @@ export default function Routes(props) {
       <Route path='/eventid1' component={Eventid1} />
       <Route path='/eventid2' component={Eventid2} />
       <Route path='/EventForm' component={EventForm} />
+      <Route path='/GroupForm' component={GroupForm} />
       <Route path='/events' component={AllEvents} />
       <Route path='/groups' component={AllGroups.jsx} />
       <Route component={() => <div>404 not found</div>}/>
