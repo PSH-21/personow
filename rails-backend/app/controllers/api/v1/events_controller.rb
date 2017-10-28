@@ -8,7 +8,7 @@ module API::V1
     end
 
     def show
-      event_id = request.headers['event']
+      event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
         respond_with event

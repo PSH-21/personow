@@ -8,7 +8,7 @@ module API::V1
     end
 
     def show
-      group_id = request.headers['group']
+      group_id = params[:id]
       group = Group.find_by(id: group_id)
       if group
         respond_with group
