@@ -8,6 +8,8 @@ module API::V1
     end
 
     def show
+      event = Event.find(params[:id])
+      respond_with :api, :v1, event
       # @user = User.find(params[:id])
       # render json: @user
       # @event = Event.find(params[:id])

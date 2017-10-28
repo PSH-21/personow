@@ -2,19 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-export default class Group extends Component {
+export default class OneEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      group: '',
+      event: '',
       error: ''
     }
   }
-  componentDidMount() {
-    axios.get(`/api/v1/groups/${this.props.match.params.id}`)
+
+  componentWillMount() {
+    axios.get(`/api/v1/events/${this.props.match.params.id}`)
       .then(({ data }) => {
         this.setState({
-          group: data
+          event: data
         })
       })
       .catch((error) => {
@@ -24,27 +25,30 @@ export default class Group extends Component {
       })
   }
 
-
   render() {
-    const { group, error } = this.state;
+    const { event, error } = this.state;
     return (
       <div>
-        <h1>Hello from Group</h1>
+        <h1>Hello from event</h1>
         <Link to={'/'} > Go Back </Link>
         <div>
           {
-            !!group ?
+            !!event ?
               <table>
                 <thead>
                   <tr>
                     <th>Name</th>
                     <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{group.name}</td>
-                    <td>{group.description}</td>
+                    <td>{event.title}</td>
+                    <td>{event.description}</td>
+                    <td>{event.start_date}</td>
+                    <td>{event.end_date}</td>
                   </tr>
                 </tbody>
               </table> :
@@ -52,6 +56,7 @@ export default class Group extends Component {
           }
           {error && <div>{error}</div>}
         </div>
+
       </div>
     );
   }

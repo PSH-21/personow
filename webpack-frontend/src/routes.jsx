@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
@@ -6,16 +5,15 @@ import { Route, Switch } from 'react-router';
  * Import all page components here
  */
 
-import Main from './main.jsx'
-import Register from './user/register.jsx'
-import Login from './user/login.jsx'
-import Group from './group/group.jsx'
-import User from './user/user.jsx'
-import Eventid1 from './event/eventid1.jsx'
-import Eventid2 from './event/eventid2.jsx'
-import EventForm from './event/EventForm.jsx'
-import AllEvents from './event/AllEvents.jsx'
-import AllGroups from './group/AllGroups.jsx'
+import Main from './main.jsx';
+import Register from './user/register.jsx';
+import Login from './user/login.jsx';
+import Group from './group/group.jsx';
+import OneEvent from './event/OneEvent.jsx';
+import User from './user/user.jsx';
+import EventForm from './event/EventForm.jsx';
+import AllEvents from './event/AllEvents.jsx';
+import AllGroups from './group/AllGroups.jsx';
 /**
  * All routes go here.
  * Don't forget to import the components above after adding new route.
@@ -27,9 +25,8 @@ export default function Routes(props) {
       <Route path='/login' component={Login} />
       <Route path='/register' component={Register} />
       <Route path='/groups/:id' component={Group} />
+      <Route path='/events/:id' component={OneEvent} />
       <Route path='/user' component={User} />
-      <Route path='/eventid1' component={Eventid1} />
-      <Route path='/eventid2' component={Eventid2} />
       <Route path='/EventForm' component={EventForm} />
       <Route path='/events' component={AllEvents} />
       <Route path='/groups' component={AllGroups.jsx} />
