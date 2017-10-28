@@ -1,5 +1,5 @@
 module API::V1
-  class EventsController < API::V1::ApiController
+  class EventsController < ApiController
     respond_to :json
 
     def index
@@ -8,9 +8,13 @@ module API::V1
     end
 
     def show
-      # @user = User.find(params[:id])
-      # render json: @user
-      # @event = Event.find(params[:id])
+      event_id = request.headers['event']
+      event = Event.find_by(id: event_id)
+      if event
+        respond_with event
+      else
+        render json: {error: "Invalid event id"}
+      end
     end
 
     def create
