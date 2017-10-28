@@ -13,10 +13,7 @@ export default class Group extends Component {
     }
   }
   componentDidMount() {
-    console.log('id is: ', this.props.match.params.id);
-
-    const group_id = this.props.match.params.id;
-    axios.get(`/api/v1/groups/${group_id}`)
+    axios.get(`/api/v1/groups/${this.props.match.params.id}`)
       .then(({ data }) => {
         this.setState({
           group: data,
