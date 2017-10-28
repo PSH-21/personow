@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171028080133) do
+ActiveRecord::Schema.define(version: 20171026192137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,15 +36,13 @@ ActiveRecord::Schema.define(version: 20171028080133) do
   end
 
   create_table "group_members", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
     t.boolean  "creator"
     t.boolean  "admin"
     t.boolean  "notifications"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.integer  "user_id"
-    t.integer  "group_id"
-    t.index ["group_id"], name: "index_group_members_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_group_members_on_user_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
@@ -81,6 +79,4 @@ ActiveRecord::Schema.define(version: 20171028080133) do
     t.string   "token"
   end
 
-  add_foreign_key "group_members", "groups"
-  add_foreign_key "group_members", "users"
 end

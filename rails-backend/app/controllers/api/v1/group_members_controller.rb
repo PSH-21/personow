@@ -18,7 +18,7 @@ module API::V1
     def create
       # @event = Event.new(event_params)
       # puts 'yes here'
-      respond_with Group_Member.create(user_id: params[:user_id], group_id: params[:group_id])
+      respond_with GroupMember.create(user_id: params[:user_id], group_id: params[:group_id])
         # notifications: params[notifications], creator: params[:creator], admin: params[:admin]
       #   )
       # }
@@ -35,7 +35,7 @@ module API::V1
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
-      @event = Group_Member.find(params[:id])
+      @event = GroupMember.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

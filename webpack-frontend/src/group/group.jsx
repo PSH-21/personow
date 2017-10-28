@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export default class Group extends Component {
   constructor(props) {
     super(props);
     this.state = {
       group: '',
-      error: ''
+      error: '',
+      fireRedirect: false,
     }
   }
   componentDidMount() {
@@ -47,7 +49,7 @@ export default class Group extends Component {
   }
 
   render() {
-    const { group, error } = this.state;
+    const { group, fireRedirect, error } = this.state;
     return (
       <div>
         <h1>Hello from Group</h1>
@@ -68,6 +70,7 @@ export default class Group extends Component {
                     <td>{group.name}</td>
                     <td>{group.description}</td>
                     <td><button type="submit" onClick={this.joinGroup}>Join</button></td>
+                    {fireRedirect && (<Redirect to={'/'} />)}
                   </tr>
                 </tbody>
               </table> :
