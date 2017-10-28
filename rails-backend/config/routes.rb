@@ -24,6 +24,8 @@ Rails.application.routes.draw do
       post '/user', to: 'users#update'
       get '/your-events', to: 'users#created_events'
       get '/your-shifts', to: 'users#shifts'
+      get '/events', to: 'events#index'
+      get '/groups', to: 'groups#index'
 
       resources :users
       resources :events
