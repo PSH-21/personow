@@ -12,6 +12,7 @@ import Group from './group/group.jsx';
 import OneEvent from './event/OneEvent.jsx';
 import User from './user/user.jsx';
 import EventForm from './event/EventForm.jsx';
+import GroupForm from './group/GroupForm.jsx';
 import AllEvents from './event/AllEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
 /**
