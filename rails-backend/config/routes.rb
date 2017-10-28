@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       post '/register', to: 'users#create'
       post '/login', to: 'users#login'
       get '/user', to: 'users#show'
+      get '/user-events', to: 'users#events'
+      get '/user-groups', to: 'users#groups'
+      post '/user', to: 'users#update'
       resources :users
       resources :events
       resources :groups
