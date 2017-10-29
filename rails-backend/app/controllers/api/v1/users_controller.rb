@@ -75,6 +75,30 @@ module API::V1
       end
     end
 
+    def claim
+      user = authenticate_user
+      shift = Shift.find_by(id: params[:id])
+      if user && shift
+        if shift.user_id == user.id
+          shift.user_id = nil
+          shift.save
+          render json: {success: "Cancelled shift"}
+        elsif shift.user_id == nil
+          membership = EventMembers.find_by(event_id: event.id, user_id: user.id)
+          if !membership
+            EventMembers.create(event_id: event.id, user_id: user.id)
+          end
+          shift.user_id = user.id
+          shift.save
+          render json: {success: "Claimed shift"}
+        else
+          render json: {error: "Shift unavailable"}
+        end
+
+      else
+        render json: {error: "Invalid user or shift"}
+      end
+    end
 
     private
     def user_params
