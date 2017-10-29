@@ -51,6 +51,23 @@ module API::V1
       end
     end
 
+    def member_toggle
+      user = authenticate_user
+      group = Group.find_by(id: params[:id])
+      if user && group
+        member = GroupMember.find_by(user_id: user.id, group_id: group.id)
+        if member
+          member.destroy
+          render json: {success: "Left group"}
+        else
+          member = GroupMember.create(user_id: user.id, group_id: group.id)
+          render json: {success: "Joined group"}
+        end
+      elsif user
+        render json: {error: "invalid group"}
+      end
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
