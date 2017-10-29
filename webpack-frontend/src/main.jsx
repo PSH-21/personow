@@ -20,9 +20,9 @@ export default class Main extends Component {
   componentWillMount() {
     const token = localStorage.getItem('token');
     axios.all([
-      axios.get('/api/v1/events'),
+      axios.get('/api/v1/events', {headers: {'token': token}}),
       axios.get('/api/v1/groups'),
-      axios.get('/api/v1/shifts')
+      axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
     .then(axios.spread((events, groups, shifts) => {

@@ -3,8 +3,8 @@ module API::V1
     respond_to :json
 
     def index
-      @groups = Group.all
-      respond_with :api, :v1, @groups
+      groups = Group.all
+      respond_with :api, :v1, groups
     end
 
     def show

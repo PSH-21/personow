@@ -69,9 +69,13 @@ module API::V1
     end
 
     def shifts
+      puts 'here'
       user = authenticate_user
+      puts user
       if user
-        render json: user.shifts
+        shifts = Shift.where('user_id = ?', user.id)
+        puts shifts
+        render json: shifts
       end
     end
 
