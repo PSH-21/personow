@@ -16,20 +16,20 @@ module API::V1
     # end
 
     def create
-      # @event = Event.new(event_params)
-      puts 'check3'
-      #respond_with GroupMember.create(user_id: params[:user_id], group_id: params[:group_id])
-        # notifications: params[notifications], creator: params[:creator], admin: params[:admin]
-      #   )
-      # }
-
-      # respond_to do |format|
-      #   if @event.save
-      #     format.json { render
-      #   else
-      #     format.json { render json: @event.errors, status: :unprocessable_entity }
-      #   end
-      # end
+      user = authenticate_user
+      group = Group.find_by(id: params[:id])
+      if user && group
+        member = GroupMember.find_by(user_id: user.id, group_id: group.id)
+        if member
+          member.destroy
+          render json: {success: "Group left"}
+        else
+          member = GroupMember.create(user_id: user.id, group_id: group.id)
+          render json: {success: "Group joined"} if member
+        end
+      else
+        render json: {error: "Membership unchanged"}
+      end
     end
 
     private
