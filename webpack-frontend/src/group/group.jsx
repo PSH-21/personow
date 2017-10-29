@@ -7,6 +7,7 @@ export default class Group extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: '',
       group: '',
       error: '',
       fireRedirect: false,
@@ -29,13 +30,14 @@ export default class Group extends Component {
   joinGroup = (e) => {
     e.preventDefault();
     // const user_id = localStorage.getItem('user_id');
-    const token = localStorage.getItem('token')
-    // const { group_id } = this.state;
+    const token = localStorage.getItem('token');
+    const { data } = this.state;
     // const data = { user_id, group_id };
-    console.log('stop');
-    axios.post(`/api/v1/group-members/${this.props.match.params.id}`, {headers : {'token': token}})
+    console.log(token);
+    console.log(`${this.props.match.params.id}`);
+    axios.post(`/api/v1/group-members/${this.props.match.params.id}`, data, {'headers' : {'token': token}})
     .then( res => {
-      console.log('success');
+
       this.setState({
         fireRedirect: true
       });
