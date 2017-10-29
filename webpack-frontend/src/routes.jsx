@@ -10,6 +10,8 @@ import Register from './user/register.jsx';
 import Login from './user/login.jsx';
 import Group from './group/group.jsx';
 import OneEvent from './event/OneEvent.jsx';
+// import NewShift from './event/newshift.jsx';
+import AllShifts from './event/AllShifts.jsx';
 import User from './user/user.jsx';
 import EventForm from './event/EventForm.jsx';
 import GroupForm from './group/GroupForm.jsx';
@@ -27,6 +29,7 @@ export default function Routes(props) {
       <Route path='/register' component={Register} />
       <Route path='/groups/:id' component={Group} />
       <Route path='/events/:id' component={OneEvent} />
+      <Route path='/shifts' component={AllShifts} />
       <Route path='/user' component={User} />
       <Route path='/EventForm' component={EventForm} />
       <Route path='/GroupForm' component={GroupForm} />
