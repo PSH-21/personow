@@ -32,7 +32,7 @@ export default class YourEvents extends Component {
                 {
                   yourEvents.map(event => {
                     return (
-                      <tr>
+                      <tr key={event.id}>
                         <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
                         <td>{event.description}</td>
                         <td>{event.start_date}</td>

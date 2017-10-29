@@ -33,11 +33,6 @@ export default class Main extends Component {
       const email = localStorage.getItem('email');
       const name = localStorage.getItem('name');
       const user_id = localStorage.getItem('user_id');
-      console.log(1);
-      console.log(shifts.data);
-      console.log(2);
-      console.log(yourEvents.data);
-      console.log(events.data);
       this.setState({
         events: events.data,
         groups: groups.data,

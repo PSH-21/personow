@@ -32,7 +32,7 @@ export default class YourShifts extends Component {
                 {
                   shifts.map(shift => {
                     return (
-                      <tr>
+                      <tr key={shift.id}>
                         // <td><Link to={`/shifts/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
                         // <td>{shift.role}</td>
                         <td>{shift.start_time}</td>
