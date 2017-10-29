@@ -31,7 +31,24 @@ module API::V1
       event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
-        respond_with event.shifts
+        shifts = event.shifts
+        results = shifts.map do |shift|
+          user = User.find_by(id: shift[:user_id])
+          user_name = user ? user[:name] : ''
+          role = Role.find_by(id: shift[:role_id])
+          role_name = role[:title]
+
+          {
+            id: shift[:id],
+            start_time: shift[:start_time],
+            end_time: shift[:end_time],
+            role_id: shift[:role_id],
+            user_id: shift[:user_id],
+            role_name: role_name,
+            user_name: user_name
+          }
+        end
+        respond_with results
       else
         render json: {error: "Invalid event id"}
       end
