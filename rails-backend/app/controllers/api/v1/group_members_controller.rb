@@ -15,7 +15,7 @@ module API::V1
     #   # @event = Event.find(params[:id])
     # end
 
-    def create
+    def toggle
       user = authenticate_user
       group = Group.find_by(id: params[:id])
       if user && group
@@ -28,7 +28,7 @@ module API::V1
           render json: {success: "Joined group"} if member
         end
       else
-        render json: {error: "Membership unchanged"}
+        render json: {error: "invalid user or group"}
       end
     end
 

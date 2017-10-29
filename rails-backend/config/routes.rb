@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get '/user', to: 'users#show'
       get '/user-events', to: 'users#events'
       get '/user-groups', to: 'users#groups'
-      post '/group-members/:id', to: 'group_members#create'
+      post '/group-members/:id', to: 'group_members#toggle'
       post '/user', to: 'users#update'
       get '/your-events', to: 'users#created_events'
       get '/your-shifts', to: 'users#shifts'
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get '/groups/:id', to: 'groups#show'
       get '/roles/:id', to: 'events#roles'
       get '/shifts/:id', to: 'events#shifts'
+      post '/shift/:id' to: 'users#claim'
       get '/group-events/:id', to: 'groups#events'
 
       resources :users
