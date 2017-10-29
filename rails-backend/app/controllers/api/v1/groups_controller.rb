@@ -29,17 +29,10 @@ module API::V1
       group_member = GroupMember.create(user_id: user.id, group_id: group.id, creator: true)
       puts 'check2'
       respond_with :api, :v1, group
-      # respond_to do |format|
-      #   if @event.save
-      #     format.json { render
-      #   else
-      #     format.json { render json: @event.errors, status: :unprocessable_entity }
-      #   end
-      # end
     end
 
     def events
-      group_id = request.headers['group']
+      group_id = params[:id]
       group = Group.find_by(id: group_id)
       if group
         respond_with group.events

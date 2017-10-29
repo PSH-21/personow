@@ -28,9 +28,9 @@ Rails.application.routes.draw do
       get '/groups', to: 'groups#index'
       get '/events/:id', to: 'events#show'
       get '/groups/:id', to: 'groups#show'
-      get '/roles', to: 'events#roles'
-      get '/shifts', to: 'events#shifts'
-      get '/group-events', to: 'groups#events'
+      get '/roles/:id', to: 'events#roles'
+      get '/shifts/:id', to: 'events#shifts'
+      get '/group-events/:id', to: 'groups#events'
 
       resources :users
       resources :events
