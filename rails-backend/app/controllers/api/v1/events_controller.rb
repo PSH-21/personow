@@ -56,8 +56,15 @@ module API::V1
 
     def create
       # @event = Event.new(event_params)
-      respond_with Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)
-
+      user = authenticate_user
+      if user
+        event = Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)
+        event_member = EventMember.create(user_id: user.id, event_id: event.id, creator: true, notifications: true)
+        render json: {success: "Event created"}
+        puts "event-created check"
+      # else
+      #   render json: {error: "invalid event"}
+      end
       # respond_to do |format|
       #   if @event.save
       #     format.json { render

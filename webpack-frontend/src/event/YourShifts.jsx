@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
-export default class AllShifts extends Component {
+export default class YourShifts extends Component {
   // static PropTypes = {
   //  shifts: PropTypes.array
   // }

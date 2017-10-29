@@ -6,7 +6,7 @@ import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-boots
 import AllEvents from './event/AllEvents.jsx';
 import YourEvents from './event/YourEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
-import AllShifts from './event/AllShifts.jsx';
+import YourShifts from './event/YourShifts.jsx';
 
 export default class Main extends Component {
   constructor(props) {
@@ -73,12 +73,11 @@ export default class Main extends Component {
         <YourEvents yourEvents={ yourEvents } error={ error } />
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
 
+        <h2>Your Shifts</h2>
+        <YourShifts shifts={ shifts } error={ error } />
+
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
-
-        <h2>All Shifts</h2>
-        <AllShifts shifts={ shifts } error={ error } />
-
 
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
