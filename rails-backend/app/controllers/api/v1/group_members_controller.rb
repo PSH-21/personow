@@ -22,10 +22,10 @@ module API::V1
         member = GroupMember.find_by(user_id: user.id, group_id: group.id)
         if member
           member.destroy
-          render json: {success: "Group left"}
+          render json: {success: "Left group"}
         else
           member = GroupMember.create(user_id: user.id, group_id: group.id)
-          render json: {success: "Group joined"} if member
+          render json: {success: "Joined group"} if member
         end
       else
         render json: {error: "Membership unchanged"}
