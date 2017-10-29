@@ -13,11 +13,11 @@ export default class Group extends Component {
     }
   }
   componentDidMount() {
-    axios.get(`/api/v1/groups/${this.props.match.params.id}`)
+    const token = localStorage.getItem('token');
+    axios.get(`/api/v1/groups/${this.props.match.params.id}`, {headers: {'token': token}})
       .then(({ data }) => {
         this.setState({
-          group: data,
-          group_id: data.group_id,
+          group: data
         })
       })
       .catch((error) => {
@@ -28,12 +28,12 @@ export default class Group extends Component {
   }
   joinGroup = (e) => {
     e.preventDefault();
-    const user_id = localStorage.getItem('user_id');
-    const { group_id } = this.state;
-    const data = { user_id, group_id };
+    // const user_id = localStorage.getItem('user_id');
+    const token = localStorage.getItem('token')
+    // const { group_id } = this.state;
+    // const data = { user_id, group_id };
     console.log('stop');
-    console.log(data);
-    axios.post('/api/v1/group-members', data)
+    axios.post(`/api/v1/group-members/${this.props.match.params.id}`, {headers : {'token': token}})
     .then( res => {
       console.log('success');
       this.setState({
@@ -63,7 +63,7 @@ export default class Group extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr key={group.id}>
                     <td>{group.name}</td>
                     <td>{group.description}</td>
                     <td><button type="submit" onClick={this.joinGroup}>Join</button></td>

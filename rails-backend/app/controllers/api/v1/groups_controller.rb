@@ -11,7 +11,17 @@ module API::V1
       group_id = params[:id]
       group = Group.find_by(id: group_id)
       if group
-        respond_with group
+        user = authenticate_user
+        if user
+          group_member = GroupMember.where('group_id = ? AND user_id = ?', group.id, user.id)
+          if group_member
+            respond_with group, group_member
+          else
+            respond_with group
+          end
+        else
+          respond_with group
+        end
       else
         render json: {error: "Invalid group id"}
       end
