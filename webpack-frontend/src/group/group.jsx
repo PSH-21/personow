@@ -17,7 +17,7 @@ export default class Group extends Component {
       .then(({ data }) => {
         this.setState({
           group: data,
-          group_id: group_id,
+          group_id: data.group_id,
         })
       })
       .catch((error) => {

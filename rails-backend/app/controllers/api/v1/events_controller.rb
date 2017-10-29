@@ -8,7 +8,7 @@ module API::V1
     end
 
     def show
-      event_id = request.headers['event']
+      event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
         respond_with event
@@ -18,7 +18,7 @@ module API::V1
     end
 
     def roles
-      event_id = request.headers['event']
+      event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
         respond_with event.roles
@@ -28,12 +28,29 @@ module API::V1
     end
 
     def shifts
-      event_id = request.headers['event']
+      event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
         respond_with event.shifts
       else
         render json: {error: "Invalid event id"}
+      end
+    end
+
+    def member_toggle
+      user = authenticate_user
+      event = Event.find_by(id: params[:id])
+      if user && event
+        member = EventMember.find_by(user_id: user.id, event_id: event.id)
+        if member
+          member.destroy
+          render json: {success: "Left event"}
+        else
+          member = EventMember.create(user_id: user.id, event_id: event.id)
+          render json: {success: "Joined event"}
+        end
+      elsif user
+        render json: {error: "invalid event"}
       end
     end
 
