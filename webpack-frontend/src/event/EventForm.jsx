@@ -17,9 +17,10 @@ export default class EventForm extends Component {
   }
   submitNewEvent = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
     const { title, description, start_date, end_date } = this.state;
     const data = { title, description, start_date, end_date };
-    axios.post('/api/v1/events', data)
+    axios.post('/api/v1/events', data, {headers: {'token': token}})
     .then( res => {
       this.setState({
         title: '',
