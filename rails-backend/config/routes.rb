@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get '/user-events', to: 'users#events'
       get '/user-groups', to: 'users#groups'
       post '/group-members/:id', to: 'group_members#toggle'
+      post '/event-members/:id', to: 'events#member_toggle'
       post '/user', to: 'users#update'
       get '/your-events', to: 'users#created_events'
       get '/your-shifts', to: 'users#shifts'

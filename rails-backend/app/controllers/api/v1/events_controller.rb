@@ -37,6 +37,23 @@ module API::V1
       end
     end
 
+    def member_toggle
+      user = authenticate_user
+      event = Event.find_by(id: params[:id])
+      if user && event
+        member = EventMember.find_by(user_id: user.id, event_id: event.id)
+        if member
+          member.destroy
+          render json: {success: "Left event"}
+        else
+          member = EventMember.create(user_id: user.id, event_id: event.id)
+          render json: {success: "Joined event"}
+        end
+      elsif user
+        render json: {error: "invalid event"}
+      end
+    end
+
     def create
       # @event = Event.new(event_params)
       respond_with Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)

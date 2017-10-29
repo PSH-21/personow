@@ -25,10 +25,10 @@ module API::V1
           render json: {success: "Left group"}
         else
           member = GroupMember.create(user_id: user.id, group_id: group.id)
-          render json: {success: "Joined group"} if member
+          render json: {success: "Joined group"}
         end
-      else
-        render json: {error: "invalid user or group"}
+      elsif user
+        render json: {error: "invalid group"}
       end
     end
 
