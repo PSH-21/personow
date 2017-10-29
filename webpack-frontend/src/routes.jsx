@@ -11,6 +11,7 @@ import Login from './user/login.jsx';
 import Group from './group/group.jsx';
 import OneEvent from './event/OneEvent.jsx';
 // import NewShift from './event/newshift.jsx';
+import YourEvents from './event/YourEvents.jsx';
 import AllShifts from './event/AllShifts.jsx';
 import User from './user/user.jsx';
 import EventForm from './event/EventForm.jsx';
@@ -33,6 +34,7 @@ export default function Routes(props) {
       <Route path='/user' component={User} />
       <Route path='/EventForm' component={EventForm} />
       <Route path='/GroupForm' component={GroupForm} />
+      <Route path='/your-events' component={YourEvents} />
       <Route path='/events' component={AllEvents} />
       <Route path='/groups' component={AllGroups.jsx} />
       <Route component={() => <div>404 not found</div>}/>

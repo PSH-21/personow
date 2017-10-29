@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
-export default class AllShifts extends Component {
+export default class YourEvents extends Component {
   // static PropTypes = {
   //  shifts: PropTypes.array
   // }
@@ -13,30 +13,30 @@ export default class AllShifts extends Component {
   // }
 
   render() {
-
-    const { shifts = [], error = '' } = this.props;
+    const { yourEvents = [], error = '' } = this.props;
+    console.log(yourEvents);
     return (
       <div>
         {
-          !!shifts.length ?
+          !!yourEvents.length ?
             <table>
               <thead>
                 <tr>
-                  //<th>Start Date</th>
-                  <th>Start Time</th>
-                  //<th>End Date</th>
-                  <th>End Time</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
                 </tr>
               </thead>
               <tbody>
                 {
-                  shifts.map(shift => {
+                  yourEvents.map(event => {
                     return (
                       <tr>
-                        // <td><Link to={`/shifts/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
-                        // <td>{shift.role}</td>
-                        <td>{shift.start_time}</td>
-                        <td>{shift.end_time}</td>
+                        <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
+                        <td>{event.description}</td>
+                        <td>{event.start_date}</td>
+                        <td>{event.end_date}</td>
                       </tr>
                     )
                   })

@@ -11,21 +11,21 @@ lhl = Group.create!(name: 'LHLabs', description: 'Awesome coding bootcamp. Web a
 lht = Group.create!(name: 'LHTheatre', description: 'What if Shakespeare knew javascript? Find out with us.')
 cn = Group.create!(name: 'Code Nappers', description: 'We code. We nap.')
 
-ua = User.create!(email: 'alicegrey@email.com', password_digest: '0000',
+ua = User.create!(email: 'alicegrey@email.com', password: 'asdf',
                   name: 'Alice Grey', notification: true, token: 1)
-ub = User.create!(email: 'bobmcrob@email.com', password_digest: '0000',
+ub = User.create!(email: 'bobmcrob@email.com', password: 'asdf',
                   name: 'Bob McRobert', notification: true, token: 2)
-uc = User.create!(email: 'charliehorse@email.com', password_digest: '0000',
+uc = User.create!(email: 'charliehorse@email.com', password: 'asdf',
                   name: 'Charlie Horse', notification: true, token: 3)
-ud = User.create!(email: 'dandee@email.com', password_digest: '0000',
+ud = User.create!(email: 'dandee@email.com', password: 'asdf',
                   name: 'Dan D.', notification: true, token: 4)
-ue = User.create!(email: 'edovanera@email.com', password_digest: '0000',
+ue = User.create!(email: 'edovanera@email.com', password: 'asdf',
                   name: 'Ed Ovanera', notification: true, token: 5)
-uf = User.create!(email: 'frankghost@email.com', password_digest: '0000',
+uf = User.create!(email: 'frankghost@email.com', password: 'asdf',
                   name: 'Frank Ghost', notification: true, token: 6)
-ug = User.create!(email: 'gusgus@email.com', password_digest: '0000',
+ug = User.create!(email: 'gusgus@email.com', password: 'asdf',
                   name: 'Gus Gus', notification: true, token: 7)
-uh = User.create!(email: 'hailystorm@email.com', password_digest: '0000',
+uh = User.create!(email: 'hailystorm@email.com', password: 'asdf',
                   name: 'Haily Storm', notification: true, token: 8)
 
 dd = Event.create!(title: 'Demo Day', description: 'Come see what the cohort has put together.',

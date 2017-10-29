@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 import AllEvents from './event/AllEvents.jsx';
+import YourEvents from './event/YourEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
 import AllShifts from './event/AllShifts.jsx';
 
@@ -14,18 +15,20 @@ export default class Main extends Component {
       error: '',
       events: [],
       groups: [],
-      shifts: []
+      shifts: [],
+      yourEvents: []
     }
   }
   componentWillMount() {
     const token = localStorage.getItem('token');
     axios.all([
       axios.get('/api/v1/events', {headers: {'token': token}}),
+      axios.get('/api/v1/your-events', {headers: {'token': token}}),
       axios.get('/api/v1/groups'),
       axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
-    .then(axios.spread((events, groups, shifts) => {
+    .then(axios.spread((events, yourEvents, groups, shifts ) => {
       const token = localStorage.getItem('token');
       const email = localStorage.getItem('email');
       const name = localStorage.getItem('name');
@@ -33,10 +36,13 @@ export default class Main extends Component {
       console.log(1);
       console.log(shifts.data);
       console.log(2);
+      console.log(yourEvents.data);
+      console.log(events.data);
       this.setState({
         events: events.data,
         groups: groups.data,
         shifts: shifts.data,
+        yourEvents: yourEvents.data,
         token,
         email,
         name,
@@ -52,7 +58,7 @@ export default class Main extends Component {
   }
 
   render() {
-    const { events, shifts, groups, error } = this.state;
+    const { events, shifts, groups, yourEvents, error } = this.state;
     return (
       <div>
         <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}, User_id: {this.state.user_id}</h6>
@@ -63,9 +69,12 @@ export default class Main extends Component {
 
         <h1>Personow MainPage</h1>
 
+        <h2>Your Events</h2>
+        <YourEvents yourEvents={ yourEvents } error={ error } />
+        <Link to={'/EventForm'} ><button>Create Event</button></Link>
+
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
-        <Link to={'/EventForm'} ><button>Create Event</button></Link>
 
         <h2>All Shifts</h2>
         <AllShifts shifts={ shifts } error={ error } />

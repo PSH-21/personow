@@ -49,8 +49,12 @@ module API::V1
       user = authenticate_user
       if user
         memberships = user.event_members.where(creator: true)
+        puts memberships
         events = memberships.map { |x| Event.find(x.event_id) }
+        puts 1
+        puts events
         render json: events
+
       end
     end
 
