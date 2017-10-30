@@ -12,7 +12,6 @@ import Group from './group/group.jsx';
 import OneEvent from './event/OneEvent.jsx';
 // import NewShift from './event/newshift.jsx';
 import YourEvents from './event/YourEvents.jsx';
-import AllShifts from './event/AllShifts.jsx';
 import YourShifts from './event/YourShifts.jsx';
 import User from './user/user.jsx';
 import EventForm from './event/EventForm.jsx';
@@ -32,7 +31,6 @@ export default function Routes(props) {
       <Route path='/groups/:id' component={Group} />
       <Route path='/events/:id' component={OneEvent} />
       <Route path='/your-shifts' component={YourShifts} />
-      <Route path='/allshifts' component={AllShifts} />
       <Route path='/user' component={User} />
       <Route path='/EventForm' component={EventForm} />
       <Route path='/GroupForm' component={GroupForm} />

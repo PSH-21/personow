@@ -8,8 +8,8 @@ export default class OneEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      event: '',
-      shifts: '',
+      event: [],
+      allshifts: [],
       error: ''
     }
   }
@@ -64,8 +64,10 @@ export default class OneEvent extends Component {
           }
           {error && <div>{error}</div>}
         </div>
-        <h3>Shifts</h3>
-        <AllShifts allshifts={ allshifts } error={ error } />
+
+        {
+         !!allshifts ? <AllShifts allshifts={ allshifts } error={ error } /> : <div>Loading</div>
+        }
 
       </div>
     );
