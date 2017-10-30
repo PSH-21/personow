@@ -25,7 +25,10 @@ export default class AllShifts extends Component {
                   <ul>
                     <li>{shift.date}
                       <ul>
-                        <li>{shift.role_name}, {shift.start_time}, {shift.end_time}, {shift.user_name}</li>
+                        <li>{shift.role_name}, {shift.start_time}, {shift.end_time},
+                          {shift.user_name ? shift.user_name : 'AVAILABLE' }
+                        </li>
+
                       </ul>
                     </li>
                   </ul>

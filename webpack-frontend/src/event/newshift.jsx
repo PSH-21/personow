@@ -45,18 +45,17 @@ export default class NewShift extends Component {
 
   render() {
     const { fireRedirect } = this.state;
-    debugger;
     return (
       <div>
         <div>
           <form>
             <label>
               Shift Start Time:
-            <input type="time" name="start_time" value={this.state.start_time} onChange={this.handleChange} />
+            <input type="datetime" name="start_time" value={this.state.start_time} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
             </label>
              <label>
               Shift End Time:
-             <input type="time" name="end_time" value={this.state.end_time} onChange={this.handleChange}  />
+             <input type="datetime" name="end_time" value={this.state.end_time} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00"  />
             </label>
             <input type="submit" value="Submit" onClick={this.submitNewShift}/>
             {fireRedirect && (<Redirect to={'/'} />)}
