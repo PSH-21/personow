@@ -4,7 +4,7 @@ module API::V1
 
     def create
       user = authenticate_user
-      event = Event.find_by(id: params[:id])
+      event = Event.find_by(id: params[:event_id])
       if user && event
         membership = EventMember.find_by(user_id: user.id, event_id: event.id)
         if membership[:creator]
