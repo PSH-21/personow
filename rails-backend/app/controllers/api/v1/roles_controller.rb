@@ -9,7 +9,7 @@ module API::V1
         membership = EventMember.find_by(user_id: user.id, event_id: event.id)
         if membership[:creator]
           role = Role.new(title: params[:title], description: params[:description],
-                          event_id: params[:id])
+                          event_id: params[:event_id])
           if role.save
             render json: {success: "Role created"}
           else
