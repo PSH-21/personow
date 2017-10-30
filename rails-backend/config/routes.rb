@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get '/shifts/:id', to: 'events#shifts'
       post '/shifts', to: 'shifts#create'
       post '/shift/:id', to: 'users#claim'
+      delete '/shift/:id', to: 'shifts#destroy'
       get '/group-events/:id', to: 'groups#events'
 
       resources :users
