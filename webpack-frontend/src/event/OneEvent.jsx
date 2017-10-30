@@ -35,6 +35,8 @@ export default class OneEvent extends Component {
 
   render() {
     const { event, allshifts, error } = this.state;
+    console.log(event.id);
+    debugger;
     return (
       <div>
         <h1>Hello from event</h1>
@@ -68,7 +70,11 @@ export default class OneEvent extends Component {
         {
          !!allshifts ? <AllShifts allshifts={ allshifts } error={ error } /> : <div>Loading</div>
         }
-
+        {
+        event.id ?
+        (<Link to={`/newshift/${event.id}`} ><button>Add Shift</button></Link>)
+        : <div>Loading</div>
+        }
       </div>
     );
   }

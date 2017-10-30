@@ -10,7 +10,7 @@ import Register from './user/register.jsx';
 import Login from './user/login.jsx';
 import Group from './group/group.jsx';
 import OneEvent from './event/OneEvent.jsx';
-// import NewShift from './event/newshift.jsx';
+import NewShift from './event/newshift.jsx';
 import YourEvents from './event/YourEvents.jsx';
 import YourShifts from './event/YourShifts.jsx';
 import User from './user/user.jsx';
@@ -31,6 +31,7 @@ export default function Routes(props) {
       <Route path='/groups/:id' component={Group} />
       <Route path='/events/:id' component={OneEvent} />
       <Route path='/your-shifts' component={YourShifts} />
+      <Route path='/newshift/:id' component={NewShift} />
       <Route path='/user' component={User} />
       <Route path='/EventForm' component={EventForm} />
       <Route path='/GroupForm' component={GroupForm} />
