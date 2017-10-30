@@ -52,6 +52,7 @@ module API::V1
         events = memberships.map { |x| Event.find(x.event_id) }
         results = events.map do |event|
           event_name = event[:title]
+          event_id = event[:id]
           if id = event[:group_id]
             group = Group.find_by(id: id)
             group_name = group[:name]
@@ -62,6 +63,7 @@ module API::V1
           avail_shifts = event_shifts.reject { |x| x.user_id != nil }
 
           {
+            id: event_id,
             name: event_name,
             group: group_name,
             avail: avail_shifts.size,
