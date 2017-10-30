@@ -7,7 +7,7 @@ import AllEvents from './event/AllEvents.jsx';
 import YourEvents from './event/YourEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
 import YourShifts from './event/YourShifts.jsx';
-import AvailShifts from './event/AvailShifts';
+import AvailShifts from './event/AvailShifts.jsx';
 
 export default class Main extends Component {
   constructor(props) {
