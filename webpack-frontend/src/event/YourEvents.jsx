@@ -20,24 +20,17 @@ export default class YourEvents extends Component {
         {
           !!yourEvents.length ?
             <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
-                </tr>
-              </thead>
               <tbody>
                 {
                   yourEvents.map(event => {
                     return (
                       <tr key={event.id}>
-                        <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
-                        <td>{event.description}</td>
-                        <td>{event.start_date}</td>
-                        <td>{event.end_date}</td>
+                        <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link>:  {event.group}</td>
                       </tr>
+                      <tr>
+                        <td>{event.avail} of {event.total} shifts have yet to be filled.</td>
+                      </tr>
+
                     )
                   })
                 }
