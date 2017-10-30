@@ -50,10 +50,25 @@ module API::V1
       if user
         memberships = user.event_members.where(creator: true)
         events = memberships.map { |x| Event.find(x.event_id) }
-        render json: events
-      else
-        render json: {error: "invalid user/event"}
+        results = events.map do |event|
+          event_name = event[:title]
+          if id = event[:group_id]
+            group = Group.find_by(id: id)
+            group_name = group[:name]
+          else
+            group_name = ''
+          end
+          event_shifts = event.shifts
+          avail_shifts = event_shifts.reject { |x| x.user_id != nil }
 
+          {
+            name: event_name,
+            group: group_name,
+            avail: avail_shifts.size,
+            total: event_shifts.size
+          }
+        end
+        render json: results
       end
     end
 
