@@ -48,6 +48,7 @@ export default class AllShifts extends Component {
   render() {
     const { allshifts = [], error= '' } = this.props;
     return (
+
       <div>
         {
           !!allshifts.length ?
@@ -57,12 +58,16 @@ export default class AllShifts extends Component {
                   <ul>
                     <li>{shift.date}
                       <ul>
-                        <li key={shift.id}>{shift.role_name}, {shift.start_time}, {shift.end_time},
-                          {shift.user_name ? shift.user_name : 'AVAILABLE' }
-                        <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
+                        <li key={shift.id}>
+                          { !!shift.user_name ? (
+                            <span>asdasdasd
+                              <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
+                            </span>
 
+                          ) : (
+                            <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CLAIM</button>
+                          )}
                         </li>
-
                       </ul>
                     </li>
                   </ul>
