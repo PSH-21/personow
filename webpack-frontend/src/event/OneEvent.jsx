@@ -69,9 +69,17 @@ export default class OneEvent extends Component {
           {error && <div>{error}</div>}
         </div>
 
+        <h3>Roles</h3>
         {
          !!allroles ? <AllRoles allroles={ allroles } error={ error } /> : <div>Loading</div>
         }
+        {
+        event.id ?
+        (<Link to={`/newrole/${event.id}`} ><button>Add Role</button></Link>)
+        : <div>Loading</div>
+        }
+
+        <h3>Shifts</h3>
         {
          !!allshifts ? <AllShifts allshifts={ allshifts } error={ error } /> : <div>Loading</div>
         }

@@ -13,8 +13,9 @@ export default class AllRoles extends Component {
   // }
 
   render() {
-
+    console.log('Arrived');
     const { roles = [], error = '' } = this.props;
+    console.log(roles);
     return (
       <div>
         {

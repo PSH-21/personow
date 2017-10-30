@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       get '/events/:id', to: 'events#show'
       get '/groups/:id', to: 'groups#show'
       get '/roles/:id', to: 'events#roles'
-      post '/roles/:id', to: 'roles#create'
+      post '/roles', to: 'roles#create'
       get '/shifts/:id', to: 'events#shifts'
       post '/shifts', to: 'shifts#create'
       post '/shift/:id', to: 'users#claim'
