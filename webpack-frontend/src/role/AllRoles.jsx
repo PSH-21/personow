@@ -13,11 +13,11 @@ export default class AllRoles extends Component {
   // }
 
   render() {
-    const { roles = [], error = '' } = this.props;
+    const { allroles = [], error = '' } = this.props;
     return (
       <div>
         {
-          !!roles.length ?
+          !!allroles.length ?
             <table>
               <thead>
                 <tr>
@@ -27,7 +27,7 @@ export default class AllRoles extends Component {
               </thead>
               <tbody>
                 {
-                  roles.map(role => {
+                  allroles.map(role => {
                     return (
                       <tr>
                         <td>{role.title}</td>
