@@ -16,10 +16,11 @@ export default class NewRole extends Component {
 
   submitNewShift = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
     const { title, description } = this.state;
     const event_id = this.props.match.params.id;
     const data = { title, description, event_id };
-    axios.post(`/api/v1/roles`, data)
+    axios.post(`/api/v1/roles`, data, {headers: {'token': token}})
     .then( res => {
       this.setState({
         title: '',

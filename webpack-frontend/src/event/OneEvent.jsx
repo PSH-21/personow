@@ -37,6 +37,7 @@ export default class OneEvent extends Component {
       })
   }
 
+
   render() {
     const { event, allshifts, allroles, error } = this.state;
     return (
