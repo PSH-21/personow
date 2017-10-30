@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-// import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
-
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import AllEvents from './event/AllEvents.jsx';
 import YourEvents from './event/YourEvents.jsx';
 import AllGroups from './group/AllGroups.jsx';
 import YourShifts from './event/YourShifts.jsx';
-import AvailShifts from './event/AvailShifts.jsx';
-
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +14,7 @@ export default class Main extends Component {
       events: [],
       groups: [],
       shifts: [],
-      yourEvents: [],
-      avail: []
+      yourEvents: []
     }
   }
   componentWillMount() {
@@ -30,7 +26,7 @@ export default class Main extends Component {
       axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
-    .then(axios.spread((events, yourEvents, groups, shifts, eventShifts ) => {
+    .then(axios.spread((events, yourEvents, groups, shifts ) => {
       const token = localStorage.getItem('token');
       const email = localStorage.getItem('email');
       const name = localStorage.getItem('name');
@@ -43,8 +39,7 @@ export default class Main extends Component {
         token,
         email,
         name,
-        user_id,
-        eventShifts: eventShifts.data
+        user_id
       });
     }))
     .catch((error) => {
@@ -52,11 +47,9 @@ export default class Main extends Component {
         error
       });
     })
-
   }
-
   render() {
-    const { events, shifts, groups, yourEvents, eventShifts, error } = this.state;
+    const { events, shifts, groups, yourEvents, error } = this.state;
     return (
       <div>
         <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}, User_id: {this.state.user_id}</h6>
@@ -64,28 +57,17 @@ export default class Main extends Component {
         <Link to={'/register'} > REGISTER </Link>
         <Link to={'/user'} > USER </Link>
         <h1>Main Page</h1>
-
         <h1>Personow MainPage</h1>
-
         <h2>Your Events</h2>
         <YourEvents yourEvents={ yourEvents } error={ error } />
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
-
         <h2>Your Shifts</h2>
         <YourShifts shifts={ shifts } error={ error } />
-
-        <h2>Available shift</h2>
-        <AvailShifts eventShifts={eventShifts} />
-
         <h2>All Events</h2>
         <AllEvents events={ events } error={ error } />
-
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
         <Link to={'/GroupForm'} ><button>Create Group</button></Link>
-
-
-
       </div>
     );
   }

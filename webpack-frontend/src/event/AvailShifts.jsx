@@ -1,6 +1,6 @@
-import React, { Componenet } from 'react';
+import React, { Component } from 'react';
 
-export default class AvailShifts extends Componenet {
+export default class AvailShifts extends Component {
 
   constructor(props) {
     super(props);
