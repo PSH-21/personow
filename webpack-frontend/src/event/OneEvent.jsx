@@ -2,22 +2,30 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import AllShifts from './AllShifts.jsx';
+
 export default class OneEvent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       event: '',
+      shifts: '',
       error: ''
     }
   }
 
   componentWillMount() {
-    axios.get(`/api/v1/events/${this.props.match.params.id}`)
-      .then(({ data }) => {
-        this.setState({
-          event: data
+    const token = localStorage.getItem('token');
+    axios.all([
+      axios.get(`/api/v1/events/${this.props.match.params.id}`),
+      axios.get(`/api/v1/shifts/${this.props.match.params.id}`)
+    ])
+    .then(axios.spread((event, allshifts) => {
+      this.setState({
+          event: event.data,
+          allshifts: allshifts.data
         })
-      })
+      }))
       .catch((error) => {
         this.setState({
           error
@@ -26,7 +34,7 @@ export default class OneEvent extends Component {
   }
 
   render() {
-    const { event, error } = this.state;
+    const { event, allshifts, error } = this.state;
     return (
       <div>
         <h1>Hello from event</h1>
@@ -56,6 +64,8 @@ export default class OneEvent extends Component {
           }
           {error && <div>{error}</div>}
         </div>
+        <h3>Shifts</h3>
+        <AllShifts allshifts={ allshifts } error={ error } />
 
       </div>
     );
