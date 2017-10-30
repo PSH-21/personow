@@ -1,5 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+
 export default class AllShifts extends Component {
   // static PropTypes = {
   //  shifts: PropTypes.array
@@ -27,17 +30,14 @@ export default class AllShifts extends Component {
   //   })
   // }
 
-  cancelOnClick = (e) => {
+  cancelOnClick = (id, e) => {
     e.preventDefault();
-    const { title, description } = this.state;
-    const event_id = this.props.match.params.id;
-    const data = { title, description, event_id };
-    axios.post(`/api/v1/shift/:id_here`, data)
+    const shift_id = id;
+    const token = localStorage.getItem('token');
+    axios.post(`/api/v1/shift/${shift_id}`, {headers: {'token': token}})
     .then( res => {
       this.setState({
-        title: '',
-        description: '',
-        fireRedirect: true
+
       });
     })
     .catch( error => {
@@ -59,7 +59,8 @@ export default class AllShifts extends Component {
                       <ul>
                         <li key={shift.id}>{shift.role_name}, {shift.start_time}, {shift.end_time},
                           {shift.user_name ? shift.user_name : 'AVAILABLE' }
-                          <text onClick={this.cancelOnClick}>CANCEL</text>
+                        <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
+
                         </li>
 
                       </ul>
