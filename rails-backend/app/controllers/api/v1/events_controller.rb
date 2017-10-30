@@ -77,6 +77,8 @@ module API::V1
       if user
         event = Event.create(title: params[:title], description: params[:description], start_date: params[:start_date], end_date: params[:end_date], updated_at: Time.now)
         event_member = EventMember.create(user_id: user.id, event_id: event.id, creator: true, notifications: true)
+        role = Role.create(title: 'General Volunteer', description: 'Give us a helping hand reaching our event goals.',
+                           event_id: event.id)
         render json: {success: "Event created"}
         puts "event-created check"
       # else
