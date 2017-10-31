@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 
 export default class AllShifts extends Component {
@@ -65,7 +66,9 @@ export default class AllShifts extends Component {
                     <li>Date
                       <ul>
                         <li key={shift.id}>
-                          {shift.role_name}, {shift.start_time}, {shift.end_time}
+                          {shift.role_name},
+                          {moment(shift.start_time).format("hh:mm A")} -
+                          {moment(shift.end_time).format("hh:mm A")},
                           { !!shift.user_name ? (
                             <span>shift.user_name
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>

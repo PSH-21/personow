@@ -122,7 +122,7 @@ export default class NewShift extends Component {
               />
             </label>
             <input type="submit" value="Submit" onClick={this.submitNewShift}/>
-            {fireRedirect && (<Redirect to={'/'} />)}
+            {fireRedirect && (<Redirect to={`/events/${this.props.match.params.id}`} />)}
           </form>
         </div>
       </div>

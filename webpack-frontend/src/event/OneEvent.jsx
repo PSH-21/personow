@@ -55,7 +55,6 @@ export default class OneEvent extends Component {
                     <th>Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
-                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -64,7 +63,6 @@ export default class OneEvent extends Component {
                     <td>{event.description}</td>
                     <td>{event.start_date}</td>
                     <td>{event.end_date}</td>
-                    <td>{event.creator}</td>
                   </tr>
                 </tbody>
               </table> :
@@ -78,9 +76,9 @@ export default class OneEvent extends Component {
          !!allroles ? <AllRoles allroles={ allroles } error={ error } /> : <div>Loading</div>
         }
         {
-        event.id ?
+        !!event.creator ?
         (<Link to={`/newrole/${event.id}`} ><button>Add Role</button></Link>)
-        : <div>Loading</div>
+        : ''
         }
 
         <h3>Shifts</h3>
@@ -88,9 +86,9 @@ export default class OneEvent extends Component {
          !!allshifts ? <AllShifts allshifts={ allshifts } creator={event.creator} error={ error } /> : <div>Loading</div>
         }
         {
-        event.id ?
+        event.creator ?
         (<Link to={`/newshift/${event.id}`} ><button>Add Shift</button></Link>)
-        : <div>Loading</div>
+        : ''
         }
       </div>
     );
