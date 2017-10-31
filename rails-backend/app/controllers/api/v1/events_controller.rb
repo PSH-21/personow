@@ -56,6 +56,7 @@ module API::V1
 
           {
             id: shift[:id],
+            event_id: event.id,
             start_time: shift[:start_time],
             end_time: shift[:end_time],
             role_id: shift[:role_id],
