@@ -24,12 +24,12 @@ module.exports = {
         },
       },
       {
-        test: /\.scss$/,
+        test: /\.s?css$/,
         use: [
           'style-loader',
           { loader: 'css-loader', options: {modules: true, importLoaders: 1 } },
           'sass-loader',
-          { loader: 'postcss-loader', options: { sourceMap: true, plugins: () => [...plugins] } },
+          { loader: 'postcss-loader', options: { sourceMap: true /*plugins: () => [...plugins] */} }
         ]
       }
     ]

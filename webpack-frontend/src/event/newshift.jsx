@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 export default class NewShift extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      startDate: moment(),
       start_time: '',
       end_time: '',
       role_id: 3,
@@ -24,8 +29,8 @@ export default class NewShift extends Component {
     axios.post('/api/v1/shifts', data)
     .then( res => {
       this.setState({
-        start_time: '',
-        end_time: '',
+        start_time: moment(),
+        end_time: moment(),
         event_id: '',
         fireRedirect: true
       });
@@ -43,20 +48,43 @@ export default class NewShift extends Component {
     this.setState({ [name]: value });
   }
 
+  startTimeHandleChange = (time) => {
+    this.setState({
+      start_time: time
+    });
+  }
+
+  endTimeHandleChange = (time) => {
+    this.setState({
+      end_time: time
+    });
+  }
+
   render() {
     const { fireRedirect } = this.state;
     return (
       <div>
         <div>
           <form>
-            <label>
-              Shift Start Time:
-            <input type="datetime" name="start_time" value={this.state.start_time} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
-            </label>
-             <label>
-              Shift End Time:
-             <input type="datetime" name="end_time" value={this.state.end_time} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00"  />
-            </label>
+            <label>Start Time</label>
+            <DatePicker
+              selected={this.state.start_time}
+              onChange={this.startTimeHandleChange}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat="LLL"
+            />;
+
+            <label>End Time</label>
+            <DatePicker
+              selected={this.state.end_time}
+              onChange={this.endTimeHandleChange}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat="LLL"
+            />;
             <input type="submit" value="Submit" onClick={this.submitNewShift}/>
             {fireRedirect && (<Redirect to={'/'} />)}
           </form>
