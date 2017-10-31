@@ -29,6 +29,13 @@ export default class AllShifts extends Component {
   //     this.setState({ error })
   //   })
   // }
+  deleteOnClikc = (id, e) => {
+    e.preventDefault();
+    const shift_id = id;
+    const token = localStorage.getItem('token');
+    axios.post(`/api/v1/shift/${shift_id}`, {headers: {'token': token}})
+  }
+  delete '/shift/:id'
 
   cancelOnClick = (id, e) => {
     e.preventDefault();
@@ -60,13 +67,16 @@ export default class AllShifts extends Component {
                       <ul>
                         <li key={shift.id}>
                           { !!shift.user_name ? (
-                            <span>asdasdasd
+                            <span>shift.user_name
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
                             </span>
 
                           ) : (
-                            <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CLAIM</button>
+                            <span>OPEN
+                              <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CLAIM</button>
+                            </span>
                           )}
+                          <button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>
                         </li>
                       </ul>
                     </li>
