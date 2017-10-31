@@ -20,8 +20,8 @@ export default class OneEvent extends Component {
     const token = localStorage.getItem('token');
     axios.all([
       axios.get(`/api/v1/events/${this.props.match.params.id}`),
-      axios.get(`/api/v1/shifts/${this.props.match.params.id}`),
-      axios.get(`/api/v1/roles/${this.props.match.params.id}`)
+      axios.get(`/api/v1/roles/${this.props.match.params.id}`),
+      axios.get(`/api/v1/shifts/${this.props.match.params.id}`, {headers : {'token': token}})
     ])
     .then(axios.spread((event, allshifts, allroles) => {
       this.setState({

@@ -8,10 +8,21 @@ module API::V1
     end
 
     def show
+      user = authenticate_user
       event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
-        respond_with event
+        puts 'event1'
+        if user
+          creator = EventMember.find_by(user_id: user.id, event_id: event.id)
+          if creator
+            respond_with event, creator
+          else
+            respond_with event
+          end
+        else
+          respond_with event
+        end
       else
         render json: {error: "Invalid event id"}
       end
