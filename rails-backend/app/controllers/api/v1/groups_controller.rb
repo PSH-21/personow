@@ -8,16 +8,18 @@ module API::V1
     end
 
     def show
-      group_id = params[:id]
-      group = Group.find_by(id: group_id)
+      user = User.find_by(token: request.headers['token'])
+      group = Group.find_by(id: params[:id])
       if group
-        user = authenticate_user
         if user
-          group_member = GroupMember.where('group_id = ? AND user_id = ?', group.id, user.id)
+          group_member = GroupMember.find_by(group_id: group.id, user_id: user.id)
           if group_member
-            respond_with group, group_member
-          else
-            respond_with group
+            render json: {
+                            id: group[:id],
+                            name: group[:name],
+                            description: group[:description],
+                            creator: group_member[:creator]
+                         }
           end
         else
           respond_with group
