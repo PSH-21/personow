@@ -58,6 +58,7 @@ export default class NewShift extends Component {
   }
 
   handleChange = (e) => {
+    debugger;
     this.setState({ role_id: e.target.value });
   }
 
@@ -83,13 +84,13 @@ export default class NewShift extends Component {
             <label>
               Select Role
               <select value={this.state.value} onChange={this.handleChange}>
+                  <option value=''></option>
                 {
                   !!roles.length ?
                     (
-
                         roles.map(role => {
                           return (
-                            <option value={role.id}>{role.title}</option>
+                            <option key={role.id} value={role.id}>{role.title}</option>
                           )
                         })
                     ) :

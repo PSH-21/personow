@@ -52,7 +52,7 @@ export default class AllShifts extends Component {
   }
 
   render() {
-    const { allshifts = [], error= '' } = this.props;
+    const { allshifts = [], creator= '', error= '' } = this.props;
     return (
 
       <div>
@@ -76,7 +76,9 @@ export default class AllShifts extends Component {
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CLAIM</button>
                             </span>
                           )}
-                          <button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>
+                          { !!creator ? (
+                          <button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>) :
+                          '' }
                         </li>
                       </ul>
                     </li>
