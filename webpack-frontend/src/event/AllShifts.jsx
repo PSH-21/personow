@@ -52,8 +52,23 @@ export default class AllShifts extends Component {
     })
   }
 
+
+
   render() {
     const { allshifts = [], creator= '', error= '' } = this.props;
+    const order_shifts = {};
+    {
+      !!allshifts.length ?
+      (
+        for (let i = 0; i < allshifts.length; i++) {
+          if (!order_shifts.allshifts[i]['date']) {
+            order_shifts.allshifts[i]['date'] = []
+          }
+          order_shifts.allshifts[i]['date'].push(allshifts[i])
+        }
+        console.log(order_shifts);
+      ) : ''
+    }
     return (
 
       <div>
