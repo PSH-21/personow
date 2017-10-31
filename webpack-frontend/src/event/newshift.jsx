@@ -14,23 +14,43 @@ export default class NewShift extends Component {
       startDate: moment(),
       start_time: '',
       end_time: '',
-      role_id: 3,
+      role_id: '',
+      roles: [],
       event_id: '',
       fireRedirect: false,
       error: ''
     }
   }
 
+  componentDidMount() {
+    axios.get(`/api/v1/roles/${this.props.match.params.id}`)
+      .then(({ data }) => {
+        this.setState({
+          roles: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error
+        })
+      })
+  }
+
   submitNewShift = (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
     const { start_time, end_time, role_id } = this.state;
+    console.log('start', start_time);
+    console.log('end', end_time);
+    console.log('role_id', role_id);
     const event_id = this.props.match.params.id;
     const data = { start_time, end_time, role_id, event_id };
-    axios.post('/api/v1/shifts', data)
+    axios.post('/api/v1/shifts', data, {headers : {'token': token}})
     .then( res => {
       this.setState({
         start_time: moment(),
         end_time: moment(),
+        role_id: '',
         event_id: '',
         fireRedirect: true
       });
@@ -38,53 +58,70 @@ export default class NewShift extends Component {
     .catch( error => {
       this.setState({ error })
     })
-
-
   }
 
   handleChange = (e) => {
-    const value = e.target.value;
-    const name = e.target.name;
-    this.setState({ [name]: value });
+    this.setState({ role_id: e.target.value });
   }
 
   startTimeHandleChange = (time) => {
     this.setState({
       start_time: time
-    });
+    })
   }
 
   endTimeHandleChange = (time) => {
     this.setState({
       end_time: time
-    });
+    })
   }
 
   render() {
-    const { fireRedirect } = this.state;
+    const { fireRedirect, roles } = this.state;
     return (
       <div>
         <div>
           <form>
-            <label>Start Time</label>
-            <DatePicker
-              selected={this.state.start_time}
-              onChange={this.startTimeHandleChange}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              dateFormat="LLL"
-            />;
+            <label>
+              Select Role
+              <select value={this.state.value} onChange={this.handleChange}>
+                {
+                  !!roles.length ?
+                    (
 
-            <label>End Time</label>
-            <DatePicker
-              selected={this.state.end_time}
-              onChange={this.endTimeHandleChange}
-              showTimeSelect
-              timeFormat="HH:mm"
-              timeIntervals={15}
-              dateFormat="LLL"
-            />;
+                        roles.map(role => {
+                          return (
+                            <option value={role.id}>{role.title}</option>
+                          )
+                        })
+                    ) :
+                  <div>Loading</div>
+                }
+              </select>
+            </label>
+
+            <label>
+              Start Time
+              <DatePicker
+                selected={this.state.start_time}
+                onChange={this.startTimeHandleChange}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="LLL"
+              />
+            </label>
+            <label>
+              End Time
+              <DatePicker
+                selected={this.state.end_time}
+                onChange={this.endTimeHandleChange}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="LLL"
+              />
+            </label>
             <input type="submit" value="Submit" onClick={this.submitNewShift}/>
             {fireRedirect && (<Redirect to={'/'} />)}
           </form>
