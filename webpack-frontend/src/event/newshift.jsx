@@ -40,9 +40,6 @@ export default class NewShift extends Component {
     e.preventDefault();
     const token = localStorage.getItem('token');
     const { start_time, end_time, role_id } = this.state;
-    console.log('start', start_time);
-    console.log('end', end_time);
-    console.log('role_id', role_id);
     const event_id = this.props.match.params.id;
     const data = { start_time, end_time, role_id, event_id };
     axios.post('/api/v1/shifts', data, {headers : {'token': token}})
@@ -80,6 +77,7 @@ export default class NewShift extends Component {
     const { fireRedirect, roles } = this.state;
     return (
       <div>
+        <Link to={`/events/${this.props.match.params.id}`} > Go Back </Link>
         <div>
           <form>
             <label>

@@ -23,11 +23,11 @@ export default class OneEvent extends Component {
       axios.get(`/api/v1/roles/${this.props.match.params.id}`),
       axios.get(`/api/v1/shifts/${this.props.match.params.id}`, {headers : {'token': token}})
     ])
-    .then(axios.spread((event, allshifts, allroles) => {
+    .then(axios.spread((event, allroles, allshifts) => {
       this.setState({
           event: event.data,
-          allshifts: allshifts.data,
-          allroles: allroles.data
+          allroles: allroles.data,
+          allshifts: allshifts.data
         })
       }))
       .catch((error) => {
