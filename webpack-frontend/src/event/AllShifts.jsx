@@ -33,9 +33,8 @@ export default class AllShifts extends Component {
     e.preventDefault();
     const shift_id = id;
     const token = localStorage.getItem('token');
-    axios.post(`/api/v1/shift/${shift_id}`, {headers: {'token': token}})
+    axios.delete(`/api/v1/shift/${shift_id}`, {headers: {'token': token}})
   }
-  delete '/shift/:id'
 
   cancelOnClick = (id, e) => {
     e.preventDefault();
@@ -63,9 +62,10 @@ export default class AllShifts extends Component {
               allshifts.map(shift => {
                 return (
                   <ul>
-                    <li>{shift.date}
+                    <li>Date
                       <ul>
                         <li key={shift.id}>
+                          {shift.role_name}, {shift.start_time}, {shift.end_time}
                           { !!shift.user_name ? (
                             <span>shift.user_name
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
