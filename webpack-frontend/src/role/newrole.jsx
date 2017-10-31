@@ -45,6 +45,7 @@ export default class NewRole extends Component {
     const { fireRedirect } = this.state;
     return (
       <div>
+        <Link to={`/events/${this.props.match.params.id}`} > Go Back </Link>
         <div>
           <form>
             <label>

@@ -4,18 +4,18 @@
 1 verbose cli   'start' ]
 2 info using npm@4.0.0
 3 info using node@v8.4.0
-4 verbose stack Error: ENOENT: no such file or directory, open '/Users/PeterHunt/Desktop/final/package.json'
-5 verbose cwd /Users/PeterHunt/Desktop/final
+4 verbose stack Error: ENOENT: no such file or directory, open '/Users/PeterHunt/lighthouse/final_project/package.json'
+5 verbose cwd /Users/PeterHunt/lighthouse/final_project
 6 error Darwin 16.6.0
 7 error argv "/Users/PeterHunt/.nvm/versions/node/v8.4.0/bin/node" "/Users/PeterHunt/.nvm/versions/node/v8.4.0/bin/npm" "start"
 8 error node v8.4.0
 9 error npm  v4.0.0
-10 error path /Users/PeterHunt/Desktop/final/package.json
+10 error path /Users/PeterHunt/lighthouse/final_project/package.json
 11 error code ENOENT
 12 error errno -2
 13 error syscall open
-14 error enoent ENOENT: no such file or directory, open '/Users/PeterHunt/Desktop/final/package.json'
-15 error enoent ENOENT: no such file or directory, open '/Users/PeterHunt/Desktop/final/package.json'
+14 error enoent ENOENT: no such file or directory, open '/Users/PeterHunt/lighthouse/final_project/package.json'
+15 error enoent ENOENT: no such file or directory, open '/Users/PeterHunt/lighthouse/final_project/package.json'
 15 error enoent This is most likely not a problem with npm itself
 15 error enoent and is related to npm not being able to find a file.
 16 verbose exit [ -2, true ]

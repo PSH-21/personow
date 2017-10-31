@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 
 export default class AllShifts extends Component {
@@ -51,8 +52,23 @@ export default class AllShifts extends Component {
     })
   }
 
+
+
   render() {
-    const { allshifts = [], error= '' } = this.props;
+    const { allshifts = [], creator= '', error= '' } = this.props;
+    const order_shifts = {};
+    {
+      !!allshifts.length ?
+      (
+        for (let i = 0; i < allshifts.length; i++) {
+          if (!order_shifts.allshifts[i]['date']) {
+            order_shifts.allshifts[i]['date'] = []
+          }
+          order_shifts.allshifts[i]['date'].push(allshifts[i])
+        }
+        console.log(order_shifts);
+      ) : ''
+    }
     return (
 
       <div>
@@ -65,7 +81,9 @@ export default class AllShifts extends Component {
                     <li>Date
                       <ul>
                         <li key={shift.id}>
-                          {shift.role_name}, {shift.start_time}, {shift.end_time}
+                          {shift.role_name},
+                          {moment(shift.start_time).format("hh:mm A")} -
+                          {moment(shift.end_time).format("hh:mm A")},
                           { !!shift.user_name ? (
                             <span>shift.user_name
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
@@ -76,7 +94,9 @@ export default class AllShifts extends Component {
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CLAIM</button>
                             </span>
                           )}
-                          <button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>
+                          { !!creator ? (
+                          <button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>) :
+                          '' }
                         </li>
                       </ul>
                     </li>

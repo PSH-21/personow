@@ -19,7 +19,7 @@ export default class OneEvent extends Component {
   componentWillMount() {
     const token = localStorage.getItem('token');
     axios.all([
-      axios.get(`/api/v1/events/${this.props.match.params.id}`),
+      axios.get(`/api/v1/events/${this.props.match.params.id}`, {headers : {'token': token}}),
       axios.get(`/api/v1/roles/${this.props.match.params.id}`),
       axios.get(`/api/v1/shifts/${this.props.match.params.id}`, {headers : {'token': token}})
     ])
@@ -40,6 +40,7 @@ export default class OneEvent extends Component {
 
   render() {
     const { event, allshifts, allroles, error } = this.state;
+    console.log(event);
     return (
       <div>
         <h1>Hello from event</h1>
@@ -75,19 +76,19 @@ export default class OneEvent extends Component {
          !!allroles ? <AllRoles allroles={ allroles } error={ error } /> : <div>Loading</div>
         }
         {
-        event.id ?
+        !!event.creator ?
         (<Link to={`/newrole/${event.id}`} ><button>Add Role</button></Link>)
-        : <div>Loading</div>
+        : ''
         }
 
         <h3>Shifts</h3>
         {
-         !!allshifts ? <AllShifts allshifts={ allshifts } error={ error } /> : <div>Loading</div>
+         !!allshifts ? <AllShifts allshifts={ allshifts } creator={event.creator} error={ error } /> : <div>Loading</div>
         }
         {
-        event.id ?
+        event.creator ?
         (<Link to={`/newshift/${event.id}`} ><button>Add Shift</button></Link>)
-        : <div>Loading</div>
+        : ''
         }
       </div>
     );
