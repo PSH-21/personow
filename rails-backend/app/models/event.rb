@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  belongs_to :group
+
   has_many :event_members
   has_many :users, through: :event_members
 
@@ -7,10 +9,13 @@ class Event < ApplicationRecord
 
   validates :title, presence: true
   validates :start_date, presence: true
+  validates :end_date, presence: true
   validate :end_after_start
 
   def end_after_start
-    errors.add(:end_date, "can't be before the start date.") if
-      end_date < start_date
+    if start_date && end_date
+      errors.add(:end_date, "can't be before the start date.") if
+        end_date < start_date
+    end
   end
 end
