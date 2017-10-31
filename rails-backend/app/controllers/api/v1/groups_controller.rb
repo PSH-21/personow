@@ -28,17 +28,12 @@ module API::V1
     end
 
     def create
-      # @event = Event.new(event_params)
-      # puts params
       user = authenticate_user
-      # puts 'check1'
-      # puts user.id
-      # puts user
-      group = Group.create(name: params[:name], description: params[:description])
-
-      group_member = GroupMember.create(user_id: user.id, group_id: group.id, creator: true)
-      # puts 'check2'
-      respond_with :api, :v1, group
+      if user
+        group = Group.create(name: params[:name], description: params[:description])
+        group_member = GroupMember.create(user_id: user.id, group_id: group.id, creator: true)
+        respond_with :api, :v1, group
+      end
     end
 
     def events
