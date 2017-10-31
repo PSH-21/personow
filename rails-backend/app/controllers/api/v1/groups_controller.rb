@@ -8,16 +8,18 @@ module API::V1
     end
 
     def show
-      group_id = params[:id]
-      group = Group.find_by(id: group_id)
+      user = User.find_by(token: request.headers['token'])
+      group = Group.find_by(id: params[:id])
       if group
-        user = authenticate_user
         if user
-          group_member = GroupMember.where('group_id = ? AND user_id = ?', group.id, user.id)
+          group_member = GroupMember.find_by(group_id: group.id, user_id: user.id)
           if group_member
-            respond_with group, group_member
-          else
-            respond_with group
+            render json: {
+                            id: group[:id],
+                            name: group[:name],
+                            description: group[:description],
+                            creator: group_member[:creator]
+                         }
           end
         else
           respond_with group
@@ -28,17 +30,12 @@ module API::V1
     end
 
     def create
-      # @event = Event.new(event_params)
-      # puts params
       user = authenticate_user
-      # puts 'check1'
-      # puts user.id
-      # puts user
-      group = Group.create(name: params[:name], description: params[:description])
-
-      group_member = GroupMember.create(user_id: user.id, group_id: group.id, creator: true)
-      # puts 'check2'
-      respond_with :api, :v1, group
+      if user
+        group = Group.create(name: params[:name], description: params[:description])
+        group_member = GroupMember.create(user_id: user.id, group_id: group.id, creator: true)
+        respond_with :api, :v1, group
+      end
     end
 
     def events
