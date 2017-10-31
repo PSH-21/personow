@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-source-map',
   entry: [
     './index.jsx',
     'bootstrap-loader'
