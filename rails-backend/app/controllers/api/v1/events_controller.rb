@@ -8,33 +8,30 @@ module API::V1
     end
 
     def show
-      event_id = params[:id]
-      event = Event.find_by(id: event_id)
+      user = User.find_by(token: request.headers['token'])
+      event = Event.find_by(id: params[:id])
+      if user && event
+        membership = EventMember.find_by(user_id: user.id, event_id: event.id)
+      end
 
       if event
-        respond_with event
-      else
-        render json: {error: "Invalid event id"}
+        if user && membership
+          render json: {
+                          id: event[:id],
+                          title: event[:title],
+                          description: event[:description],
+                          start_date: event[:start_date],
+                          end_date: event[:end_date],
+                          group_id: event[:group_id],
+                          creator: membership[:creator]
+          }
+        else
+          respond_with event
+        end
+      elsif user
+        render json: {error: "invalid event id"}
       end
     end
-
-    # def show
-    #   user = authenticate_user
-    #   event_id = params[:id]
-    #   event = Event.find_by(id: event_id)
-    #   if event
-    #     if user
-    #       creator = EventMember.find_by(user_id: user.id, event_id: event.id)
-    #     end
-    #     if creator
-    #       respond_with event, creator
-    #     else
-    #       respond_with event
-    #     end
-    #   else
-    #     render json: {error: "Invalid event id"}
-    #   end
-    # end
 
     def roles
       event_id = params[:id]
