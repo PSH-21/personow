@@ -29,7 +29,7 @@ export default class AllRoles extends Component {
                 {
                   allroles.map(role => {
                     return (
-                      <tr>
+                      <tr key={role.id}>
                         <td>{role.title}</td>
                         <td>{role.description}</td>
                       </tr>

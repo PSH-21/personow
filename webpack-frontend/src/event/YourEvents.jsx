@@ -24,8 +24,8 @@ export default class YourEvents extends Component {
                 {
                   yourEvents.map(event => {
                     return (
-                      <div>
-                        <tr key={event.id}>
+                      <div key={event.id}>
+                        <tr>
                           <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link>,  {event.group}</td>
                         </tr>
                         <tr>
