@@ -20,6 +20,8 @@ module API::V1
                             description: group[:description],
                             creator: group_member[:creator]
                          }
+          else
+            respond_with group          
           end
         else
           respond_with group
