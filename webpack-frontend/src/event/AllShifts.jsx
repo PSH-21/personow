@@ -8,6 +8,7 @@ export default class AllShifts extends Component {
     static defaultProps = {
       allshifts: [],
       creator: '',
+      event_id: '',
       error: ''
   }
   // static PropTypes = {
@@ -42,16 +43,24 @@ export default class AllShifts extends Component {
     axios.delete(`/api/v1/shift/${shift_id}`, {'headers': {'token': token}})
   }
 
-  shiftOnClick = (id, e) => {
+  shiftOnClick = (id, evt_id, e) => {
     e.preventDefault();
     const shift_id = id;
+    const event_id = evt_id;
     const token = localStorage.getItem('token');
     axios.post(`/api/v1/shift/${shift_id}`, {}, {'headers': {'token': token}})
     .then( res => {
-      this.setState({
-
-      });
-      this.render()
+      axios.get(`/api/v1/shifts/${res.data.event_id}`, {headers : {'token': token}})
+      .then(({ data }) => {
+        this.setState({
+          allshifts: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error
+        })
+      })
     })
     .catch( error => {
       this.setState({ error })
@@ -60,7 +69,7 @@ export default class AllShifts extends Component {
 
 
   render() {
-    const { allshifts, creator, error} = this.props;
+    const { allshifts, creator, event_id, error} = this.props;
 
     const days=[];
     function findIndex(datadate, data){
@@ -97,12 +106,12 @@ export default class AllShifts extends Component {
                     { moment(shift.end_time).format("hh:mm A") },
                     { shift.user_name ? (
                       <span>{shift.user_name}
-                        <button onClick={(e) => this.shiftlOnClick(shift.id, e)}>CANCEL</button>
+                        <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CANCEL</button>
                       </span>
 
                     ) : (
                       <span>OPEN
-                        <button onClick={(e) => this.shiftOnClick(shift.id, e)}>CLAIM</button>
+                        <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CLAIM</button>
                       </span>
                     )}
                     { creator && (<button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>) }

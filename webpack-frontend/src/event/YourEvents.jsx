@@ -18,7 +18,7 @@ export default class YourEvents extends Component {
     return (
       <div>
         {
-          !!yourEvents.length ?
+          yourEvents.length === 0 ? <div>You have not created any events</div> :
             <table>
               <tbody>
                 {
@@ -37,8 +37,8 @@ export default class YourEvents extends Component {
                   })
                 }
               </tbody>
-            </table> :
-            <div>Loading</div>
+            </table>
+
         }
         {error && <div>{error}</div>}
       </div>

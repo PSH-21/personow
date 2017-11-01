@@ -37,6 +37,13 @@ export default class OneEvent extends Component {
       })
   }
 
+  deleteOnClick = (id, e) => {
+    e.preventDefault();
+    const event_id = id;
+    const token = localStorage.getItem('token');
+    axios.delete(`/api/v1/event/${event_id}`, {'headers': {'token': token}})
+  }
+
 
   render() {
     const { event, allshifts, allroles, error } = this.state;
@@ -83,11 +90,21 @@ export default class OneEvent extends Component {
 
         <h3>Shifts</h3>
         {
-         !!allshifts ? <AllShifts allshifts={ allshifts } creator={event.creator} error={ error } /> : <div>Loading</div>
+         !!allshifts ? <AllShifts
+                          allshifts={ allshifts }
+                          creator={event.creator}
+                          event_id={event.id}
+                          error={ error }
+                        /> : <div>Loading</div>
         }
         {
         event.creator ?
         (<Link to={`/newshift/${event.id}`} ><button>Add Shift</button></Link>)
+        : ''
+        }
+        {
+        event.creator ?
+        (<button onClick={(e) => this.deleteOnClick(event.id, e)}>DELETE EVENT</button>)
         : ''
         }
       </div>

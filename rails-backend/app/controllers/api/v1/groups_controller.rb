@@ -85,7 +85,6 @@ module API::V1
         render json: {error: "Invalid group id"}
       end
     end
-    end
 
     private
     # Use callbacks to share common setup or constraints between actions.

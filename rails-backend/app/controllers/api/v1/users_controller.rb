@@ -110,18 +110,19 @@ module API::V1
       user = authenticate_user
       shift = Shift.find_by(id: params[:id])
       if user && shift
+        event_id = shift.role.event.id
         if shift.user_id == user.id
           shift.user_id = nil
           shift.save
-          render json: {success: "Cancelled shift"}
+          render json: {success: "Cancelled shift", event_id: event_id}
         elsif shift.user_id == nil
-          membership = EventMember.find_by(event_id: shift.role.event.id, user_id: user.id)
+          membership = EventMember.find_by(event_id: event_id, user_id: user.id)
           if !membership
-            EventMember.create(event_id: shift.role.event.id, user_id: user.id)
+            EventMember.create(event_id: event_id, user_id: user.id)
           end
           shift.user_id = user.id
           shift.save
-          render json: {success: "Claimed shift"}
+          render json: {success: "Claimed shift", event_id: event_id}
         else
           render json: {error: "Shift unavailable"}
         end
