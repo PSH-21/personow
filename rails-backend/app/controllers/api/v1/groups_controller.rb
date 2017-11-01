@@ -72,7 +72,7 @@ module API::V1
       group = Group.find_by(id: params[:id])
       if user && group
         membership = GroupMember.find_by(user_id: user.id, group_id: group.id)
-        if membership[:creator]
+        if membership && membership[:creator]
           if group.destroy
             render json: {success: "Group deleted"}
           else
