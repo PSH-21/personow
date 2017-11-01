@@ -35,8 +35,8 @@ export default class YourShifts extends Component {
                       <tr key={shift.id}>
                         <td><Link to={`/events/${shift.event_id}`} params={{id: shift.event_id}}>{shift.event_title}</Link></td>
                         <td>{shift.role_title}</td>
-                        <td>{shift.start_time}</td>
-                        <td>{shift.end_time}</td>
+                        <td>{ moment(shift.start_time).format("hh:mm A, MMM Do") }</td>
+                        <td>{ moment(shift.end_time).format("hh:mm A, MMM Do") }</td>
                       </tr>
                     )
                   })
