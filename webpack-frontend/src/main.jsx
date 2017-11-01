@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 import AllEvents from './event/AllEvents.jsx';
 import YourEvents from './event/YourEvents.jsx';
-import AllGroups from './group/AllGroups.jsx';
+
 import YourShifts from './event/YourShifts.jsx';
 export default class Main extends Component {
   constructor(props) {
@@ -60,8 +60,8 @@ export default class Main extends Component {
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
         <h2>Your Shifts</h2>
         <YourShifts shifts={ shifts } error={ error } />
-        <h2>'Upcoming Events in the next 7 Days'</h2>
-        <AllEvents events={ events } error={ error } />
+        <h2>Upcoming Events in the Next 7 Days</h2>
+        <AllEvents events={ [] } error={ error } />
         <Link to={'/events'} ><button>Events</button></Link>
         <Link to={'/groups'} ><button>Groups</button></Link>
         <Link to={'/GroupForm'} ><button>Create Group</button></Link>

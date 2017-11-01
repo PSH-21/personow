@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 export default class AllGroups extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      groups: '',
+      error: ''
+    }
+  }
 
-  // constructor(props) {
-    // super(props);
-    // this.state = {
-    //   error: '',
-    //   groups: props.groups
-    // }
-  // }
   componentDidMount() {
     axios.get('/api/v1/groups')
       .then(({ data }) => {
+        console.log(data);
         this.setState({
           groups: data
         })
@@ -25,7 +27,7 @@ export default class AllGroups extends Component {
 
   render() {
 
-    const { groups = [], error = '' } = this.props;
+    const { groups, error } = this.props;
 
     return (
       <div>

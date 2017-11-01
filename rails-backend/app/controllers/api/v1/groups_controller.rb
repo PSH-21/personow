@@ -4,7 +4,7 @@ module API::V1
 
     def index
       groups = Group.all
-      respond_with :api, :v1, groups
+      respond_with groups
     end
 
     def show
@@ -21,7 +21,7 @@ module API::V1
                             creator: group_member[:creator]
                          }
           else
-            respond_with group          
+            respond_with group
           end
         else
           respond_with group

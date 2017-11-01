@@ -18,7 +18,7 @@ export default class AllEvents extends Component {
     return (
       <div>
         {
-          !!events.length ?
+          events.length === 0 ? <div>No Events Currently Scheduled</div> :
             <table>
               <thead>
                 <tr>
@@ -42,8 +42,8 @@ export default class AllEvents extends Component {
                   })
                 }
               </tbody>
-            </table> :
-            <div>Loading</div>
+            </table>
+
         }
         {error && <div>{error}</div>}
       </div>
