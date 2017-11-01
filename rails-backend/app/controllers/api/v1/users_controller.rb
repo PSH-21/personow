@@ -89,13 +89,20 @@ module API::V1
     end
 
     def shifts
-      puts 'here'
       user = authenticate_user
-      puts user
       if user
         shifts = Shift.where('user_id = ?', user.id)
-        puts shifts
-        render json: shifts
+        list = shifts.map do |shift|
+          {
+            id: shift[:id],
+            start_time: shift[:start_time],
+            end_time: shift[:end_time],
+            role_title: shift.role[:title],
+            event_title: shift.role.event[:title],
+            event_id: shift.role.event[:id]
+          }
+        end
+        render json: list
       end
     end
 
