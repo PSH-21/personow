@@ -56,17 +56,18 @@ export default class Main extends Component {
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
         <Link to={'/user'} > USER </Link>
-        <h1>Main Page</h1>
-        <h1>Personow MainPage</h1>
+        <h1>Dashboard</h1>
         <h2>Your Events</h2>
         <YourEvents yourEvents={ yourEvents } error={ error } />
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
         <h2>Your Shifts</h2>
         <YourShifts shifts={ shifts } error={ error } />
-        <h2>All Events</h2>
+        <h2>'Upcoming Events in the next 7 Days'</h2>
         <AllEvents events={ events } error={ error } />
         <h2>All Groups</h2>
         <AllGroups groups={ groups } error={ error } />
+        <Link to={'/events'} ><button>Events</button></Link>
+        <Link to={'/groups'} ><button>Groups</button></Link>
         <Link to={'/GroupForm'} ><button>Create Group</button></Link>
       </div>
     );
