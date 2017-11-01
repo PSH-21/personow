@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 export default class YourEvents extends Component {
   // static PropTypes = {
   //  shifts: PropTypes.array

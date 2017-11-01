@@ -108,9 +108,9 @@ module API::V1
           shift.save
           render json: {success: "Cancelled shift"}
         elsif shift.user_id == nil
-          membership = EventMembers.find_by(event_id: event.id, user_id: user.id)
+          membership = EventMember.find_by(event_id: shift.role.event.id, user_id: user.id)
           if !membership
-            EventMembers.create(event_id: event.id, user_id: user.id)
+            EventMember.create(event_id: event.id, user_id: user.id)
           end
           shift.user_id = user.id
           shift.save
@@ -118,9 +118,8 @@ module API::V1
         else
           render json: {error: "Shift unavailable"}
         end
-
-      else
-        render json: {error: "Invalid user or shift"}
+      elsif user
+        render json: {error: "Invalid shift"}
       end
     end
 

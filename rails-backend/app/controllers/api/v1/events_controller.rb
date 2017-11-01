@@ -3,7 +3,7 @@ module API::V1
     respond_to :json
 
     def index
-      events = Event.all
+      events = Event.all.order(:start_date)
       respond_with :api, :v1, events
     end
 
@@ -46,7 +46,7 @@ module API::V1
       event_id = params[:id]
       event = Event.find_by(id: event_id)
       if event
-        shifts = event.shifts
+        shifts = event.shifts.order(:start_time)
         results = shifts.map do |shift|
           user = User.find_by(id: shift[:user_id])
           user_name = user ? user[:name] : ''
