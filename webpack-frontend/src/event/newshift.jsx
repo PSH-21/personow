@@ -58,7 +58,7 @@ export default class NewShift extends Component {
   }
 
   handleChange = (e) => {
-    debugger;
+    // debugger;
     this.setState({ role_id: e.target.value });
   }
 
