@@ -57,59 +57,31 @@ export default class AllShifts extends Component {
     })
   }
 
-// [
-//   {
-//     end_time: "2017-11-02T17:00:00.000Z"
-//     event_id: 1
-//     id: 1
-//     role_id: 4
-//     role_name: "MC"
-//     start_time: "2017-11-02T13:00:00.000Z"
-//     user_id: 2
-//     user_name: "Bob McRobert"
-//   },
-//   {
-//     end_time: "2017-11-02T17:00:00.000Z"
-//     event_id: 1
-//     id: 1
-//     role_id: 4
-//     role_name: "MC"
-//     start_time: "2017-11-02T13:00:00.000Z"
-//     user_id: 2
-//     user_name: "Bob McRobert"
-//   }
-// ]
-
-
-
 
   render() {
     const { allshifts, creator, error} = this.props;
 
-    console.log(allshifts);
-    const days = [
-    {
-      date: 'oct 1',
-      shifts: [
-        { start: '2017-11-02T13:00:00.000Z', end: '2017-11-02T17:00:00.000Z', role_name: 'test', id: 1, user_name: 'name' },
-        { start: '2017-11-02T13:00:00.000Z', end: '2017-11-02T17:00:00.000Z', role_name: 'test', id: 1, user_name: 'name' }
-      ]
-    },
-    {
-      date: 'oct 2',
-      shifts: [
-        { start: '2017-11-02T13:00:00.000Z', end: '2017-11-02T17:00:00.000Z', role_name: 'test', id: 1, user_name: 'name' },
-        { start: '2017-11-02T13:00:00.000Z', end: '2017-11-02T17:00:00.000Z', role_name: 'test', id: 1, user_name: 'name' }
-      ]
-    },
-    {
-      date: 'oct 3',
-      shifts: [
-        { start: '2017-11-02T13:00:00.000Z', end: '2017-11-02T17:00:00.000Z', role_name: 'test', id: 1, user_name: 'name' },
-        { start: '2017-11-02T13:00:00.000Z', end: '2017-11-02T17:00:00.000Z', role_name: 'test', id: 1, user_name: 'name' }
-      ]
+    const days=[];
+    function findIndex(datadate, data){
+        for (var i=0; i < data.length; i++) {
+            if (data[i].date === datadate) {
+                return i;
+            }
+        }
     }
-  ]
+
+    for (var i = 0; i < allshifts.length; i++) {
+        const index = findIndex(allshifts[i].date, days);
+        if (index === undefined) {
+            days.push(
+                {'date' : allshifts[i].date,
+                'shifts' : [ allshifts[i] ] }
+                );
+        } else {
+
+            days[index]['shifts'].push(allshifts[i]);
+        }
+    }
 
     const shifts = days.map(day => {
       return (
