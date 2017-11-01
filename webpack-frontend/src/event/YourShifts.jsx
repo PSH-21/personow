@@ -14,11 +14,11 @@ export default class YourShifts extends Component {
 
   render() {
 
-    const { shifts = [], error = '' } = this.props;
+    const { shifts = [], error = '', token = '' } = this.props;
     return (
       <div>
         {
-          !!shifts.length ?
+          shifts.length === 0 || !token ? <div>You currently have no shifts scheduled</div> :
             <table>
               <thead>
                 <tr>
@@ -42,8 +42,8 @@ export default class YourShifts extends Component {
                   })
                 }
               </tbody>
-            </table> :
-            <div>Loading</div>
+            </table>
+
         }
         {error && <div>{error}</div>}
       </div>

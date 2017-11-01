@@ -45,13 +45,19 @@ export default class Main extends Component {
       });
     })
   }
+
+  logoutOnClick = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+  }
+
   render() {
-    const { upcomingEvents, shifts, yourEvents, error } = this.state;
+    const { upcomingEvents, shifts, yourEvents, token, error } = this.state;
     return (
       <div>
         <h6>Logged in as {this.state.name}</h6>
         <Link to={'/login'} > LOGIN </Link>
-        <Link to={'/'}  > LOGOUT </Link>
+        <Link to={'/'}  ><button onClick={(e) => this.logoutOnClick(e)}>LOGOUT</button> </Link>
         <Link to={'/register'} > REGISTER </Link>
         <Link to={'/user'} > USER </Link>
         <Link to={'/events'} >EVENTS</Link>
@@ -60,12 +66,13 @@ export default class Main extends Component {
         <Link to={'/EventForm'} ><button>Create Event</button></Link>
         <h1>Dashboard</h1>
         <h2>Your Events</h2>
-        <YourEvents yourEvents={ yourEvents } error={ error } />
-
+        <div>
+        { token && (<YourEvents yourEvents={ yourEvents } error={ error } token={token}/>)  }
+        </div>
         <h2>Your Shifts</h2>
         <YourShifts shifts={ shifts } error={ error } />
 
-        <h2>Upcoming Events in the Next 7 Days</h2>
+        <h2>Upcoming Events in the Next 14 Days</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
 
       </div>

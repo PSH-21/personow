@@ -34,7 +34,7 @@ export default class AllGroups extends Component {
       <div>
         <h2>All Groups</h2>
         {
-          !!groups.length ?
+          groups.length === 0 ? <div>No groups are looking for volunteers right now</div>:
           <table>
               <thead>
                 <tr>
@@ -54,8 +54,8 @@ export default class AllGroups extends Component {
                   })
                 }
               </tbody>
-            </table>:
-            <div>Loading</div>
+            </table>
+
         }
         {error && <div>{error}</div>}
       </div>
