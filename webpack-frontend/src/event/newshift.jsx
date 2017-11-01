@@ -44,6 +44,10 @@ export default class NewShift extends Component {
     const data = { start_time, end_time, role_id, event_id };
     axios.post('/api/v1/shifts', data, {headers : {'token': token}})
     .then( res => {
+      if (res.data.status === 'error') {
+        console.log(res.data.message);
+        next();
+      }
       this.setState({
         start_time: moment(),
         end_time: moment(),

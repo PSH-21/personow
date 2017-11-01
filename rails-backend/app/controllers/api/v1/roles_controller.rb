@@ -13,10 +13,10 @@ module API::V1
           if role.save
             render json: {success: "Role created"}
           else
-            render json: {error: "Role not created"}
+            render json: {status: 'error', message: "Role not created"}
           end
         else
-          render json: {error: "Not authorised"}
+          render json: {status: 'error', message: "Not authorised"}
         end
 
       end

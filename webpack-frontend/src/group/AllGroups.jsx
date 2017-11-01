@@ -9,6 +9,19 @@ export default class AllGroups extends Component {
     //   groups: props.groups
     // }
   // }
+  componentDidMount() {
+    axios.get('/api/v1/groups')
+      .then(({ data }) => {
+        this.setState({
+          groups: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error
+        })
+      })
+  }
 
   render() {
 
@@ -16,6 +29,7 @@ export default class AllGroups extends Component {
 
     return (
       <div>
+        <h2>All Groups</h2>
         {
           !!groups.length ?
           <table>

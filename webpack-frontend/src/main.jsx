@@ -22,18 +22,16 @@ export default class Main extends Component {
     axios.all([
       axios.get('/api/v1/events', {headers: {'token': token}}),
       axios.get('/api/v1/your-events', {headers: {'token': token}}),
-      axios.get('/api/v1/groups'),
       axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
-    .then(axios.spread((events, yourEvents, groups, shifts ) => {
+    .then(axios.spread((events, yourEvents, shifts ) => {
       const token = localStorage.getItem('token');
       const email = localStorage.getItem('email');
       const name = localStorage.getItem('name');
       const user_id = localStorage.getItem('user_id');
       this.setState({
         events: events.data,
-        groups: groups.data,
         shifts: shifts.data,
         yourEvents: yourEvents.data,
         token,
@@ -49,7 +47,7 @@ export default class Main extends Component {
     })
   }
   render() {
-    const { events, shifts, groups, yourEvents, error } = this.state;
+    const { events, shifts, yourEvents, error } = this.state;
     return (
       <div>
         <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}, User_id: {this.state.user_id}</h6>
@@ -64,8 +62,6 @@ export default class Main extends Component {
         <YourShifts shifts={ shifts } error={ error } />
         <h2>'Upcoming Events in the next 7 Days'</h2>
         <AllEvents events={ events } error={ error } />
-        <h2>All Groups</h2>
-        <AllGroups groups={ groups } error={ error } />
         <Link to={'/events'} ><button>Events</button></Link>
         <Link to={'/groups'} ><button>Groups</button></Link>
         <Link to={'/GroupForm'} ><button>Create Group</button></Link>

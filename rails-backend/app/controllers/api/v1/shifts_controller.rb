@@ -13,13 +13,13 @@ module API::V1
           if shift.save
             render json: {success: "Shift created"}
           else
-            render json: {error: "Shift not created"}
+            render json: {status: 'error', message: "Shift not created"}
           end
         else
-          render json: {error: "Not authorised"}
+          render json: {status: 'error', message: "Not authorised"}
         end
       elsif user
-        render json: {error: "Invalid event id"}
+        render json: {status: 'error', message: "Invalid event id"}
       end
     end
 

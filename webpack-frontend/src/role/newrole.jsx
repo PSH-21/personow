@@ -22,6 +22,10 @@ export default class NewRole extends Component {
     const data = { title, description, event_id };
     axios.post(`/api/v1/roles`, data, {headers: {'token': token}})
     .then( res => {
+      if (res.data.status === 'error') {
+        console.log(res.data.message);
+        next();
+      }
       this.setState({
         title: '',
         description: '',
@@ -57,7 +61,7 @@ export default class NewRole extends Component {
              <input type="text" name="description" value={this.state.description} onChange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" onClick={this.submitNewShift}/>
-            {fireRedirect && (<Redirect to={'/'} />)}
+            {fireRedirect && (<Redirect to={`/events/${this.props.match.params.id}`} />)}
           </form>
         </div>
       </div>
