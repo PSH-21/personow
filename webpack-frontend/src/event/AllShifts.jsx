@@ -69,7 +69,7 @@ export default class AllShifts extends Component {
 
 
   render() {
-    const { allshifts, creator, event_id, error} = this.props;
+    const { allshifts, creator, event_id, token, error} = this.props;
 
     const days=[];
     function findIndex(datadate, data){
@@ -106,12 +106,12 @@ export default class AllShifts extends Component {
                     { moment(shift.end_time).format("hh:mm A") },
                     { shift.user_name ? (
                       <span>{shift.user_name}
-                        <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CANCEL</button>
+                        { token &&  <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CANCEL</button>}
                       </span>
 
                     ) : (
                       <span>OPEN
-                        <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CLAIM</button>
+                        { token && <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CLAIM</button> }
                       </span>
                     )}
                     { creator && (<button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>) }

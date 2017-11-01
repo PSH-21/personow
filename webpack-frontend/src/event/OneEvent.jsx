@@ -12,6 +12,7 @@ export default class OneEvent extends Component {
       event: [],
       allshifts: [],
       allroles: [],
+      token: '',
       error: ''
     }
   }
@@ -24,10 +25,12 @@ export default class OneEvent extends Component {
       axios.get(`/api/v1/shifts/${this.props.match.params.id}`, {headers : {'token': token}})
     ])
     .then(axios.spread((event, allroles, allshifts) => {
+      const token = localStorage.getItem('token');
       this.setState({
           event: event.data,
           allroles: allroles.data,
-          allshifts: allshifts.data
+          allshifts: allshifts.data,
+          token: token
         })
       }))
       .catch((error) => {
@@ -46,7 +49,7 @@ export default class OneEvent extends Component {
 
 
   render() {
-    const { event, allshifts, allroles, error } = this.state;
+    const { event, allshifts, allroles, token, error } = this.state;
     console.log(event);
     return (
       <div>
@@ -94,6 +97,7 @@ export default class OneEvent extends Component {
                           allshifts={ allshifts }
                           creator={event.creator}
                           event_id={event.id}
+                          token={token}
                           error={ error }
                         /> : <div>Loading</div>
         }
