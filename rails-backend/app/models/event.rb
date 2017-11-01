@@ -1,10 +1,10 @@
 class Event < ApplicationRecord
   belongs_to :group
 
-  has_many :event_members
+  has_many :event_members, dependent: :destroy
   has_many :users, through: :event_members
 
-  has_many :roles
+  has_many :roles, dependent: :destroy
   has_many :shifts, through: :roles
 
   validates :title, presence: true
