@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, ButtonToolbar, HelpBlock } from 'react-bootstrap';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 export default class EventForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      groups: [],
       title: '',
       description: '',
       start_date: '',
@@ -15,6 +17,21 @@ export default class EventForm extends Component {
       error: ''
     }
   }
+
+  componentDidMount() {
+    axios.get(`/api/v1/user-groups`)
+      .then(({ data }) => {
+        this.setState({
+          groups: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error
+        })
+      })
+  }
+
   submitNewEvent = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
@@ -23,6 +40,7 @@ export default class EventForm extends Component {
     axios.post('/api/v1/events', data, {headers: {'token': token}})
     .then( res => {
       this.setState({
+        groups: [],
         title: '',
         description: '',
         start_date: '',
@@ -33,39 +51,85 @@ export default class EventForm extends Component {
     .catch( error => {
       this.setState({ error })
     })
-
-
   }
 
-  handleChange = (e) => {
+  dateHandleChange = (e) => {
+    this.setState({ role_id: e.target.value });
+  }
+
+  textHandleChange = (e) => {
     const value = e.target.value;
     const name = e.target.name;
     this.setState({ [name]: value });
   }
 
+
+  startTimeHandleChange = (time) => {
+    this.setState({
+      start_time: time
+    })
+  }
+
+  endTimeHandleChange = (time) => {
+    this.setState({
+      end_time: time
+    })
+  }
+
   render() {
-    const { fireRedirect } = this.state;
+    const { groups, fireRedirect } = this.state;
 
     return (
       <div>
         <div>
           <form>
             <label>
+              Select Group
+              <select value={this.state.value} onChange={this.dateHandleChange}>
+                  <option value=''></option>
+                {
+                  groups.length === 0 ? <div>Loading</div> :
+                    (
+                        roles.map(role => {
+                          return (
+                            <option key={group.id} value={group.id}>{group.name}</option>
+                          )
+                        })
+                    )
+                }
+              </select>
+            </label>
+            <label>
               Event Name:
-            <input type="text" name="title" value={this.state.title} onChange={this.handleChange} placeholder="Event Name.." />
+            <input type="text" name="title" value={this.state.title} onChange={this.textHandleChange} placeholder="Event Name.." />
             </label>
              <label>
               Event Description:
-             <input type="text" name="description" value={this.state.description} onChange={this.handleChange} placeholder="Event Description" />
+             <input type="text" name="description" value={this.state.description} onChange={this.textHandleChange} placeholder="Event Description" />
             </label>
             <label>
-              Event From:
-             <input type="datetime" name="start_date" value={this.state.start_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
+              Event Time & Date
+              <DatePicker
+                selected={this.state.start_time}
+                onChange={this.startTimeHandleChange}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="LLL"
+              />
             </label>
             <label>
-              Event To:
-             <input type="datetime" name="end_date" value={this.state.end_date} onChange={this.handleChange} placeholder="YYYY-MM-DD 00:00:00" />
+              Event End Time & Date
+              <DatePicker
+                selected={this.state.end_time}
+                onChange={this.endTimeHandleChange}
+                showTimeSelect
+                timeFormat="HH:mm"
+                timeIntervals={15}
+                dateFormat="LLL"
+              />
             </label>
+
             <input type="submit" value="Submit" onClick={this.submitNewEvent}/>
             {fireRedirect && (<Redirect to={'/'} />)}
           </form>
