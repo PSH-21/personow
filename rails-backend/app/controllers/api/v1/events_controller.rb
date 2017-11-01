@@ -104,7 +104,7 @@ module API::V1
         event_member = EventMember.create(user_id: user.id, event_id: event.id, creator: true, notifications: true)
         role = Role.create(title: 'General Volunteer', description: 'Give us a helping hand reaching our event goals.',
                            event_id: event.id)
-        render json: {success: "Event created"}
+        render json: {success: "Event created", event_id: event.id}
         puts "event-created check"
       # else
       #   render json: {error: "invalid event"}
