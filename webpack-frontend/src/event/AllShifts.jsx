@@ -34,7 +34,7 @@ export default class AllShifts extends Component {
     e.preventDefault();
     const shift_id = id;
     const token = localStorage.getItem('token');
-    axios.delete(`/api/v1/shift/${shift_id}`, {}, {'headers': {'token': token}})
+    axios.delete(`/api/v1/shift/${shift_id}`, {'headers': {'token': token}})
   }
 
   cancelOnClick = (id, e) => {
@@ -85,7 +85,7 @@ export default class AllShifts extends Component {
                           {moment(shift.start_time).format("hh:mm A")} -
                           {moment(shift.end_time).format("hh:mm A")},
                           { !!shift.user_name ? (
-                            <span>shift.user_name
+                            <span>{shift.user_name}
                               <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
                             </span>
 
