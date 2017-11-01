@@ -30,18 +30,18 @@ export default class AllShifts extends Component {
   //     this.setState({ error })
   //   })
   // }
-  deleteOnClikc = (id, e) => {
+  deleteOnClick = (id, e) => {
     e.preventDefault();
     const shift_id = id;
     const token = localStorage.getItem('token');
-    axios.delete(`/api/v1/shift/${shift_id}`, {headers: {'token': token}})
+    axios.delete(`/api/v1/shift/${shift_id}`, {}, {'headers': {'token': token}})
   }
 
   cancelOnClick = (id, e) => {
     e.preventDefault();
     const shift_id = id;
     const token = localStorage.getItem('token');
-    axios.post(`/api/v1/shift/${shift_id}`, {headers: {'token': token}})
+    axios.post(`/api/v1/shift/${shift_id}`, {}, {'headers': {'token': token}})
     .then( res => {
       this.setState({
 
@@ -57,18 +57,18 @@ export default class AllShifts extends Component {
   render() {
     const { allshifts = [], creator= '', error= '' } = this.props;
     const order_shifts = {};
-    {
-      !!allshifts.length ?
-      (
-        for (let i = 0; i < allshifts.length; i++) {
-          if (!order_shifts.allshifts[i]['date']) {
-            order_shifts.allshifts[i]['date'] = []
-          }
-          order_shifts.allshifts[i]['date'].push(allshifts[i])
-        }
-        console.log(order_shifts);
-      ) : ''
-    }
+    // {
+    //   !!allshifts.length ?
+    //   (
+    //     for (let i = 0; i < allshifts.length; i++) {
+    //       if (!order_shifts.allshifts[i]['date']) {
+    //         order_shifts.allshifts[i]['date'] = []
+    //       }
+    //       order_shifts.allshifts[i]['date'].push(allshifts[i])
+    //     }
+    //     console.log(order_shifts);
+    //   ) : ''
+    // }
     return (
 
       <div>
