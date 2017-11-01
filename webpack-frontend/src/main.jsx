@@ -12,7 +12,6 @@ export default class Main extends Component {
     this.state = {
       error: '',
       events: [],
-      groups: [],
       shifts: [],
       yourEvents: []
     }
@@ -20,7 +19,7 @@ export default class Main extends Component {
   componentWillMount() {
     const token = localStorage.getItem('token');
     axios.all([
-      axios.get('/api/v1/events', {headers: {'token': token}}),
+      axios.get('/api/v1/events-upcoming', {headers: {'token': token}}),
       axios.get('/api/v1/your-events', {headers: {'token': token}}),
       axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
@@ -31,7 +30,7 @@ export default class Main extends Component {
       const name = localStorage.getItem('name');
       const user_id = localStorage.getItem('user_id');
       this.setState({
-        events: events.data,
+        upcomingEvents: upcomingEvents.data,
         shifts: shifts.data,
         yourEvents: yourEvents.data,
         token,
@@ -47,13 +46,16 @@ export default class Main extends Component {
     })
   }
   render() {
-    const { events, shifts, yourEvents, error } = this.state;
+    const { upcomingEvents, shifts, yourEvents, error } = this.state;
     return (
       <div>
         <h6>User {this.state.token}, Email: {this.state.email}, Name: {this.state.name}, User_id: {this.state.user_id}</h6>
         <Link to={'/login'} > LOGIN </Link>
         <Link to={'/register'} > REGISTER </Link>
         <Link to={'/user'} > USER </Link>
+        <Link to={'/events'} >EVENTS</Link>
+        <Link to={'/groups'} > GROUPS</Link>
+        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
         <h1>Dashboard</h1>
         <h2>Your Events</h2>
         <YourEvents yourEvents={ yourEvents } error={ error } />
@@ -61,10 +63,8 @@ export default class Main extends Component {
         <h2>Your Shifts</h2>
         <YourShifts shifts={ shifts } error={ error } />
         <h2>Upcoming Events in the Next 7 Days</h2>
-        <AllEvents events={ [] } error={ error } />
-        <Link to={'/events'} ><button>Events</button></Link>
-        <Link to={'/groups'} ><button>Groups</button></Link>
-        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
+        <AllEvents events={ events } error={ error } />
+
       </div>
     );
   }

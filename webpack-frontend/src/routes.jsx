@@ -39,7 +39,7 @@ export default function Routes(props) {
       <Route path='/GroupForm' component={GroupForm} />
       <Route path='/your-events' component={YourEvents} />
       <Route path='/events' component={AllEvents} />
-      <Route path='/groups' component={AllGroups.jsx} />
+      <Route path='/groups' component={AllGroups} />
       <Route component={() => <div>404 not found</div>}/>
     </Switch>
   )

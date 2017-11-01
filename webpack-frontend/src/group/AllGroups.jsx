@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+
 export default class AllGroups extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      groups: '',
+      groups: [],
       error: ''
     }
   }
@@ -27,7 +28,7 @@ export default class AllGroups extends Component {
 
   render() {
 
-    const { groups, error } = this.props;
+    const { groups, error } = this.state;
 
     return (
       <div>

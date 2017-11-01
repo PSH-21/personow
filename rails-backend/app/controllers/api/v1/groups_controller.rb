@@ -3,7 +3,7 @@ module API::V1
     respond_to :json
 
     def index
-      groups = Group.all
+      groups = Group.all.order('name ASC')
       respond_with groups
     end
 

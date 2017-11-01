@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       get '/your-events', to: 'users#created_events'
       get '/your-shifts', to: 'users#shifts'
       get '/events', to: 'events#index'
+      get '/events-upcoming', to: 'events#upcoming'
       get '/groups', to: 'groups#index'
       get '/events/:id', to: 'events#show'
       get '/groups/:id', to: 'groups#show'

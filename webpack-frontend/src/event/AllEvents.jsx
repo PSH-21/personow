@@ -1,24 +1,43 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 export default class AllEvents extends Component {
   // static PropTypes = {
   // 	shifts: PropTypes.array
   // }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     error: '',
-  //     events: props.events || []
-  //   }
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+       events: [],
+      error: ''
+    }
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem('token');
+    axios.get('/api/v1/events', {headers: {'token': token}})
+      .then(({ data }) => {
+        console.log(data);
+        this.setState({
+          events: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error
+        })
+      })
+  }
+
 
   render() {
 
-    const { events = [], error = '' } = this.props;
+    const { events, error } = this.state;
     return (
       <div>
         {
-          events.length === 0 ? <div>No Events Currently Scheduled</div> :
+          events.length === 0 ? <div>No Events Are Currently Scheduled</div> :
             <table>
               <thead>
                 <tr>

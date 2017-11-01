@@ -7,6 +7,12 @@ module API::V1
       respond_with :api, :v1, events
     end
 
+    def upcoming
+      date = Time.now + 14.days
+      events = Event.all.where('start_date BETWEEN ? AND ?', (Time.now - 2.days), date).order(:start_date)
+      respond_with :api, :v1, events
+    end
+
     def show
       user = User.find_by(token: request.headers['token'])
       event = Event.find_by(id: params[:id])
