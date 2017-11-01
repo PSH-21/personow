@@ -13,7 +13,6 @@ module API::V1
       if user && event
         membership = EventMember.find_by(user_id: user.id, event_id: event.id)
       end
-
       if event
         if user && membership
           render json: {
@@ -24,7 +23,7 @@ module API::V1
                           end_date: event[:end_date],
                           group_id: event[:group_id],
                           creator: membership[:creator]
-          }
+                       }
         else
           respond_with event
         end
@@ -57,6 +56,8 @@ module API::V1
           {
             id: shift[:id],
             event_id: event.id,
+            date: shift[:start_time].to_date,
+            length: shift[:end_time] - shift[:start_time],
             start_time: shift[:start_time],
             end_time: shift[:end_time],
             role_id: shift[:role_id],
