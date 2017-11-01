@@ -120,7 +120,7 @@ module API::V1
 
     def destroy
       user = authenticate_user
-      event = event.find_by(id: params[:id])
+      event = Event.find_by(id: params[:id])
       if user && event
         membership = EventMember.find_by(user_id: user.id, event_id: event.id)
         if membership[:creator]

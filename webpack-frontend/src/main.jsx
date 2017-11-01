@@ -70,7 +70,7 @@ export default class Main extends Component {
         { token && (<YourEvents yourEvents={ yourEvents } error={ error } token={token}/>)  }
         </div>
         <h2>Your Shifts</h2>
-        <YourShifts shifts={ shifts } error={ error } />
+        <YourShifts shifts={ shifts } error={ error } token={ token }/>
 
         <h2>Upcoming Events in the Next 14 Days</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
