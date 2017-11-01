@@ -44,13 +44,13 @@ export default class User extends Component {
   // //       })
   // //     })
   // }
-
+  // User {this.state.token}, Email: {this.state.email},User_id: {this.state.user_id}
   render() {
     console.log('user is: ', this.state.user);
     return (
 
       <div>
-        <h1>Regular old Profile</h1>
+        <h1>Profile</h1>
         <p>Edit Name:</p>
         <p>Change Password:</p>
         <p>Change PW Confirm:</p>

@@ -117,7 +117,7 @@ module API::V1
         elsif shift.user_id == nil
           membership = EventMember.find_by(event_id: shift.role.event.id, user_id: user.id)
           if !membership
-            EventMember.create(event_id: event.id, user_id: user.id)
+            EventMember.create(event_id: shift.role.event.id, user_id: user.id)
           end
           shift.user_id = user.id
           shift.save

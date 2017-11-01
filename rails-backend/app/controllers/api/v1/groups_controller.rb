@@ -67,6 +67,26 @@ module API::V1
       end
     end
 
+    def destroy
+      user = authenticate_user
+      group = Group.find_by(id: params[:id])
+      if user && group
+        membership = GroupMember.find_by(user_id: user.id, group_id: group.id)
+        if membership[:creator]
+          if group.destroy
+            render json: {success: "Group deleted"}
+          else
+            render json: {error: "Group not deleted"}
+          end
+        else
+          render json: {error: "Not authorised"}
+        end
+      elsif user
+        render json: {error: "Invalid group id"}
+      end
+    end
+    end
+
     private
     # Use callbacks to share common setup or constraints between actions.
     def set_event

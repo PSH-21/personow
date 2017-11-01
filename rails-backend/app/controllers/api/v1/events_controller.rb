@@ -8,9 +8,10 @@ module API::V1
     end
 
     def upcoming
-      date = Time.now + 14.days
-      events = Event.all.where('start_date BETWEEN ? AND ?', (Time.now - 2.days), date).order(:start_date)
-      respond_with :api, :v1, events
+      range_end = Time.now + 14.days
+      events = Event.all.order(:start_date)
+      events = Event.where('start_date BETWEEN ? AND ?', Time.now, range_end).order(:start_date)
+      respond_with events
     end
 
     def show
@@ -115,6 +116,25 @@ module API::V1
       #     format.json { render json: @event.errors, status: :unprocessable_entity }
       #   end
       # end
+    end
+
+    def destroy
+      user = authenticate_user
+      event = event.find_by(id: params[:id])
+      if user && event
+        membership = EventMember.find_by(user_id: user.id, event_id: event.id)
+        if membership[:creator]
+          if event.destroy
+            render json: {success: "Event deleted"}
+          else
+            render json: {error: "Event not deleted"}
+          end
+        else
+          render json: {error: "Not authorised"}
+        end
+      elsif user
+        render json: {error: "Invalid event id"}
+      end
     end
 
     private

@@ -42,7 +42,7 @@ export default class AllShifts extends Component {
     axios.delete(`/api/v1/shift/${shift_id}`, {'headers': {'token': token}})
   }
 
-  cancelOnClick = (id, e) => {
+  shiftOnClick = (id, e) => {
     e.preventDefault();
     const shift_id = id;
     const token = localStorage.getItem('token');
@@ -51,6 +51,7 @@ export default class AllShifts extends Component {
       this.setState({
 
       });
+      this.render()
     })
     .catch( error => {
       this.setState({ error })
@@ -96,12 +97,12 @@ export default class AllShifts extends Component {
                     { moment(shift.end_time).format("hh:mm A") },
                     { shift.user_name ? (
                       <span>{shift.user_name}
-                        <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CANCEL</button>
+                        <button onClick={(e) => this.shiftlOnClick(shift.id, e)}>CANCEL</button>
                       </span>
 
                     ) : (
                       <span>OPEN
-                        <button onClick={(e) => this.cancelOnClick(shift.id, e)}>CLAIM</button>
+                        <button onClick={(e) => this.shiftOnClick(shift.id, e)}>CLAIM</button>
                       </span>
                     )}
                     { creator && (<button onClick={(e) => this.deleteOnClick(shift.id, e)}>DELETE</button>) }
