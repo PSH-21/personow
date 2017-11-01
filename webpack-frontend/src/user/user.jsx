@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import YourGroups from '../group/YourGroups.jsx';
 
 export default class User extends Component {
   constructor(props) {
