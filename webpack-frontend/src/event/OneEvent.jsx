@@ -47,7 +47,6 @@ export default class OneEvent extends Component {
     axios.delete(`/api/v1/event/${event_id}`, {'headers': {'token': token}})
   }
 
-
   render() {
     const { event, allshifts, allroles, token, error } = this.state;
     console.log(event);
