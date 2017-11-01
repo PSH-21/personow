@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 
 export default class UpcomingEvents extends Component {
   // static PropTypes = {
@@ -37,8 +38,8 @@ export default class UpcomingEvents extends Component {
                       <tr key={event.id}>
                         <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
                         <td>{event.description}</td>
-                        <td>{event.start_date}</td>
-                        <td>{event.end_date}</td>
+                        <td>{ moment(event.start_date).format("hh:mm A, MMM Do") }</td>
+                        <td>{ moment(event.end_date).format("hh:mm A, MMM Do") }</td>
                       </tr>
                     )
                   })
