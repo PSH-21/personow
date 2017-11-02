@@ -22,7 +22,7 @@ export default class YourGroups extends Component {
             <table>
               <tbody>
                 {
-                  yourGroups.map(event => {
+                  yourGroups.map(group => {
                     return (
                       <div key={group.id}>
                         <tr>

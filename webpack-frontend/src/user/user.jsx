@@ -7,7 +7,7 @@ export default class User extends Component {
     super(props);
     this.state = {
       user: '',
-      groups: [],
+      yourGroups: [],
       error: ''
     }
   }
@@ -18,13 +18,13 @@ export default class User extends Component {
       axios.get('/api/v1/user', { 'headers': { 'token': token }}),
       axios.get('/api/v1/your-groups', { 'headers': { 'token': token } }),
     ])
-    .then(axios.spread((user, groups ) => {
+    .then(axios.spread((user, yourGroups ) => {
       console.log(user.data);
       this.setState({
         user: user,
-        groups: groups
+        yourGroups: yourGroups.data
       });
-    })
+    }))
     .catch((error) => {
       this.setState({
         error
@@ -50,7 +50,7 @@ export default class User extends Component {
   // }
   // User {this.state.token}, Email: {this.state.email},User_id: {this.state.user_id}
   render() {
-    const { user = '', groups= [], error = '' } = this.state;
+    const { user = '', yourGroups= [], error = '' } = this.state;
     console.log('user is: ', this.state.user);
     return (
 
@@ -83,35 +83,10 @@ export default class User extends Component {
         <ul>
           <li>Individual Notification settings</li>
         </ul>
-        <div>
-        {
-          groups.length === 0 ? <div>You are not currently a part of any groups</div> :
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Role</th>
-                  <th>Events</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  groups.map(shift => {
-                    return (
-                      <tr key={group.id}>
-                        <td><Link to={`/group/${group.id}`}>{group.name}</Link></td>
-                        <td>member</td>
-                        <td>event count</td>
-                      </tr>
-                    )
-                  })
-                }
-              </tbody>
-            </table>
-
+        <h4>Your Groups</h4>
+        { yourGroups.length === 0 ? <div>You are not currently a part of any groups!</div> :
+          <YourGroups yourGroups={ yourGroups } error={ error } />
         }
-        {error && <div>{error}</div>}
-      </div>
 
 
       </div>
