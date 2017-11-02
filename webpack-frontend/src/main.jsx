@@ -51,7 +51,12 @@ export default class Main extends Component {
     return (
       <div>
         <div>
-        { token && (<div><h1 className={'main-headings'} >Dashboard</h1><h2 className={'main-headings'} >Your Events</h2><YourEvents yourEvents={ yourEvents } error={ error } token={token}/></div>)  }
+        { token && (<div>
+                    <h1 className={'main-headings'} >Dashboard</h1>
+                    <h2 className={'main-headings'} >Your Events</h2>
+                    <YourEvents yourEvents={ yourEvents } error={ error } token={token}/>
+                    </div>)
+        }
         </div>
         <div>
           

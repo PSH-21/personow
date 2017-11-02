@@ -15,6 +15,7 @@ export default class YourEvents extends Component {
 
   render() {
     const { yourEvents = [], error = '' } = this.props;
+
     return (
       <div>
         {
@@ -26,12 +27,12 @@ export default class YourEvents extends Component {
                     return (
                       <div key={event.id}>
                         <tr>
-                          <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link>,
-                            {event.group},
-                            { moment(event.start_date).format("hh:mm A, MMM Do") }
-                            { ( moment(event.start_date).format("MMM Do") !==
-                                moment(event.end_date).format("MMM Do")
-                              ) && (` to ${moment(event.end_date).format("MMM Do")}`)
+                          <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link></td>
+                            <td>{event.group}</td>
+                            <td>{ moment(event.start_date).format('hh:mm A, MMM Do') }</td>
+                            <td>{ ( moment(event.start_date).format('MMM Do') !==
+                                moment(event.end_date).format('MMM Do')
+                              ) && (` to ${moment(event.end_date).format('MMM Do')}`)
                             }
                           </td>
                         </tr>
