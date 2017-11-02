@@ -36,7 +36,7 @@ export default class YourEvents extends Component {
                     return (
                         <tr key={event.id}>
                           <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link></td>
-                            <td>{event.group}s</td>
+                            <td>{event.group}</td>
                             <td>{ moment(event.start_date).format('hh:mm A, MMM Do') }</td>
                             <td>{ ( moment(event.start_date).format('MMM Do') !==
                                 moment(event.end_date).format('MMM Do')
