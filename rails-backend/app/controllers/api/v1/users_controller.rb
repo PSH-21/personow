@@ -41,7 +41,17 @@ module API::V1
     def groups
       user = authenticate_user
       if user
-        render json: user.groups
+        memberships = user.group_members
+        results = memberships.map do |membership|
+          {
+            id: membership.group[:id],
+            name: membership.group[:name],
+            description: membership.group[:description],
+            creator: membership[:creator]
+          }
+        end
+
+        render json: results
       end
     end
 
