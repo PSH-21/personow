@@ -35,11 +35,11 @@ export default class YourGroups extends Component {
                               { group.creator ? (
                               <div>
                                 <span>  Creator </span>
-                                <span onClick={(e) => this.deleteOnClick(shift.id, e)}>Close Group</span>
+                                <span onClick={(e) => this.deleteGroupOnClick(shift.id, e)}>Close Group</span>
                               </div> ) : (
                               <div>
                                 <span>  Member  </span>
-                                <span onClick={(e) => this.deleteOnClick(shift.id, e)}>Close Group</span>
+                                <span onClick={(e) => this.leaveGroupOnClick(shift.id, e)}>Close Group</span>
                               </div> )
                               }
                             </div>
