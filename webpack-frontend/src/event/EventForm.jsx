@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Button, FormGroup, ControlLabel, FormControl, ButtonToolbar, HelpBlock } from 'react-bootstrap';
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 export default class EventForm extends Component {
@@ -9,6 +10,7 @@ export default class EventForm extends Component {
     super(props);
     this.state = {
       groups: [],
+      event_id: '',
       title: '',
       description: '',
       start_date: '',
@@ -18,8 +20,9 @@ export default class EventForm extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get(`/api/v1/user-groups`)
+  componentWillMount() {
+    const token = localStorage.getItem('token');
+    axios.get(`/api/v1/user-groups`, {headers: {'token': token}})
       .then(({ data }) => {
         this.setState({
           groups: data
@@ -35,12 +38,18 @@ export default class EventForm extends Component {
   submitNewEvent = (e) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-    const { title, description, start_date, end_date } = this.state;
-    const data = { title, description, start_date, end_date };
+    const { title, description, start_date, end_date, group_id } = this.state;
+    const data = { title, description, start_date, end_date, group_id };
     axios.post('/api/v1/events', data, {headers: {'token': token}})
     .then( res => {
+      if (res.data.status === 'error') {
+        console.log(res.data.message);
+        next();
+      }
       this.setState({
+        event_id: res.data.event_id,
         groups: [],
+        group_id: '',
         title: '',
         description: '',
         start_date: '',
@@ -54,7 +63,7 @@ export default class EventForm extends Component {
   }
 
   dateHandleChange = (e) => {
-    this.setState({ role_id: e.target.value });
+    this.setState({ group_id: e.target.value });
   }
 
   textHandleChange = (e) => {
@@ -64,20 +73,20 @@ export default class EventForm extends Component {
   }
 
 
-  startTimeHandleChange = (time) => {
+  startTimeHandleChange = (dateTime) => {
     this.setState({
-      start_time: time
+      start_date: dateTime
     })
   }
 
-  endTimeHandleChange = (time) => {
+  endTimeHandleChange = (dateTime) => {
     this.setState({
-      end_time: time
+      end_date: dateTime
     })
   }
 
   render() {
-    const { groups, fireRedirect } = this.state;
+    const { groups, fireRedirect, event_id } = this.state;
 
     return (
       <div>
@@ -88,9 +97,9 @@ export default class EventForm extends Component {
               <select value={this.state.value} onChange={this.dateHandleChange}>
                   <option value=''></option>
                 {
-                  groups.length === 0 ? <div>Loading</div> :
+                  ( groups.length === 0 ) ? <div>Loading</div> :
                     (
-                        roles.map(role => {
+                        groups.map(group => {
                           return (
                             <option key={group.id} value={group.id}>{group.name}</option>
                           )
@@ -110,7 +119,7 @@ export default class EventForm extends Component {
             <label>
               Event Time & Date
               <DatePicker
-                selected={this.state.start_time}
+                selected={this.state.start_date}
                 onChange={this.startTimeHandleChange}
                 showTimeSelect
                 timeFormat="HH:mm"
@@ -121,7 +130,7 @@ export default class EventForm extends Component {
             <label>
               Event End Time & Date
               <DatePicker
-                selected={this.state.end_time}
+                selected={this.state.end_date}
                 onChange={this.endTimeHandleChange}
                 showTimeSelect
                 timeFormat="HH:mm"
@@ -131,7 +140,7 @@ export default class EventForm extends Component {
             </label>
 
             <input type="submit" value="Submit" onClick={this.submitNewEvent}/>
-            {fireRedirect && (<Redirect to={'/'} />)}
+            {fireRedirect && (<Redirect to={`/events/${event_id}`} />)}
           </form>
         </div>
       </div>
