@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
+import { Button, Navbar, Nav, NavItem, NavDropdown, MenuItem, Image, Col } from 'react-bootstrap';
 
 export default class Navigationbar extends Component {
   constructor(props) {
@@ -27,7 +27,9 @@ export default class Navigationbar extends Component {
           {token ? (<Navbar inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <Link to={'/'}>HOME</Link>
+                <Link to={'/'}>
+                    PersoNow<Image src='../assets/ITunes_12.2_logo.png' />
+                </Link>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
@@ -47,13 +49,14 @@ export default class Navigationbar extends Component {
           ) : (<Navbar inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <Link to={'/'}>HOME</Link>
+                <Link to={'/'}>PersoNow</Link>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
                 <NavItem eventKey={1} ><Link to={'/login'} > LOGIN </Link></NavItem>
+                <NavItem eventKey={1.2} ><Link to={'/register'} > Register </Link></NavItem>
               </Nav>
             </Navbar.Collapse>
           </Navbar>

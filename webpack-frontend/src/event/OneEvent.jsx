@@ -59,7 +59,8 @@ export default class OneEvent extends Component {
     console.log(event);
     return (
       <div>
-        <h1>Hello from event</h1>
+        <h1>{event.title}</h1>
+        <h4>by {event.group_name}</h4>
         <Link to={'/'} > Go Back </Link>
         <div>
           {
@@ -67,7 +68,6 @@ export default class OneEvent extends Component {
               <table>
                 <thead>
                   <tr>
-                    <th>Name</th>
                     <th>Description</th>
                     <th>Start Date</th>
                     <th>End Date</th>
@@ -75,7 +75,6 @@ export default class OneEvent extends Component {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{event.title}</td>
                     <td>{event.description}</td>
                     <td>{event.start_date}</td>
                     <td>{event.end_date}</td>

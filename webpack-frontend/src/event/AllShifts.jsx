@@ -111,7 +111,7 @@ export default class AllShifts extends Component {
                       </span>
 
                     ) : (
-                      <span>OPEN
+                      <span><p className={'danger'}>OPEN</p>
                         { token && <button onClick={(e) => this.shiftOnClick(shift.id, event.id, e)}>CLAIM</button> }
                       </span>
                     )}

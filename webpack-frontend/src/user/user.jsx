@@ -6,22 +6,25 @@ export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // user: '',
-      // error: ''
+      user: '',
+      yourGroups: [],
+      error: ''
     }
   }
   componentDidMount() {
     const token = localStorage.getItem('token');
     console.log(token);
-    axios.get('/api/v1/user', { 'headers': { 'token': token }})
-    .then((user) => {
-      // const token = localStorage.getItem('token');
+    axios.all([
+      axios.get('/api/v1/user', { 'headers': { 'token': token }}),
+      axios.get('/api/v1/your-groups', { 'headers': { 'token': token } }),
+    ])
+    .then(axios.spread((user, yourGroups ) => {
       console.log(user.data);
       this.setState({
-        user: user.data,
-        // token
+        user: user,
+        yourGroups: yourGroups.data
       });
-    })
+    }))
     .catch((error) => {
       this.setState({
         error
@@ -47,6 +50,7 @@ export default class User extends Component {
   // }
   // User {this.state.token}, Email: {this.state.email},User_id: {this.state.user_id}
   render() {
+    const { user = '', yourGroups= [], error = '' } = this.state;
     console.log('user is: ', this.state.user);
     return (
 
@@ -79,6 +83,12 @@ export default class User extends Component {
         <ul>
           <li>Individual Notification settings</li>
         </ul>
+        <h4>Your Groups</h4>
+        { yourGroups.length === 0 ? <div>You are not currently a part of any groups!</div> :
+          <YourGroups yourGroups={ yourGroups } error={ error } />
+        }
+
+
       </div>
     );
   }

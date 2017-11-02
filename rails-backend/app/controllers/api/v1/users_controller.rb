@@ -53,6 +53,8 @@ module API::V1
         results = events.map do |event|
           event_name = event[:title]
           event_id = event[:id]
+          start_date = event[:start_date]
+          end_date = event[:end_date]
           if id = event[:group_id]
             group = Group.find_by(id: id)
             group_name = group[:name]
@@ -65,6 +67,8 @@ module API::V1
           {
             id: event_id,
             name: event_name,
+            start_date: start_date,
+            end_date: end_date,
             group: group_name,
             avail: avail_shifts.size,
             total: event_shifts.size
