@@ -101,7 +101,7 @@ module API::V1
       user = authenticate_user
       if user
         event = Event.create(title: params[:title], description: params[:description], start_date: params[:start_date],
-         end_date: params[:end_date], params[:group_id],updated_at: Time.now)
+         end_date: params[:end_date], group_id: params[:group_id], updated_at: Time.now)
         event_member = EventMember.create(user_id: user.id, event_id: event.id, creator: true, notifications: true)
         role = Role.create(title: 'General Volunteer', description: 'Give us a helping hand reaching our event goals.',
                            event_id: event.id)

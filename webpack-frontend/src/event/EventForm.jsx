@@ -24,10 +24,6 @@ export default class EventForm extends Component {
     const token = localStorage.getItem('token');
     axios.get(`/api/v1/user-groups`, {headers: {'token': token}})
       .then(({ data }) => {
-        if (res.data.status === 'error') {
-        console.log(res.data.message);
-        next();
-        }
         this.setState({
           groups: data
         })
@@ -46,6 +42,10 @@ export default class EventForm extends Component {
     const data = { title, description, start_date, end_date, group_id };
     axios.post('/api/v1/events', data, {headers: {'token': token}})
     .then( res => {
+      if (res.data.status === 'error') {
+        console.log(res.data.message);
+        next();
+      }
       this.setState({
         event_id: res.event_id,
         groups: [],
