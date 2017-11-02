@@ -57,7 +57,7 @@ export default class Main extends Component {
 
           { token && (<div><h2 className={'main-headings'} >Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
         </div>
-        <h2 className={'main-headings'}>Upcoming Events in the Next 14 Days</h2>
+        <h2 className={'main-headings'}>Current & Upcoming Events</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
       </div>
     );
