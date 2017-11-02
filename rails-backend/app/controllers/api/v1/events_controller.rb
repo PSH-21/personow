@@ -21,6 +21,7 @@ module API::V1
       end
       if event
         if user && membership
+          group_name = event.group ? event.group[:name] : ""
           render json: {
                           id: event[:id],
                           title: event[:title],
@@ -28,7 +29,7 @@ module API::V1
                           start_date: event[:start_date],
                           end_date: event[:end_date],
                           group_id: event[:group_id],
-                          group_name: event.group[:name],
+                          group_name: group_name,
                           creator: membership[:creator]
                        }
         else
