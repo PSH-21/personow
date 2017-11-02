@@ -28,7 +28,7 @@ export default class Navigationbar extends Component {
             <Navbar.Header>
               <Navbar.Brand>
                 <Link to={'/'}>
-                    PersoNow<Image src='../assets/ITunes_12.2_logo.png' />
+                    PersoNow<img src='' />
                 </Link>
               </Navbar.Brand>
               <Navbar.Toggle />
