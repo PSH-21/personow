@@ -6,20 +6,23 @@ export default class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // user: '',
-      // error: ''
+      user: '',
+      groups: [],
+      error: ''
     }
   }
   componentDidMount() {
     const token = localStorage.getItem('token');
     console.log(token);
-    axios.get('/api/v1/user', { 'headers': { 'token': token }})
-    .then((user) => {
-      // const token = localStorage.getItem('token');
+    axios.all([
+      axios.get('/api/v1/user', { 'headers': { 'token': token }}),
+      axios.get('/api/v1/your-groups', { 'headers': { 'token': token } }),
+    ])
+    .then(axios.spread((user, groups ) => {
       console.log(user.data);
       this.setState({
-        user: user.data,
-        // token
+        user: user,
+        groups: groups
       });
     })
     .catch((error) => {
@@ -47,6 +50,7 @@ export default class User extends Component {
   // }
   // User {this.state.token}, Email: {this.state.email},User_id: {this.state.user_id}
   render() {
+    const { user = '', groups= [], error = '' } = this.state;
     console.log('user is: ', this.state.user);
     return (
 
@@ -79,6 +83,37 @@ export default class User extends Component {
         <ul>
           <li>Individual Notification settings</li>
         </ul>
+        <div>
+        {
+          groups.length === 0 ? <div>You are not currently a part of any groups</div> :
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Events</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  groups.map(shift => {
+                    return (
+                      <tr key={group.id}>
+                        <td><Link to={`/group/${group.id}`}>{group.name}</Link></td>
+                        <td>member</td>
+                        <td>event count</td>
+                      </tr>
+                    )
+                  })
+                }
+              </tbody>
+            </table>
+
+        }
+        {error && <div>{error}</div>}
+      </div>
+
+
       </div>
     );
   }
