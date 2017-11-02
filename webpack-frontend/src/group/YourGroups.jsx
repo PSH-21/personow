@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import axios from 'axios';
 export default class YourGroups extends Component {
   // static PropTypes = {
   //  shifts: PropTypes.array
@@ -12,6 +13,38 @@ export default class YourGroups extends Component {
   //     events: props.events || []
   //   }
   // }
+  deleteGroupOnClick = (id, e) => {
+    e.preventDefault();
+    const group_id = id;
+    const token = localStorage.getItem('token');
+    console.log(group_id);
+    // axios.delete(`/api/v1/group/${group_id}`, {'headers': {'token': token}});
+    // this.props.deleteShiftFromState(group_id);
+  }
+
+  leaveGroupOnClick = (id, e) => {
+    e.preventDefault();
+    const group_id = id;
+    const token = localStorage.getItem('token');
+    console.log(group_id);
+    axios.post(`/api/v1/group-members/${group_id}`, {}, {'headers': {'token': token}})
+    .then( res => {
+      axios.get(`/api/v1/your-groups`, {headers : {'token': token}})
+      .then(({ data }) => {
+        this.setState({
+          yourGroups: data
+        })
+      })
+      .catch((error) => {
+        this.setState({
+          error
+        })
+      })
+    })
+    .catch( error => {
+      this.setState({ error })
+    })
+  }
 
   render() {
     const { yourGroups = [], error = '' } = this.props;
@@ -35,11 +68,11 @@ export default class YourGroups extends Component {
                               { group.creator ? (
                               <div>
                                 <span>  Creator </span>
-                                <span onClick={(e) => this.deleteGroupOnClick(shift.id, e)}>Close Group</span>
+                                <Link to={`/user`} onClick={(e) => this.deleteGroupOnClick(group.id, e)}>Close Group</Link>
                               </div> ) : (
                               <div>
                                 <span>  Member  </span>
-                                <span onClick={(e) => this.leaveGroupOnClick(shift.id, e)}>Close Group</span>
+                                <Link to={`/user`} onClick={(e) => this.leaveGroupOnClick(group.id, e)}>Leave Group</Link>
                               </div> )
                               }
                             </div>
