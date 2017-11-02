@@ -26,7 +26,6 @@ export default class Main extends Component {
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
     ])
     .then(axios.spread((upcomingEvents, yourEvents, shifts ) => {
-      const token = localStorage.getItem('token');
       const email = localStorage.getItem('email');
       const name = localStorage.getItem('name');
       const user_id = localStorage.getItem('user_id');
@@ -34,7 +33,6 @@ export default class Main extends Component {
         upcomingEvents: upcomingEvents.data,
         shifts: shifts.data,
         yourEvents: yourEvents.data,
-        token,
         email,
         name,
         user_id
@@ -47,33 +45,20 @@ export default class Main extends Component {
     })
   }
 
-  logoutOnClick = (e) => {
-    e.preventDefault();
-    localStorage.clear();
-    this.forceUpdate();
-  }
-
   render() {
-    const { upcomingEvents, shifts, yourEvents, token, error } = this.state;
+    const { upcomingEvents, shifts, yourEvents, error } = this.state;
+    const token = localStorage.getItem('token');    
     return (
       <div>
-        <h6>Logged in as {this.state.name}</h6>
-        <Link to={'/login'} > LOGIN </Link>
-        <Link to={'/'}  ><button onClick={(e) => this.logoutOnClick(e)}>LOGOUT</button> </Link>
-        <Link to={'/register'} > REGISTER </Link>
-        <Link to={'/user'} > USER </Link>
-        <Link to={'/events'} >EVENTS</Link>
-        <Link to={'/groups'} > GROUPS</Link>
-        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
-        <Link to={'/EventForm'} ><button>Create Event</button></Link>
-        <h1>Dashboard</h1>
-        <h2>Your Events</h2>
+
+        
+        
         <div>
-        { token && (<YourEvents yourEvents={ yourEvents } error={ error } token={token}/>)  }
+        { token && (<div><h1>Dashboard</h1><h2>Your Events</h2><YourEvents yourEvents={ yourEvents } error={ error } token={token}/></div>)  }
         </div>
         <div>
-          <h2>Your Shifts</h2>
-          { token && (<YourShifts shifts={ shifts } error={ error } token={ token } />)}
+          
+          { token && (<div><h2>Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
         </div>
         <h2>Upcoming Events in the Next 14 Days</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
@@ -82,3 +67,16 @@ export default class Main extends Component {
     );
   }
 }
+
+/*
+        <h6>Logged in as {this.state.name}</h6>
+        <Link to={'/login'} > LOGIN </Link>
+        <Link to={'/'}  ><button onClick={(e) => this.logoutOnClick(e)}>LOGOUT</button> </Link>
+        <Link to={'/register'} > REGISTER </Link>
+        <Link to={'/user'} > USER </Link>
+        <Link to={'/events'} >EVENTS</Link>
+        <Link to={'/groups'} > GROUPS</Link>
+        <Link to={'/GroupForm'} ><button>Create Group</button></Link>
+        <Link to={'/EventForm'} ><button>Create Event</button></Link> 
+        
+ */
