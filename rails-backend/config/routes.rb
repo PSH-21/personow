@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       post '/login', to: 'users#login'
       get '/user', to: 'users#show'
       get '/user-events', to: 'users#events'
-      get '/your-groups', to: 'users#groups'
+      get '/user-groups', to: 'users#groups'
       post '/group-members/:id', to: 'groups#member_toggle'
       post '/event-members/:id', to: 'events#member_toggle'
       post '/user', to: 'users#update'
