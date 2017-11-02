@@ -47,24 +47,18 @@ export default class Main extends Component {
 
   render() {
     const { upcomingEvents, shifts, yourEvents, error } = this.state;
-    const token = localStorage.getItem('token');    
+    const token = localStorage.getItem('token');
     return (
       <div>
-
-        
-        
         <div>
-        { token && (<div><h1>Dashboard</h1><h2>Your Events</h2><YourEvents yourEvents={ yourEvents } error={ error } token={token}/></div>)  }
+        { token && (<div><h1 className={'main-headings'} >Dashboard</h1><h2 className={'main-headings'} >Your Events</h2><YourEvents yourEvents={ yourEvents } error={ error } token={token}/></div>)  }
         </div>
         <div>
-          
-          { token && (<div><h2>Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
-        </div>
-        <h2>Current & Upcoming Events</h2>
-        { upcomingEvents.length === 0 ? <div>No Events Currently Scheduled</div> :
-          <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
-        }
 
+          { token && (<div><h2 className={'main-headings'} >Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
+        </div>
+        <h2 className={'main-headings'}>Upcoming Events in the Next 14 Days</h2>
+        <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
       </div>
     );
   }
@@ -79,6 +73,11 @@ export default class Main extends Component {
         <Link to={'/events'} >EVENTS</Link>
         <Link to={'/groups'} > GROUPS</Link>
         <Link to={'/GroupForm'} ><button>Create Group</button></Link>
-        <Link to={'/EventForm'} ><button>Create Event</button></Link> 
-        
+        <Link to={'/EventForm'} ><button>Create Event</button></Link>
+
+         <h2>Current & Upcoming Events</h2>
+        { upcomingEvents.length === 0 ? <div>No Events Currently Scheduled</div> :
+          <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
+        }
+
  */
