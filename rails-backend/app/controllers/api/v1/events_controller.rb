@@ -9,8 +9,7 @@ module API::V1
 
     def upcoming
       range_end = Time.now + 14.days
-      events = Event.all.order(:start_date)
-      events = Event.where('start_date BETWEEN ? AND ?', Time.now, range_end).order(:start_date)
+      events = Event.where('end_date BETWEEN ? AND ?', Time.now, range_end).order(:end_date)
       respond_with events
     end
 

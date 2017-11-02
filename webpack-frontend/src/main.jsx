@@ -11,7 +11,7 @@ export default class Main extends Component {
     super(props);
     this.state = {
       error: '',
-      upcomginEvents: [],
+      upcomingEvents: [],
       shifts: [],
       yourEvents: [],
       fireRerender: false
@@ -20,7 +20,7 @@ export default class Main extends Component {
   componentWillMount() {
     const token = localStorage.getItem('token');
     axios.all([
-      axios.get('/api/v1/events-upcoming', {headers: {'token': token}}),
+      axios.get('/api/v1/events-upcoming'),
       axios.get('/api/v1/your-events', {headers: {'token': token}}),
       axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
@@ -75,8 +75,10 @@ export default class Main extends Component {
           <h2>Your Shifts</h2>
           { token && (<YourShifts shifts={ shifts } error={ error } token={ token } />)}
         </div>
-        <h2>Upcoming Events in the Next 14 Days</h2>
-        <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
+        <h2>Current & Upcoming Events</h2>
+        { upcomingEvents.length === 0 ? <div>No Events Currently Scheduled</div> :
+          <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
+        }
 
       </div>
     );
