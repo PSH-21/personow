@@ -19,12 +19,10 @@ export default class Register extends Component {
 
   submitNewUser = (e) => {
     e.preventDefault();
-    console.log('state is: ', this.state, 'Event is: ', e);
     const { name, email, password, password_confirmation } = this.state;
     const data = { name, email, password, password_confirmation }
     axios.post('/api/v1/register', data)
     .then( res => {
-      console.log('response from rails: ', res);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('email', email);
       localStorage.setItem('name', name);

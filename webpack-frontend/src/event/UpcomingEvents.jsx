@@ -29,6 +29,7 @@ export default class UpcomingEvents extends Component {
                   <th>Description</th>
                   <th>Start Date</th>
                   <th>End Date</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -38,8 +39,9 @@ export default class UpcomingEvents extends Component {
                       <tr key={event.id}>
                         <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.title}</Link></td>
                         <td>{event.description}</td>
-                        <td>{ moment(event.start_date).format("hh:mm A, MMM Do") }</td>
-                        <td>{ moment(event.end_date).format("hh:mm A, MMM Do") }</td>
+                        <td>{ moment(event.start_date).format('hh:mm A, MMM Do') }</td>
+                        <td>{ moment(event.end_date).format('hh:mm A, MMM Do') }</td>
+                        <td></td>
                       </tr>
                     )
                   })
