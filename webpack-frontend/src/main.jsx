@@ -50,19 +50,15 @@ export default class Main extends Component {
     const token = localStorage.getItem('token');    
     return (
       <div>
-
-        
-        
         <div>
-        { token && (<div><h1>Dashboard</h1><h2>Your Events</h2><YourEvents yourEvents={ yourEvents } error={ error } token={token}/></div>)  }
+        { token && (<div><h1 className={'main-headings'} >Dashboard</h1><h2 className={'main-headings'} >Your Events</h2><YourEvents yourEvents={ yourEvents } error={ error } token={token}/></div>)  }
         </div>
         <div>
           
-          { token && (<div><h2>Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
+          { token && (<div><h2 className={'main-headings'} >Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
         </div>
-        <h2>Upcoming Events in the Next 14 Days</h2>
+        <h2 className={'main-headings'}>Upcoming Events in the Next 14 Days</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
-
       </div>
     );
   }
