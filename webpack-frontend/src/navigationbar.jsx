@@ -17,10 +17,6 @@ export default class Navigationbar extends Component {
       fireRedirect: true
     });
   }
-
-
-
-
   
   render() {
     const token = localStorage.getItem('token');
@@ -43,7 +39,7 @@ export default class Navigationbar extends Component {
                 </NavDropdown>
               </Nav>
               <Nav pullRight>
-                <NavItem > Welcome { name } </NavItem>                
+                <NavItem ><Link to={'/user'}> Welcome { name } </Link></NavItem>                
                 <NavItem onClick={this.logoutOnClick}> Logout</NavItem>
               </Nav>
             </Navbar.Collapse>
