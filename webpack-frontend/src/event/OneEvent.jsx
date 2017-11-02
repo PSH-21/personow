@@ -48,7 +48,6 @@ export default class OneEvent extends Component {
   }
 
   deleteShiftFromState = (id) => {
-    console.log('this is the fucking id: ', id);
     this.setState({
       allshifts: this.state.allshifts.filter(shift => shift.id !== id)
     });
@@ -56,7 +55,6 @@ export default class OneEvent extends Component {
 
   render() {
     const { event, allshifts, allroles, token, error } = this.state;
-    console.log(event);
     return (
       <div>
         <h1>{event.title}</h1>

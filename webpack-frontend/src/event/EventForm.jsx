@@ -43,8 +43,7 @@ export default class EventForm extends Component {
     axios.post('/api/v1/events', data, {headers: {'token': token}})
     .then( res => {
       if (res.data.status === 'error') {
-        console.log(res.data.message);
-        next();
+        this.next();
       }
       this.setState({
         event_id: res.data.event_id,

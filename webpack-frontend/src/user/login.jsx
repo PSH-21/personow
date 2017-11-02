@@ -17,12 +17,10 @@ export default class Register extends Component {
 
   submitLogin = (e) => {
     e.preventDefault();
-    console.log('state is: ', this.state, 'Event is: ', e);
     const { email, password } = this.state;
     const data = { email, password }
     axios.post('/api/v1/login', data)
     .then( res => {
-      console.log('response from rails: ', res);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('email', email);
       localStorage.setItem('name', res.data.name);
@@ -45,8 +43,6 @@ getInitialState() {
 handleChange = (e) => {
   const value = e.target.value;
   const name = e.target.name;
-  console.log('value is: ', value);
-  console.log('name is: ', name);
   this.setState({ [name]: value });
 }
 

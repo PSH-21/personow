@@ -14,7 +14,6 @@ export default class AllGroups extends Component {
   componentDidMount() {
     axios.get('/api/v1/groups')
       .then(({ data }) => {
-        console.log(data);
         this.setState({
           groups: data
         })
