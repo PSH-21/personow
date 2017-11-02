@@ -109,6 +109,7 @@ module API::V1
           render json: {success: "Event created", event_id: event.id}
         else
           render json: {error: "Event not saved"}
+        end
       end
     end
 
