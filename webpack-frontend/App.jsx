@@ -4,13 +4,16 @@ import Navigationbar from './src/navigationbar.jsx'
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      renderAll: false
+    }
   }
+
 
   render() {
     return (
       <div>
-        <Navigationbar />
+        <Navigationbar  />
         
         {this.props.children}
       </div>
