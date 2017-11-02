@@ -47,7 +47,7 @@ export default class EventForm extends Component {
     axios.post('/api/v1/events', data, {headers: {'token': token}})
     .then( res => {
       this.setState({
-        event_id: res.data.event_id,
+        event_id: res.event_id,
         groups: [],
         group_id: '',
         title: '',
