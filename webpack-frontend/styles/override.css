@@ -16,3 +16,8 @@ a {
 .main-headings {
   color: rgb(39, 5, 5);
 }
+
+td, th {
+  padding: 0;
+  width: 500px;
+}

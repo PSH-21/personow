@@ -21,26 +21,30 @@ export default class YourEvents extends Component {
         {
           yourEvents.length === 0 ? <div>You have not created any events</div> :
             <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Group</th>
+                  <th>Start Date</th>
+                  <th>End Date</th>
+                  <th>Shifts Status</th>
+                </tr>
+              </thead>
               <tbody>
                 {
                   yourEvents.map(event => {
                     return (
-                      <div key={event.id}>
-                        <tr>
-                          <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link>
-                            {event.group}
-                            { moment(event.start_date).format('hh:mm A, MMM Do') }
-                            { ( moment(event.start_date).format('MMM Do') !==
+                        <tr key={event.id}>
+                          <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link></td>
+                            <td>{event.group}s</td>
+                            <td>{ moment(event.start_date).format('hh:mm A, MMM Do') }</td>
+                            <td>{ ( moment(event.start_date).format('MMM Do') !==
                                 moment(event.end_date).format('MMM Do')
                               ) && (` to ${moment(event.end_date).format('MMM Do')}`)
                             }
-                          </td>
-                        </tr>
-                        <tr>
+                          </td> 
                           <td>{event.avail} of {event.total} shifts have yet to be filled.</td>
                         </tr>
-                      </div>
-
                     )
                   })
                 }
