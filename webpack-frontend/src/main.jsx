@@ -13,7 +13,8 @@ export default class Main extends Component {
       error: '',
       upcomginEvents: [],
       shifts: [],
-      yourEvents: []
+      yourEvents: [],
+      fireRerender: false
     }
   }
   componentWillMount() {
@@ -49,6 +50,7 @@ export default class Main extends Component {
   logoutOnClick = (e) => {
     e.preventDefault();
     localStorage.clear();
+    this.forceUpdate();
   }
 
   render() {
@@ -69,9 +71,10 @@ export default class Main extends Component {
         <div>
         { token && (<YourEvents yourEvents={ yourEvents } error={ error } token={token}/>)  }
         </div>
-        <h2>Your Shifts</h2>
-        <YourShifts shifts={ shifts } error={ error } token={ token }/>
-
+        <div>
+          <h2>Your Shifts</h2>
+          { token && (<YourShifts shifts={ shifts } error={ error } token={ token } />)}
+        </div>
         <h2>Upcoming Events in the Next 14 Days</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
 
