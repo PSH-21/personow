@@ -47,6 +47,13 @@ export default class OneEvent extends Component {
     axios.delete(`/api/v1/event/${event_id}`, {'headers': {'token': token}})
   }
 
+  deleteShiftFromState = (id) => {
+    console.log('this is the fucking id: ', id);
+    this.setState({
+      allshifts: this.state.allshifts.filter(shift => shift.id !== id)
+    });
+  }
+
   render() {
     const { event, allshifts, allroles, token, error } = this.state;
     console.log(event);
@@ -98,6 +105,7 @@ export default class OneEvent extends Component {
                           event_id={event.id}
                           token={token}
                           error={ error }
+                          deleteShiftFromState={this.deleteShiftFromState}
                         /> : <div>Loading</div>
         }
         {

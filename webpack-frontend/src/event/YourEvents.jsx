@@ -21,7 +21,7 @@ export default class YourEvents extends Component {
           yourEvents.length === 0 ? <div>You have not created any events</div> :
             <table>
               <tbody>
-                {
+                { 
                   yourEvents.map(event => {
                     return (
                       <div key={event.id}>
