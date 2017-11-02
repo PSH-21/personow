@@ -28,6 +28,7 @@ module API::V1
                           start_date: event[:start_date],
                           end_date: event[:end_date],
                           group_id: event[:group_id],
+                          group_name: event.group[:name],
                           creator: membership[:creator]
                        }
         else
