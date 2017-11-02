@@ -29,12 +29,8 @@ export default class Group extends Component {
   }
   joinGroup = (e) => {
     e.preventDefault();
-    // const user_id = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
     const { data } = this.state;
-    // const data = { user_id, group_id };
-    console.log(token);
-    console.log(`${this.props.match.params.id}`);
     axios.post(`/api/v1/group-members/${this.props.match.params.id}`, data, {'headers' : {'token': token}})
     .then( res => {
 

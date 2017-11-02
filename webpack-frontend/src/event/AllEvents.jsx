@@ -18,7 +18,6 @@ export default class AllEvents extends Component {
     const token = localStorage.getItem('token');
     axios.get('/api/v1/events', {headers: {'token': token}})
       .then(({ data }) => {
-        console.log(data);
         this.setState({
           events: data
         })
