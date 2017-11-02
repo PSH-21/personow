@@ -47,7 +47,7 @@ export default class EventForm extends Component {
         next();
       }
       this.setState({
-        event_id: res.event_id,
+        event_id: res.data.event_id,
         groups: [],
         group_id: '',
         title: '',
@@ -73,15 +73,15 @@ export default class EventForm extends Component {
   }
 
 
-  startTimeHandleChange = (time) => {
+  startTimeHandleChange = (dateTime) => {
     this.setState({
-      start_time: time
+      start_date: dateTime
     })
   }
 
-  endTimeHandleChange = (time) => {
+  endTimeHandleChange = (dateTime) => {
     this.setState({
-      end_time: time
+      end_date: dateTime
     })
   }
 
@@ -119,7 +119,7 @@ export default class EventForm extends Component {
             <label>
               Event Time & Date
               <DatePicker
-                selected={this.state.start_time}
+                selected={this.state.start_date}
                 onChange={this.startTimeHandleChange}
                 showTimeSelect
                 timeFormat="HH:mm"
@@ -130,7 +130,7 @@ export default class EventForm extends Component {
             <label>
               Event End Time & Date
               <DatePicker
-                selected={this.state.end_time}
+                selected={this.state.end_date}
                 onChange={this.endTimeHandleChange}
                 showTimeSelect
                 timeFormat="HH:mm"

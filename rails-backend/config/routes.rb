@@ -40,6 +40,7 @@ Rails.application.routes.draw do
       delete '/group/:id', to: 'groups#destroy'
       get '/group-events/:id', to: 'groups#events'
       post '/email-group', to: 'emails#group_event'
+      post '/events', to: 'events#create'
 
       resources :users
       resources :events
