@@ -14,8 +14,9 @@ export default class App extends Component {
     return (
       <div>
         <Navigationbar  />
-        
+        <div className={'rapper'}>
         {this.props.children}
+        </div>
       </div>
     );
   }
