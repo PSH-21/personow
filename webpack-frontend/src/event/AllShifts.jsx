@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -9,18 +9,19 @@ export default class AllShifts extends Component {
       allshifts: [],
       creator: '',
       event_id: '',
-      error: ''
+      error: '',
   }
   // static PropTypes = {
   //  shifts: PropTypes.array
   // }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     error: '',
-  //     events: props.events || []
-  //   }
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      allshifts: [],
+      error: '',
+      fireRedirect: false
+    }
+  }
   // componentDidMount() {
   //   const token = localStorage.getItem('token');
 
@@ -54,8 +55,9 @@ export default class AllShifts extends Component {
       axios.get(`/api/v1/shifts/${res.data.event_id}`, {headers : {'token': token}})
       .then(({ data }) => {
         this.setState({
-          allshifts: data
-        })
+          allshifts: data,
+          fireRedirect: true
+        });
       })
       .catch((error) => {
         this.setState({
@@ -128,9 +130,8 @@ export default class AllShifts extends Component {
     return (
 
       <div>
-        { /* allshifts.length === 0 ? <div>Loading</div> : shifts */ }
         { shifts }
-
+        { this.state.fireRedirect && <Redirect to={'/'} /> }
         {error && <div>{error}</div>}
       </div>
     );
