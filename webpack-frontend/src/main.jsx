@@ -11,7 +11,7 @@ export default class Main extends Component {
     super(props);
     this.state = {
       error: '',
-      upcomginEvents: [],
+      upcomingEvents: [],
       shifts: [],
       yourEvents: [],
       fireRerender: false
@@ -20,7 +20,7 @@ export default class Main extends Component {
   componentWillMount() {
     const token = localStorage.getItem('token');
     axios.all([
-      axios.get('/api/v1/events-upcoming', {headers: {'token': token}}),
+      axios.get('/api/v1/events-upcoming'),
       axios.get('/api/v1/your-events', {headers: {'token': token}}),
       axios.get('/api/v1/your-shifts', {headers: {'token': token}})
       // axios.get('/api/v1/user', { 'headers': { 'token': token }})
@@ -47,7 +47,7 @@ export default class Main extends Component {
 
   render() {
     const { upcomingEvents, shifts, yourEvents, error } = this.state;
-    const token = localStorage.getItem('token');    
+    const token = localStorage.getItem('token');
     return (
       <div>
         <div>
@@ -59,10 +59,10 @@ export default class Main extends Component {
         }
         </div>
         <div>
-          
+
           { token && (<div><h2 className={'main-headings'} >Your Shifts</h2><YourShifts shifts={ shifts } error={ error } token={ token } /></div>)}
         </div>
-        <h2 className={'main-headings'}>Upcoming Events in the Next 14 Days</h2>
+        <h2 className={'main-headings'}>Current & Upcoming Events</h2>
         <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
       </div>
     );
@@ -78,6 +78,11 @@ export default class Main extends Component {
         <Link to={'/events'} >EVENTS</Link>
         <Link to={'/groups'} > GROUPS</Link>
         <Link to={'/GroupForm'} ><button>Create Group</button></Link>
-        <Link to={'/EventForm'} ><button>Create Event</button></Link> 
-        
+        <Link to={'/EventForm'} ><button>Create Event</button></Link>
+
+         <h2>Current & Upcoming Events</h2>
+        { upcomingEvents.length === 0 ? <div>No Events Currently Scheduled</div> :
+          <UpcomingEvents upcomingEvents={ upcomingEvents } error={ error } />
+        }
+
  */
