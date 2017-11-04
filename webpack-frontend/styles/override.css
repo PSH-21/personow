@@ -1,6 +1,6 @@
 body {
   background-color: #e7eedf;
-  padding-left: 10px;
+  padding-left: 1px;
 }
 
 .react-datepicker__time-list {
@@ -20,4 +20,9 @@ a {
 td, th {
   padding: 0;
   width: 500px;
+}
+
+.rapper {
+  padding-left: 135px;
+  padding-right: 135px;
 }
