@@ -63,23 +63,20 @@ export default class YourGroups extends Component {
                       <div key={group.id}>
                         <tr>
                           <td><Link to={`/groups/${group.id}`} params={{id: group.id}}>{group.name}</Link></td>
-                          <td>
-                            <div>
-                              { group.creator ? (
+                          <td>Email Notifications: <Link to={'/'} >Y  /  N</Link></td>
+                            { group.creator ? (
                               <div>
-                                <span>  Creator </span>
-                                <Link to={`/user`} onClick={(e) => this.deleteGroupOnClick(group.id, e)}>Close Group</Link>
+                                <td>  Creator </td>
+                                <td><Link to={`/user`} onClick={(e) => this.deleteGroupOnClick(group.id, e)}>Close Group</Link>
+                              </td>
                               </div> ) : (
                               <div>
-                                <span>  Member  </span>
-                                <Link to={`/user`} onClick={(e) => this.leaveGroupOnClick(group.id, e)}>Leave Group</Link>
+                                <td>  Member  </td>
+                                <td><Link to={`/user`} onClick={(e) => this.leaveGroupOnClick(group.id, e)}>Leave Group</Link>
+                              </td>
                               </div> )
-                              }
-                            </div>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td></td>
+                            }
+
                         </tr>
                       </div>
 

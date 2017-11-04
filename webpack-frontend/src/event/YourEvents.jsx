@@ -38,11 +38,11 @@ export default class YourEvents extends Component {
                           <td><Link to={`/events/${event.id}`} params={{id: event.id}}>{event.name}</Link></td>
                             <td>{event.group}</td>
                             <td>{ moment(event.start_date).format('hh:mm A, MMM Do') }</td>
-                            <td>{ ( moment(event.start_date).format('MMM Do') !==
+                            <td>{ ( moment(event.start_date).format('hh:mm, MMM Do') !==
                                 moment(event.end_date).format('MMM Do')
                               ) && (` to ${moment(event.end_date).format('MMM Do')}`)
                             }
-                          </td> 
+                          </td>
                           <td>{event.avail} of {event.total} shifts have yet to be filled.</td>
                         </tr>
                     )
